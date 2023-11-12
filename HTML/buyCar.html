@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Car</title>
+    <link rel="icon" type="image/png" href="assets/images/MYCAR.png">
+    <link rel="stylesheet" href="assets/css/catalog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="vehicleSearch">
+        <div class="vehicle_mainPage">
+            <section class="vehichleSection">
+                <button class="show-search-form" id="show-search-form">Show Search</button>
+                <div class="searchForm">
+                    <h2>Search car</h2>
+                    <div class="vehicleFormSearch">
+                        <form class="form" name="car-form">
+                            <fieldset class="fieldset_fieldset1">
+                                <label class="check">
+                                    <input type="radio" name="category" value="New">
+                                    <span class="checkBoxTag">New</span>
+                                </label>
+                                <label class="check">
+                                    <input type="radio" name="category" value="Used">
+                                    <span class="checkBoxTag">Used</span>
+                                </label>
+                                <label class="check">
+                                    <input type="radio" name="category" value="For parts">
+                                    <span class="checkBoxTag">For parts</span>
+                                </label>
+                            </fieldset>
+                            <fieldset class="brand-fieldset">
+                                <h3>Brand and model</h3>
+                                <label for="brand">Brand:</label>
+                                <select id="brand">
+                                    <option value>---</option>
+                                    <option value="audi">Audi</option>
+                                    <option value="bmw">BMW</option>
+                                    <option value="mercedes">Mercedes</option>
+                                    <option value="suzuki">Suzuki</option>
+                                    <option value="toyota">Toyota</option>
+                                </select>
+                            </fieldset>
+
+                            <fieldset class="model-fieldset">
+                                <label for="model">Model:</label>
+                                <select id="model">
+                                    <option value>---</option>
+                                </select>
+                            </fieldset>
+                            <div class="wrapper">
+                                <h2 style="font-size: 1.5vw; font-weight: 600;">Price Range</h2>
+                                <p>Enter or Select min and max price</p>
+                                <div class="price-input">
+                                    <div class="field">
+                                        <span>Min</span>
+                                        <input type="number" value="300" class="min-input">
+                                    </div>
+                                    <div class="separator">-</div>
+                                    <div class="field">
+                                        <span>Max</span>
+                                        <input type="number" value="3500" class="max-input">
+                                    </div>
+                                </div>
+                                <div class="slider">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" min="0" max="10000" value="300" class="min-range">
+                                    <input type="range" min="0" max="10000" value="3500" class="max-range">
+                                </div>
+                            </div>
+                            <fieldset class="brand-fieldset">
+                                <label for="brand">Transmission:</label>
+                                <select id="brand">
+                                    <option value>---</option>
+                                    <option value="automatic">Automatic</option>
+                                    <option value="manual">Manual</option>
+                                    <option value="semi-Automatic">Semi-Automatic</option>
+                                </select>
+                            </fieldset>
+                            <fieldset class="brand-fieldset">
+                                <label for="brand">Fuel:</label>
+                                <select id="brand">
+                                    <option value>---</option>
+                                    <option value="automatic">Diesel</option>
+                                    <option value="manual">Gasoline</option>
+                                    <option value="semi-Automatic">Hybrid</option>
+                                    <option value="semi-Automatic">Electric</option>
+                                    <option value="semi-Automatic">Gas</option>
+                                </select>
+                            </fieldset>
+                            <fieldset class="comfort-fieldset">
+                                <div class="comfort-toggle">
+                                    <button id="toggle-comforts">
+                                        Comforts <span class="arrow">&#9660;</span>
+                                    </button>
+                                </div>
+                                <div class="comfort-list">
+                                    <label>
+                                        <input type="checkbox" id="comfort1" name="comfort" value="comfort1"> Leather
+                                        seats
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="comfort2" name="comfort" value="comfort2"> Climate
+                                        control
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="comfort3" name="comfort" value="comfort3"> Auto/Start
+                                        Stop Function
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="comfort4" name="comfort" value="comfort4"> Bluetooth
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="comfort5" name="comfort" value="comfort5">
+                                        Steptronic, Tiptronic
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="comfort6" name="comfort" value="comfort6">
+                                        Bordcomputer
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <div class="show-results">
+                                <button>Show Results</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="results">
+                    <div class="topBar">
+                        <div class="categoryName">
+                            <label>12 products of 20</label>
+                        </div>
+                        <fieldset class="sortFieldset">
+                            <label for="sorting" class="sortLabel">Sort:</label>
+                            <select id="sortCar">
+                                <option value>---</option>
+                                <option value="priceAscending">Price Ascending</option>
+                                <option value="priceDescending">Price Descending</option>
+                                <option value="AZ">Brand and model: A-Z</option>
+                                <option value="ZA">Brand and model: Z-A</option>
+                                <option value="oldest">Oldest</option>
+                                <option value="newest">Newest</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="products-container">
+                        <div class="product">
+                            <div class="image-container">
+                                <img src="assets/images/91b70537ea848eba-large.jpeg" alt="Audi A4">
+                            </div>
+                            <div class="des">
+                                <span>Audi A4</span>
+                                <h5>Avant Business Advanced 40 TFSI 150 kW MHEV quattro S tronic **B&O, Webasto, Matrix
+                                    LED **</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$7800</h4>
+                                <a href="details.html">
+                                    <button class="button-style">Show Details</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="image-container">
+                                <img src="assets/images/4e1a20e64c1e414bb9ab07eb0dd0f80b.jpeg" alt="BMW X3">
+                            </div>
+                            <div class="des">
+                                <span>BMW X3</span>
+                                <h5>F25 xDrive20d A Business xLine **Bulgarian car, Automatic**</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class "fas fa-star"></i>
+                                </div>
+                                <h4>$65000</h4>
+                                <a href="">
+                                    <button class="button-style">Show Details</button>
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="product">
+                            <div class="image-container">
+                                <img src="assets/images/99239680.jpeg" alt="Mercedes-Benz">
+                            </div>
+                            <div class="des">
+                                <span>Mercedes-Benz</span>
+                                <h5>New car, really nice Bulgarian car</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$77500</h4>
+                                <a href="">
+                                    <button class="button-style">Show Details</button>
+                                </a>
+                            </div>
+                            <a href="#" class="details"></a>
+                        </div>
+                        <div class="product">
+                            <div class="image-container">
+                                <img src="assets/images/91b70537ea848eba-large.jpeg" alt="Audi A4">
+                            </div>
+                            <div class="des">
+                                <span>Audi A4</span>
+                                <h5>Avant Business Advanced 40 TFSI 150 kW MHEV quattro S tronic **B&O, Webasto, Matrix
+                                    LED **</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$7800</h4>
+                            </div>
+                            <a href="#" class="details"></a>
+                            <a href="l">
+                                <button class="button-style">Show Details</button>
+                            </a>
+                        </div>
+                        <div class="product">
+                            <div class="image-container">
+                                <img src="assets/images/4e1a20e64c1e414bb9ab07eb0dd0f80b.jpeg" alt="BMW X3">
+                            </div>
+                            <div class="des">
+                                <span>BMW X3</span>
+                                <h5>F25 xDrive20d A Business xLine **Bulgarian car, Automatic**</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class "fas fa-star"></i>
+                                </div>
+                                <h4>$65000</h4>
+                            </div>
+                            <a href="#" class="details"></a>
+                            <a href="">
+                                <button class="button-style">Show Details</button>
+                            </a>
+                        </div>
+                        <div class="product">
+                            <div class="image-container">
+                                <img src="assets/images/99239680.jpeg" alt="Mercedes-Benz">
+                            </div>
+                            <div class="des">
+                                <span>Mercedes-Benz</span>
+                                <h5>New car, really nice Bulgarian car</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$77500</h4>
+                                <a href="">
+                                    <button class="button-style">Show Details</button>
+                                </a>
+                            </div>
+                            <a href="#" class="details"></a>
+                        </div>
+                        <div class="product">
+                            <div class="image-container">
+                                <img src="assets/images/91b70537ea848eba-large.jpeg" alt="Audi A4">
+                            </div>
+                            <div class="des">
+                                <span>Audi A4</span>
+                                <h5>Avant Business Advanced 40 TFSI 150 kW MHEV quattro S tronic **B&O, Webasto, Matrix
+                                    LED **</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$7800</h4>
+                                <a href="">
+                                    <button class="button-style">Show Details</button>
+                                </a>
+                            </div>
+                            <a href="#" class="details"></a>
+                        </div>
+                        <div class="product">
+                            <div class="image-container">
+                                <img src="assets/images/4e1a20e64c1e414bb9ab07eb0dd0f80b.jpeg" alt="BMW X3">
+                            </div>
+                            <div class="des">
+                                <span>BMW X3</span>
+                                <h5>F25 xDrive20d A Business xLine **Bulgarian car, Automatic**</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class "fas fa-star"></i>
+                                </div>
+                                <h4>$65000</h4>
+                                <a href="">
+                                    <button class="button-style">Show Details</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="image-container">
+                                <img src="assets/images/99239680.jpeg" alt="Mercedes-Benz">
+                            </div>
+                            <div class="des">
+                                <span>Mercedes-Benz</span>
+                                <h5>New car, really nice Bulgarian car</h5>
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>$77500</h4>
+                                <a href="">
+                                    <button class="button-style">Show Details</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="showresults">
+                            <button id="resultbutton">Show More</button>
+                        </div>
+                        <div class="additional-results" id="additional-results" style="display: flex;">
+                            <div class="product">
+                                <div class="image-container">
+                                    <img src="assets/images/91b70537ea848eba-large.jpeg" alt="Audi A4">
+                                </div>
+                                <div class="des">
+                                    <span>Audi A4</span>
+                                    <h5>Avant Business Advanced 40 TFSI 150 kW MHEV quattro S tronic **B&O, Webasto, Matrix
+                                        LED **</h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <h4>$7800</h4>
+                                    <a href="details.html">
+                                        <button class="button-style">Show Details</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product">
+                                <div class="image-container">
+                                    <img src="assets/images/4e1a20e64c1e414bb9ab07eb0dd0f80b.jpeg" alt="BMW X3">
+                                </div>
+                                <div class="des">
+                                    <span>BMW X3</span>
+                                    <h5>F25 xDrive20d A Business xLine **Bulgarian car, Automatic**</h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class "fas fa-star"></i>
+                                    </div>
+                                    <h4>$65000</h4>
+                                    <a href="">
+                                        <button class="button-style">Show Details</button>
+                                    </a>
+                                </div>
+    
+                            </div>
+                            <div class="product">
+                                <div class="image-container">
+                                    <img src="assets/images/99239680.jpeg" alt="Mercedes-Benz">
+                                </div>
+                                <div class="des">
+                                    <span>Mercedes-Benz</span>
+                                    <h5>New car, really nice Bulgarian car</h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <h4>$77500</h4>
+                                    <a href="">
+                                        <button class="button-style">Show Details</button>
+                                    </a>
+                                </div>
+                                <a href="#" class="details"></a>
+                            </div>
+                            <div class="product">
+                                <div class="image-container">
+                                    <img src="assets/images/91b70537ea848eba-large.jpeg" alt="Audi A4">
+                                </div>
+                                <div class="des">
+                                    <span>Audi A4</span>
+                                    <h5>Avant Business Advanced 40 TFSI 150 kW MHEV quattro S tronic **B&O, Webasto, Matrix
+                                        LED **</h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <h4>$7800</h4>
+                                </div>
+                                <a href="#" class="details"></a>
+                                <a href="l">
+                                    <button class="button-style">Show Details</button>
+                                </a>
+                            </div>
+                            <div class="product">
+                                <div class="image-container">
+                                    <img src="assets/images/4e1a20e64c1e414bb9ab07eb0dd0f80b.jpeg" alt="BMW X3">
+                                </div>
+                                <div class="des">
+                                    <span>BMW X3</span>
+                                    <h5>F25 xDrive20d A Business xLine **Bulgarian car, Automatic**</h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class "fas fa-star"></i>
+                                    </div>
+                                    <h4>$65000</h4>
+                                </div>
+                                <a href="#" class="details"></a>
+                                <a href="">
+                                    <button class="button-style">Show Details</button>
+                                </a>
+                            </div>
+                            <div class="product">
+                                <div class="image-container">
+                                    <img src="assets/images/99239680.jpeg" alt="Mercedes-Benz">
+                                </div>
+                                <div class="des">
+                                    <span>Mercedes-Benz</span>
+                                    <h5>New car, really nice Bulgarian car</h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <h4>$77500</h4>
+                                    <a href="">
+                                        <button class="button-style">Show Details</button>
+                                    </a>
+                                </div>
+                                <a href="#" class="details"></a>
+                            </div>
+                            <div class="product">
+                                <div class="image-container">
+                                    <img src="assets/images/91b70537ea848eba-large.jpeg" alt="Audi A4">
+                                </div>
+                                <div class="des">
+                                    <span>Audi A4</span>
+                                    <h5>Avant Business Advanced 40 TFSI 150 kW MHEV quattro S tronic **B&O, Webasto, Matrix
+                                        LED **</h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <h4>$7800</h4>
+                                    <a href="">
+                                        <button class="button-style">Show Details</button>
+                                    </a>
+                                </div>
+                                <a href="#" class="details"></a>
+                            </div>
+                            <div class="product">
+                                <div class="image-container">
+                                    <img src="assets/images/4e1a20e64c1e414bb9ab07eb0dd0f80b.jpeg" alt="BMW X3">
+                                </div>
+                                <div class="des">
+                                    <span>BMW X3</span>
+                                    <h5>F25 xDrive20d A Business xLine **Bulgarian car, Automatic**</h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class "fas fa-star"></i>
+                                    </div>
+                                    <h4>$65000</h4>
+                                    <a href="">
+                                        <button class="button-style">Show Details</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product">
+                                <div class="image-container">
+                                    <img src="assets/images/99239680.jpeg" alt="Mercedes-Benz">
+                                </div>
+                                <div class="des">
+                                    <span>Mercedes-Benz</span>
+                                    <h5>New car, really nice Bulgarian car</h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <h4>$77500</h4>
+                                    <a href="">
+                                        <button class="button-style">Show Details</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+
+    <script src="assets/js/app.js"></script> 
+</body>
+
+</html>

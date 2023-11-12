@@ -1,0 +1,356 @@
+
+
+#hero,
+#hero button,
+.container,
+.info{
+    display: flex
+}
+
+.container,
+.info {
+    box-sizing: border-box
+}
+
+#hero {
+    position: relative
+}
+
+.carInfoCard {
+    background-color: #e2e2e2
+}
+
+#hero h4 {
+    padding-bottom: 10px
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif
+}
+
+#hero {
+    background-image: url("../assets/images/LM22_17D_Touring_SF_nb_8R0A5927_3qtr_rear_2_epk_srgb_2-1280x854.png");
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+    padding: 0 80px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center
+}
+
+#hero h4 {
+    font-size: 46px;
+    font-weight: 700;
+    z-index: 3;
+    color: #fff
+}
+
+#hero h2 {
+    color: #fff;
+    padding-bottom: 25px
+}
+
+#hero button {
+    background-color: transparent;
+    color: #85ca85;
+    border: 0;
+    padding: 14px 80px 14px 65px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 34px;
+    align-items: center;
+    z-index: 1
+}
+
+.container {
+    max-width: 100%;
+    margin-left: 100px;
+    margin-right: 100px;
+    /* margin: 0 auto; */
+    padding: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center
+}
+
+.container h1 {
+    font-size: 40px;
+    font-weight: 700
+}
+
+.container p {
+    font-size: 28px;
+    margin-bottom: 50px
+}
+
+.info {
+    justify-content: space-between;
+    padding: 0
+}
+
+.carInfoCard,
+.carInfoCard form {
+    display: flex;
+    flex-direction: column
+}
+
+.info .someInfo {
+    width: 40%
+}
+
+.info .carInfo {
+    width: 50%
+}
+
+.someInfo h2 {
+    font-size: 32px
+}
+
+.someInfo p {
+    font-size: 24px
+}
+
+.carInfoCard {
+    max-height: 100%;
+    border-radius: 5%;
+    width: 100%
+}
+
+.carInfoCard form {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+    align-items: center;
+    margin-bottom: 20px
+}
+
+.input-group{
+    flex-direction: column;
+    display: flex
+}
+
+.carInfoCard h2 {
+    font-size: 26px;
+    padding: 15px
+}
+
+.carInfoCard form p {
+    font-size: 22px;
+    margin-bottom: 20px
+}
+
+.input-group {
+    margin: 15px 0;
+    align-items: center;
+    width: 100%
+}
+
+.input-group label {
+    font-size: 26px;
+    text-align: left;
+    margin: 0 0 5px;
+    width: 100%
+}
+
+.input-addon {
+    display: flex;
+    align-items: center;
+    width: 100%
+}
+
+.input-addon .flag-icon {
+    font-size: 30px;
+    margin-right: 5px
+}
+
+.input-group input[type=text] {
+    width: 100%;
+    box-sizing: border-box
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 10px;
+    font-size: 22px;
+    border: 1px solid #ddd;
+    border-radius: 5px
+}
+
+button#go {
+    background-color: #088178;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 24px;
+    cursor: pointer
+}
+
+button#go:hover {
+    background-color: #055b4f
+}
+
+.anotherInfo {
+    border-top: 1px solid #e2e2e2;
+    text-align: left;
+    margin-top: 40px
+}
+
+.anotherInfo h2 {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px
+}
+
+.anotherInfo p {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: justify
+}
+
+.anotherInfo ol {
+    counter-reset: section;
+    margin-bottom: 20px
+}
+
+.anotherInfo ol li {
+    list-style: none;
+    counter-increment: section;
+    margin-bottom: 10px;
+    position: relative
+}
+
+.anotherInfo ol li::before {
+    content: counter(section) ".";
+    font-weight: 700;
+    margin-right: 5px;
+    color: #088178
+}
+
+.anotherInfo ol li p {
+    font-size: 16px;
+    text-align: justify
+}
+
+@media screen and (max-width:767px) {
+
+    body,
+    html {
+        font-size: 12px
+    }
+
+    .header,
+    .header-container {
+        padding: .5rem
+    }
+
+    .header-logo img {
+        width: 40px;
+        height: 30px
+    }
+
+    .nav-list li {
+        margin-right: 10px
+    }
+
+    .nav-list li a {
+        font-size: 14px
+    }
+}
+
+.mobile-menu-button {
+    display: none;
+    font-size: 20px;
+    cursor: pointer
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #e2e2e2;
+    position: absolute;
+    top: 60px;
+    right: 0
+}
+
+.mobile-menu.active {
+    display: flex
+}
+
+@media screen and (max-width:900px) {
+    body {
+        overflow: scroll;
+        background-attachment: fixed
+    }
+
+    nav ul {
+        margin-left: 35px;
+        gap: 10px
+    }
+
+    nav li {
+        padding: 0 10px
+    }
+
+    nav a {
+        font-size: 14px
+    }
+
+    .login-register {
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .login-register a {
+        font-size: 14px;
+        margin-right: 10px
+    }
+
+    header img {
+        width: 100%;
+        max-width: 100%;
+        height: auto
+    }
+}
+
+@media (max-width:767px) {
+
+    .nav,
+    .results {
+        width: 100%
+    }
+
+    body,
+    html {
+        font-size: 12px
+    }
+
+    header {
+        justify-content: space-between
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #e3e6f3;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .1)
+    }
+
+    .nav ul li {
+        font-size: 14px
+    }
+}
