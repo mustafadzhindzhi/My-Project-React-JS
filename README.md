@@ -9,3 +9,4 @@ Currently, two official plugins are available:
 # My-Project-React-JS-SoftUni
 # My-Project-React-JS-SoftUni
 # My-Project-React-JS-SoftUni
+# Project-React-JS-SoftUni
