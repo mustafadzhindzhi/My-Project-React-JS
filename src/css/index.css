@@ -20,7 +20,8 @@ nav li {
 header {
     box-shadow: 0 5px 15px rgba(0, 0, 0, .6);
     display: flex;
-    max-height: 50px
+    height: 100%;
+    max-height: 80px
 }
 
 .headerb nav a,
@@ -59,7 +60,7 @@ header img {
     width: 100%;
     max-width: 90px;
     height: 100%;
-    max-height: 60px;
+    max-height: 70px;
     padding-left: 20px;
     border-radius: 20px
 }
@@ -245,11 +246,12 @@ footer .copyright {
     border: 2px solid #000;
     background-color: #e4d0d0;
     border-radius: 40px;
-    width: 170px
+    width: 200px;
+    height: 30px;
 }
 
 .headerb nav a {
-    font-size: 24px;
+    font-size: 26px;
     color: #1a1a1a;
     position: relative
 }

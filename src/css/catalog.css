@@ -12,7 +12,7 @@ nav ul {
 
 .login-register a,
 nav a {
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 400;
   transition: 0.3s;
   text-decoration: none;
@@ -58,7 +58,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 999;
-  max-height: 50px;
+  max-height: 80px;
 }
 
 #showresults {
