@@ -1,0 +1,15 @@
+@import url('css-reset.css');
+
+@import url('sell.css');
+@import url('index.css');
+@import url('sellCar.css');
+@import url('maintenance.css');
+@import url('contact.css');
+@import url('login.css');
+@import url('register.css');
+@import url('catalog.css');
+
+*{
+    padding: 0;
+    margin: 0;
+}

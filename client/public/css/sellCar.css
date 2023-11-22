@@ -32,7 +32,7 @@ html {
 }
 
 #hero {
-    background-image: url("../assets/images/LM22_17D_Touring_SF_nb_8R0A5927_3qtr_rear_2_epk_srgb_2-1280x854.png");
+    background-image: url("../images/LM22_17D_Touring_SF_nb_8R0A5927_3qtr_rear_2_epk_srgb_2-1280x854.png");
     height: 90vh;
     background-size: cover;
     background-position: center;
@@ -43,35 +43,53 @@ html {
 }
 
 #hero h4 {
-    font-size: 46px;
+    font-size: 56px;
     font-weight: 700;
     z-index: 3;
-    color: #fff
+    color: #ffffff;
+    padding-bottom: 80px;
 }
 
 #hero h2 {
-    color: #fff;
-    padding-bottom: 25px
+    color: hsl(0, 0%, 100%);
+    padding-bottom: 35px;
+    font-size: 35px;
+}
+
+#hero h1{
+    color: white;
+    font-size: 35px;
+    padding-bottom: 35px;
+}
+
+#hero p{
+    color: white;
+    font-size: 25px;
+    padding-bottom: 35px;
 }
 
 #hero button {
-    background-color: transparent;
-    color: #85ca85;
-    border: 0;
-    padding: 14px 80px 14px 65px;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 34px;
+    opacity: 0.902;
+    margin-top: 15px;
+    width: 218px;
+    height: 47px;
+    border-radius: 21px;
+    background-color: #ffffff;
+    font-size: 25px;
+    color: #776c64;
+    font-weight: 800;
+    font-family: "Open Sans";
+    text-align: center;
     align-items: center;
-    z-index: 1
+    margin-bottom: 12px;
+    cursor: pointer;
+    padding-left: 25px;
 }
 
 .container {
     max-width: 100%;
     margin-left: 100px;
     margin-right: 100px;
-    /* margin: 0 auto; */
     padding: 40px;
     flex-direction: column;
     justify-content: center;
@@ -81,12 +99,15 @@ html {
 
 .container h1 {
     font-size: 40px;
-    font-weight: 700
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .container p {
-    font-size: 28px;
-    margin-bottom: 50px
+    font-size: 25px;
+    margin-bottom: 50px;
+    margin-top: 15px;
 }
 
 .info {
@@ -109,11 +130,14 @@ html {
 }
 
 .someInfo h2 {
-    font-size: 32px
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .someInfo p {
-    font-size: 24px
+    font-size: 24px;
+    margin-top: 22px;
+    letter-spacing: 1px;
 }
 
 .carInfoCard {
@@ -140,6 +164,7 @@ html {
 
 .carInfoCard h2 {
     font-size: 26px;
+    margin-top: 20px;
     padding: 15px
 }
 
@@ -200,21 +225,22 @@ button#go:hover {
 }
 
 .anotherInfo {
-    border-top: 1px solid #e2e2e2;
+    border-top: 2px solid #e2e2e2;
     text-align: left;
-    margin-top: 40px
+    margin-top: 40px;
+    max-height: 40vh;
 }
 
 .anotherInfo h2 {
     font-size: 40px;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 50px
+    margin-top: 30px;
+    margin-bottom: 60px;
 }
 
 .anotherInfo p {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 25px;
     text-align: justify
 }
 
@@ -239,7 +265,7 @@ button#go:hover {
 
 .anotherInfo ol li p {
     font-size: 16px;
-    text-align: justify
+    justify-content: space-around;
 }
 
 @media screen and (max-width:767px) {

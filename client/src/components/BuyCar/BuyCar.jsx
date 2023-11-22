@@ -2,8 +2,6 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import VehicleSearch from "./VehicleSearch.jsx";
 
-import '/src/css/catalog.css'
-
 function Buy() {
   return (
     <div>

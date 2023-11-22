@@ -303,15 +303,15 @@ footer a {
     box-sizing: border-box
 }
 
-.background-image {
-    background: url('../src/assets/images/GAP-insurance-for-used-cars-1200x1200-cropped.jpeg') center/cover no-repeat #4a4a4a;
+.background-image2 {
+    background: url('../images/GAP-insurance-for-used-cars-1200x1200-cropped.jpeg') center/cover no-repeat #4a4a4a;
     background-blend-mode: multiply;
     padding: 15%;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0
+    bottom: 0;
 }
 
 .content {
@@ -422,7 +422,8 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: #e2e2e2
+    background-color: #e2e2e2;
+    margin-bottom: 0;
 }
 
 footer .col {

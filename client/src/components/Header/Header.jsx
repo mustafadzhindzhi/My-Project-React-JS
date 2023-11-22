@@ -1,35 +1,37 @@
+import { Link } from "react-router-dom";
+
 const Header  = () => {
     return (
         <header>
-        <a href="/">
-          <img src="src/assets/images/MYCAR.png" alt="" />
-        </a>
+        <Link to="/">
+          <img src="/images/MYCAR.png" alt="" />
+        </Link>
         <nav className="header-navigation">
           <ul className="nav-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/BuyCar">Buy Car</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/BuyCar">Buy Car</Link></li>
             <li className="dropdown">
-              <a>Sell Car</a>
+              <Link>Sell Car</Link>
               <ul className="dropdown-menu">
-                <li><a href="/sellYourCar">Sell with Us</a></li>
-                <li><a href="sellCar.html">Sell your car</a></li>
+                <li><Link to="/sellWithUs">Sell with Us</Link></li>
+                <li><Link to="/sell">Sell your car</Link></li>
               </ul>
             </li>
             <li className="dropdown">
-              <a href="maintenance.html">Maintenance</a>
-              <ul className="dropdown-menu">
-                <li><a href="#">Change motor oil and filters</a></li>
-                <li><a href="#">Replace spark plugs</a></li>
-                <li><a href="#">Change tires</a></li>
-                <li><a href="#">Others</a></li>
-              </ul>
+              <Link to="/maintenance">Maintenance</Link>
+              {/* <ul className="dropdown-menu">
+                <li><Link to="#">Change motor oil and filters</Link></li>
+                <li><Link to="#">Replace spark plugs</Link></li>
+                <li><Link to="#">Change tires</Link></li>
+                <li><Link to="#">Others</Link></li>
+              </ul> */}
             </li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><Link to="/contacts">Contact Us</Link></li>
           </ul>
         </nav>
         <div className="login-register">
-          <a href="login.html">Login</a>
-          <a href="register.html">Register</a>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
         </div>
       </header>
     )

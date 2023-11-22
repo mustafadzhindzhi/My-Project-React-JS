@@ -3,8 +3,6 @@ import Headerb from "./Headerb.jsx";
 import Hero from "./Hero.jsx"
 import Welcome from "./Welcome.jsx";
 
-import "/src/css/index.css";
-
 function Home() {
 
   return (

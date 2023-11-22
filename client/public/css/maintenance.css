@@ -1,0 +1,656 @@
+.headerb,
+header {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .6);
+    position: sticky;
+    top: 0;
+    max-height: 50px
+}
+
+.headerb nav a,
+.login-register a,
+nav a {
+    font-weight: 400;
+    transition: .3s;
+    text-decoration: none
+}
+
+#hero,
+.headerb nav a,
+nav .dropdown,
+nav li {
+    position: relative
+}
+
+#hero h2,
+#hero h4,
+#hero p {
+    color: #fff
+}
+
+.container,
+.info {
+    box-sizing: border-box
+}
+
+.headerb,
+.someInfo img,
+header {
+    max-height: 50px
+}
+
+#banner3,
+#hero {
+    padding: 0 80px
+}
+
+#banner3 .banner-box,
+#hero,
+#sm-banner .banner-box {
+    background-size: cover;
+    background-position: center
+}
+
+.headerb nav a,
+.login-register a,
+.someInfo a,
+footer a,
+nav .dropdown>a,
+nav a {
+    text-decoration: none
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif
+}
+
+header {
+    background: #e2e2e2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    z-index: 999
+}
+
+.headerb nav ul,
+nav,
+nav ul {
+    align-items: center;
+    display: flex
+}
+
+header img {
+    width: 100%;
+    max-width: 90px;
+    height: 100%;
+    max-height: 60px;
+    padding-left: 20px;
+    border-radius: 20px
+}
+
+nav {
+    justify-content: center
+}
+
+.headerb nav ul,
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 40px;
+    gap: 25px;
+    justify-content: center
+}
+
+nav li {
+    list-style: none;
+    padding: 0 20px
+}
+
+nav a {
+    font-size: 18px;
+    color: #1a1a1a
+}
+
+.login-register a:hover,
+footer .follow i:hover,
+footer a:hover,
+nav a.active,
+nav a:hover {
+    color: #088178
+}
+
+nav a.active::after,
+nav a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #088178;
+    position: absolute;
+    bottom: -4px;
+    left: 20px
+}
+
+nav .dropdown>a {
+    cursor: pointer
+}
+
+nav .dropdown-menu {
+    display: none;
+    width: 200px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    background: #fff;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .2)
+}
+
+nav .dropdown:hover .dropdown-menu {
+    display: block
+}
+
+.login-register {
+    text-align: end;
+    display: flex;
+    gap: 25px;
+    padding: 25px;
+    margin-right: 20px
+}
+
+.login-register a {
+    font-size: 18px;
+    color: #333
+}
+
+.headerb {
+    background: #b6a9a9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    width: 100%
+}
+
+.headerb nav {
+    flex: 1
+}
+
+.headerb nav li {
+    padding: 25px
+}
+
+.headerb nav a {
+    font-size: 24px;
+    color: #1a1a1a
+}
+
+#hero {
+    background-image: url("../images/maint2.jpeg");
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center
+}
+
+#hero h4 {
+    padding-bottom: 10px;
+    font-size: 40px;
+    font-weight: 700;
+    z-index: 3
+}
+
+#hero h2 {
+    padding-bottom: 25px
+}
+
+#hero button {
+    background-color: transparent;
+    color: #85ca85;
+    border: 0;
+    padding: 14px 80px 14px 65px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    z-index: 1
+}
+
+.someInfo a button,
+button#go {
+    padding: 10px 20px;
+    background-color: #088178;
+    color: #fff;
+    cursor: pointer
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center
+}
+
+.container h1 {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 50px
+}
+
+.container p {
+    font-size: 22px;
+    margin-bottom: 50px
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0
+}
+
+.carInfoCard,
+.carInfoCard form {
+    flex-direction: column;
+    display: flex
+}
+
+.info .someInfo {
+    width: 40%
+}
+
+.info .carInfo {
+    width: 55%
+}
+
+.carInfoCard {
+    max-height: 100%;
+    border-radius: 5%;
+    width: 100%
+}
+
+.carInfoCard form {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+    align-items: center;
+    margin-bottom: 20px
+}
+
+.carInfoCard h2 {
+    font-size: 24px;
+    padding: 10px
+}
+
+.carInfoCard form p {
+    font-size: 16px;
+    margin-bottom: 20px
+}
+
+.input-group {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%
+}
+
+.input-group label {
+    font-size: 18px;
+    text-align: left;
+    margin: 0 0 5px;
+    width: 100%
+}
+
+.someInfo h2,
+.someInfo img,
+.someInfo p,
+footer .col {
+    margin-bottom: 20px
+}
+
+.someInfo a,
+footer .follow {
+    margin-top: 20px
+}
+
+.input-addon {
+    display: flex;
+    align-items: center;
+    width: 100%
+}
+
+.input-addon .flag-icon {
+    font-size: 24px;
+    margin-right: 5px
+}
+
+.input-group input[type=text] {
+    width: 100%;
+    box-sizing: border-box
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px
+}
+
+button#go {
+    border: none;
+    border-radius: 5px;
+    font-size: 18px
+}
+
+.someInfo a button:hover,
+button#go:hover {
+    background-color: #055b4f
+}
+
+.someInfo {
+    text-align: left;
+    margin: 20px 0
+}
+
+.someInfo h2 {
+    font-size: 24px;
+    font-weight: 700
+}
+
+.someInfo img {
+    width: 100%;
+    height: 100%
+}
+
+.someInfo p {
+    font-size: 18px;
+    text-align: left
+}
+
+.someInfo a {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.someInfo a button {
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color .3s
+}
+
+.banners {
+    border-top: 1px solid #e3e6f3;
+    background-color: #fffaf0
+}
+
+#sm-banner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 30px 20px
+}
+
+#sm-banner .banner-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url("/images/LM22_17D_Touring_SF_nb_8R0A5927_3qtr_rear_2_epk_srgb_2-1280x854.png");
+    min-width: 625px;
+    height: 40vh;
+    padding: 30px
+}
+
+#sm-banner .banner-box2 {
+    background-image: url("/images/_128000012_merc-benz-ayl-010.jpeg")
+}
+
+#sm-banner h4 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 300
+}
+
+#sm-banner h2 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 800
+}
+
+#sm-banner span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 15px
+}
+
+#sm-banner .banner-box:hover button {
+    background-color: #088178;
+    border: 1px solid #088178
+}
+
+#banner3 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap
+}
+
+#banner3 .banner-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url("/images/99239680.jpeg");
+    min-width: 29%;
+    height: 30vh;
+    padding: 20px;
+    margin-bottom: 40px;
+    margin-right: 10px
+}
+
+#banner3 .banner-box2 {
+    background-image: url("/images/641a0d7f8a514c001825b3c3.png")
+}
+
+#banner3 .banner-box3 {
+    background-image: url("/images/Home-Carousel-1.png")
+}
+
+#banner3 h2 {
+    color: #fff;
+    font-weight: 900;
+    font-size: 24px
+}
+
+#banner3 h3 {
+    color: #ec544e;
+    font-weight: 800;
+    font-size: 17px
+}
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #e2e2e2;
+    margin: none
+}
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
+}
+
+footer .logo {
+    margin-bottom: 30px;
+    height: 100px;
+    width: 100px
+}
+
+footer h4 {
+    font-size: 16px;
+    padding-bottom: 20px
+}
+
+footer p {
+    font-size: 14px;
+    margin: 0 0 8px
+}
+
+footer a {
+    font-size: 14px;
+    color: #222;
+    margin-bottom: 10px
+}
+
+footer .follow i {
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer
+}
+
+footer .install .row img {
+    border: 1px solid #088178;
+    border-radius: 6px
+}
+
+footer .install img {
+    margin: 10px 0 15px
+}
+
+footer .copyright {
+    width: 100%;
+    text-align: center
+}
+
+@media screen and (max-width:767px) {
+
+    body,
+    html {
+        font-size: 12px
+    }
+
+    header {
+        justify-content: space-between
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background-color: #e3e6f3;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .1)
+    }
+
+    .nav ul li {
+        font-size: 14px
+    }
+
+    .nav.active {
+        display: flex
+    }
+
+    #hero {
+        height: 70vh;
+        padding: 0 80px;
+        background-position: top 30% right 30%
+    }
+
+    #banner {
+        height: 20vh
+    }
+
+    #sm-banner .banner-box {
+        min-width: 90%;
+        height: 30vh;
+        margin-bottom: 30px
+    }
+
+    #banner3 {
+        padding: 0 40px
+    }
+
+    #banner3 .banner-box {
+        width: 28%
+    }
+}
+
+.mobile-menu-button {
+    display: none;
+    font-size: 20px;
+    cursor: pointer
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #e2e2e2;
+    position: absolute;
+    top: 60px;
+    right: 0
+}
+
+.mobile-menu.active {
+    display: flex
+}
+
+@media screen and (max-width:900px) {
+    nav ul {
+        margin-left: 35px;
+        gap: 10px
+    }
+
+    nav li {
+        padding: 0 10px
+    }
+
+    nav a {
+        font-size: 14px
+    }
+
+    .login-register {
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .login-register a {
+        font-size: 14px;
+        margin-right: 10px
+    }
+
+    header img {
+        width: 100%;
+        max-width: 100%;
+        height: auto
+    }
+
+    .headerb nav a {
+        font-size: 12px
+    }
+
+    body {
+        overflow: scroll;
+        background-attachment: fixed
+    }
+}

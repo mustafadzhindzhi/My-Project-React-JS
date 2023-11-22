@@ -2,7 +2,7 @@ const Footer = () => {
     return (
         <footer className="section-p1">
           <div className="col">
-            <img className="logo" src="src/assets/images/MYCAR.png" alt="" />
+            <img className="logo" src="/images/MYCAR.png" alt="" />
             <h4>Contact</h4>
             <p><strong>Our main office:</strong> Kliment Ohridski №72, Sofia, Bulgaria</p>
             <p><strong>Phone:</strong> +359899384275</p>

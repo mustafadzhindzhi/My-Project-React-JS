@@ -1,0 +1,380 @@
+nav .dropdown,
+nav li {
+    position: relative
+}
+
+.login-register a,
+nav a {
+    font-size: 18px;
+    font-weight: 400;
+    transition: .3s;
+    text-decoration: none
+}
+
+#contact-details .map iframe,
+header img {
+    height: 100%;
+    width: 100%
+}
+
+.login-register a,
+footer a,
+nav .dropdown>a,
+nav a {
+    text-decoration: none
+}
+
+footer a,
+nav .dropdown:hover .dropdown-menu {
+    display: block
+}
+
+footer a,
+footer h4 {
+    margin-bottom: 10px
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif
+}
+
+header {
+    background: #e2e2e2;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    max-height: 50px
+}
+
+nav,
+nav ul {
+    align-items: center;
+    display: flex
+}
+
+header img {
+    max-width: 90px;
+    max-height: 60px;
+    padding-left: 20px;
+    border-radius: 20px
+}
+
+nav {
+    justify-content: center
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 40px;
+    gap: 25px;
+    justify-content: center
+}
+
+nav li {
+    list-style: none;
+    padding: 0 20px
+}
+
+nav a {
+    color: #1a1a1a
+}
+
+.login-register a:hover,
+footer .follow i:hover,
+footer a:hover,
+nav a.active,
+nav a:hover {
+    color: #088178
+}
+
+nav a.active::after,
+nav a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #088178;
+    position: absolute;
+    bottom: -4px;
+    left: 20px
+}
+
+nav .dropdown>a {
+    cursor: pointer
+}
+
+nav .dropdown-menu {
+    display: none;
+    width: 200px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    background: #fff;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .2)
+}
+
+.login-register {
+    text-align: end;
+    display: flex;
+    gap: 25px;
+    padding: 25px;
+    margin-right: 20px
+}
+
+.login-register a {
+    color: #333
+}
+
+#contact-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 30px
+}
+
+#contact-details .details {
+    width: 40%;
+    margin-left: 20px
+}
+
+#contact-details .details span,
+#form-details form span {
+    font-size: 16px
+}
+
+#contact-details .details h2,
+#form-details form h2 {
+    font-size: 26px;
+    line-height: 35px;
+    padding: 20px 0
+}
+
+#contact-details .details h3 {
+    font-size: 16px;
+    padding-bottom: 15px
+}
+
+#contact-details .details li {
+    list-style: none;
+    display: flex;
+    padding: 10px 0
+}
+
+#contact-details .details li i {
+    font-size: 14px;
+    padding-right: 22px
+}
+
+#contact-details .details li p {
+    margin: 0;
+    font-size: 14px
+}
+
+#contact-details .map {
+    width: 55%;
+    height: 400px
+}
+
+#form-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 80px;
+    border: 1px solid #e2e2e2;
+    background-color: #fffbfb
+}
+
+#form-details form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
+}
+
+#form-details form input,
+#form-details form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    outline: 0;
+    margin-bottom: 20px;
+    border: 1px solid #e1e1e1
+}
+
+#form-details form button {
+    background-color: #088178;
+    font-size: 22px;
+    text-align: center;
+    width: 40%;
+    margin: 0 auto;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer
+}
+
+#form-details form button:hover {
+    background-color: #055b4f
+}
+
+#form-details .people div {
+    padding-bottom: 25px;
+    display: flex;
+    align-items: flex-start
+}
+
+#form-details .people h1 {
+    text-align: center;
+    margin-bottom: 40px
+}
+
+#form-details .people div img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 50%
+}
+
+#form-details .people div p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 25px
+}
+
+#form-details .people div p span {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000
+}
+
+footer .col {
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    vertical-align: top;
+    text-align: center;
+    width: calc(25% - 50px);
+    margin-bottom: 20px
+}
+
+footer .logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px
+}
+
+footer h4 {
+    font-size: 16px
+}
+
+footer p {
+    font-size: 14px;
+    margin: 0
+}
+
+footer a {
+    color: #222
+}
+
+footer .follow i {
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer
+}
+
+footer .install .row img {
+    border: 1px solid #088178;
+    border-radius: 6px;
+    margin: 10px 0
+}
+
+footer .copyright {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: #333
+}
+
+@media screen and (max-width:900px) {
+    body {
+        overflow: scroll;
+        background-attachment: fixed
+    }
+
+    nav ul {
+        margin-left: 30px;
+        gap: 5px
+    }
+
+    nav li {
+        padding: 0 8px
+    }
+
+    nav a {
+        font-size: 12px
+    }
+
+    .login-register {
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .login-register a {
+        font-size: 12px;
+        margin-right: 10px
+    }
+
+    header img {
+        width: 100%;
+        max-width: 100%;
+        height: auto
+    }
+}
+
+@media screen and (max-width:768px) {
+
+    #form-details .people,
+    footer .col {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column
+    }
+
+    footer h4 {
+        font-size: 14px
+    }
+
+    footer a,
+    footer p {
+        font-size: 12px
+    }
+
+    footer a {
+        margin-bottom: 8px
+    }
+
+    #form-details {
+        flex-direction: column
+    }
+
+    #form-details form {
+        width: 100%
+    }
+
+    #form-details .people div {
+        margin-left: 0
+    }
+}
