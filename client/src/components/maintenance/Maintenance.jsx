@@ -18,23 +18,26 @@ export default function Maintenance() {
           <section className="container">
             <h1>See the prices and book a serivice appointment</h1>
             <div className="info">
-              <div className="carInfo">
-                <div className="carInfoCard">
+              <div className="carInfo2">
+                <div className="carInfoCard2">
                   <h2>Book support online</h2>
-                  <form action className="carCard">
-                    <div className="input-group">
-                      <label htmlFor="carNumber">Car Number</label>
-                      <div className="input-addon">
-                        <span className="flag-icon">🇪🇺</span>
-                        <input type="text" id="carNumber" name="carNumber" placeholder="Enter car number" />
-                      </div>
-                    </div>
-                    <div className="input-group">
-                      <label htmlFor="kilometers">Kilometers</label>
-                      <input type="text" id="kilometers" name="kilometers" placeholder="Enter kilometers" />
-                    </div>
-                    <button id="go">Start the booking service</button>
-                  </form>
+                  <form className="carCard2">
+                <div className="group-input">
+                  <label htmlFor="carNumber">Car Number</label>
+                  <div className="addon-input">
+                    <span className="flag-icon"><img src="/public/images/license-plate.png" alt="" /></span>
+                    <input type="text" id="carNumber" name="carNumber" placeholder="Enter car number"/>
+                  </div>
+                </div>
+                <div className="group-input">
+                  <label htmlFor="kilometers">Kilometers</label>
+                  <div className="addon-input">
+                  <span className="flag-icon"><img src="/public/images/odometer-for-kilometers-and-speed-control.png" alt="" /></span> 
+                    <input type="text" id="kilometers" name="kilometers" placeholder="Enter kilometers" />
+                  </div>
+                </div>
+                <button id="send-btn" type="submit">Send</button>
+              </form>
                 </div>
               </div>
               <div className="someInfo">

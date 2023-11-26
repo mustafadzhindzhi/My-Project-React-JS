@@ -2,12 +2,12 @@
 
 #hero,
 #hero button,
-.container,
+.sellUs,
 .info{
     display: flex
 }
 
-.container,
+.sellUs,
 .info {
     box-sizing: border-box
 }
@@ -16,7 +16,7 @@
     position: relative
 }
 
-.carInfoCard {
+.formInfoCard {
     background-color: #e2e2e2
 }
 
@@ -31,7 +31,7 @@ html {
     font-family: Arial, sans-serif
 }
 
-#hero {
+#hero4 {
     background-image: url("../images/LM22_17D_Touring_SF_nb_8R0A5927_3qtr_rear_2_epk_srgb_2-1280x854.png");
     height: 90vh;
     background-size: cover;
@@ -39,40 +39,70 @@ html {
     padding: 0 80px;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center
+    justify-content: center;
+    padding-top: 220px;
 }
 
-#hero h4 {
-    font-size: 56px;
-    font-weight: 700;
-    z-index: 3;
-    color: #ffffff;
-    padding-bottom: 80px;
+#hero4 h4 {
+    margin-top: 10px;
+    width: 50%;
+    font-size: 92px;
+    color: #4d4339;
+    font-weight: 800;
+    font-family: "Open Sans";
+    filter: drop-shadow(2.575px -4.286px 2.5px rgba(84, 82, 79, 0.22));
 }
 
-#hero h2 {
-    color: hsl(0, 0%, 100%);
-    padding-bottom: 35px;
-    font-size: 35px;
-}
-
-#hero h1{
-    color: white;
-    font-size: 35px;
-    padding-bottom: 35px;
-}
-
-#hero p{
-    color: white;
+#hero4 h2 {
+    width: 80%;
+    height: 65px;
     font-size: 25px;
-    padding-bottom: 35px;
+    letter-spacing: 5px;
+    color: rgb(24, 49, 10, 255, 0); 
+    font-weight: 700;
+    font-style: italic;
+    font-family: "Open Sans";
+    margin-bottom: 10px;
+    margin-top: 30px;
+    text-align: left;
+    text-transform: uppercase;
 }
 
-#hero button {
+#hero4 h1{
+    width: 80%;
+    height: 65px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    color: rgb(24, 49, 10, 255, 0); 
+    font-weight: 700;
+    font-style: italic;
+    font-family: "Open Sans";
+    margin-bottom: 10px;
+    margin-top: 30px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+#hero4 p{
+    width: 80%;
+    height: 65px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    color: rgb(24, 49, 10, 255, 0); 
+    font-weight: 700;
+    font-style: italic;
+    font-family: "Open Sans";
+    margin-bottom: 10px;
+    margin-top: 30px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+#hero4 button {
     opacity: 0.902;
     margin-top: 15px;
     width: 218px;
-    height: 47px;
+    height: 55px;
     border-radius: 21px;
     background-color: #ffffff;
     font-size: 25px;
@@ -80,13 +110,13 @@ html {
     font-weight: 800;
     font-family: "Open Sans";
     text-align: center;
-    align-items: center;
     margin-bottom: 12px;
+    text-transform: uppercase;
+    border: none;
     cursor: pointer;
-    padding-left: 25px;
 }
 
-.container {
+.sellUs {
     max-width: 100%;
     margin-left: 100px;
     margin-right: 100px;
@@ -97,14 +127,14 @@ html {
     text-align: center
 }
 
-.container h1 {
+.sellUs h1 {
     font-size: 40px;
     font-weight: 700;
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
-.container p {
+.sellUs p {
     font-size: 25px;
     margin-bottom: 50px;
     margin-top: 15px;
@@ -115,38 +145,38 @@ html {
     padding: 0
 }
 
-.carInfoCard,
-.carInfoCard form {
+.formInfoCard,
+.formInfoCard form {
     display: flex;
     flex-direction: column
 }
 
-.info .someInfo {
+.info .contentInfo {
     width: 40%
 }
 
-.info .carInfo {
-    width: 50%
+.info .formInfo {
+    width: 55%
 }
 
-.someInfo h2 {
-    font-size: 30px;
+.contentInfo h2 {
+    font-size: 34px;
     font-weight: bold;
 }
 
-.someInfo p {
-    font-size: 24px;
+.contentInfo p {
+    font-size: 22px;
     margin-top: 22px;
     letter-spacing: 1px;
 }
 
-.carInfoCard {
+.formInfoCard {
     max-height: 100%;
     border-radius: 5%;
     width: 100%
 }
 
-.carInfoCard form {
+.formInfoCard form {
     background-color: #fff;
     padding: 20px;
     border: 1px solid #ddd;
@@ -157,60 +187,68 @@ html {
     margin-bottom: 20px
 }
 
-.input-group{
+.group-input{
     flex-direction: column;
     display: flex
 }
 
-.carInfoCard h2 {
-    font-size: 26px;
+.formInfoCard h2 {
+    font-size: 30px;
     margin-top: 20px;
     padding: 15px
 }
 
-.carInfoCard form p {
-    font-size: 22px;
+.formInfoCard form p {
+    font-size: 20px;
     margin-bottom: 20px
 }
 
-.input-group {
+.group-input {
     margin: 15px 0;
     align-items: center;
     width: 100%
 }
 
-.input-group label {
+.group-input label {
     font-size: 26px;
     text-align: left;
     margin: 0 0 5px;
     width: 100%
 }
 
-.input-addon {
+.addon-input {
+    display: flex;
+    align-items: center;
+    width: 100%
+}
+.addon-input2 {
     display: flex;
     align-items: center;
     width: 100%
 }
 
-.input-addon .flag-icon {
-    font-size: 30px;
-    margin-right: 5px
+.addon-input .flag-icon img{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px
 }
 
-.input-group input[type=text] {
+
+.group-input input[type=text] {
     width: 100%;
-    box-sizing: border-box
+    box-sizing: border-box;
+    font-size: 20px;
 }
 
 input[type=text] {
     width: 100%;
     padding: 10px;
-    font-size: 22px;
+    font-size: 24px;
     border: 1px solid #ddd;
     border-radius: 5px
 }
 
-button#go {
+button#send-btn {
     background-color: #088178;
     color: #fff;
     border: none;
@@ -220,7 +258,7 @@ button#go {
     cursor: pointer
 }
 
-button#go:hover {
+button#send-btn:hover {
     background-color: #055b4f
 }
 
@@ -228,7 +266,7 @@ button#go:hover {
     border-top: 2px solid #e2e2e2;
     text-align: left;
     margin-top: 40px;
-    max-height: 40vh;
+    max-height: 70vh;
 }
 
 .anotherInfo h2 {
@@ -241,7 +279,8 @@ button#go:hover {
 
 .anotherInfo p {
     font-size: 25px;
-    text-align: justify
+    text-align: left;
+    margin-bottom: 30px;
 }
 
 .anotherInfo ol {
@@ -268,32 +307,6 @@ button#go:hover {
     justify-content: space-around;
 }
 
-@media screen and (max-width:767px) {
-
-    body,
-    html {
-        font-size: 12px
-    }
-
-    .header,
-    .header-container {
-        padding: .5rem
-    }
-
-    .header-logo img {
-        width: 40px;
-        height: 30px
-    }
-
-    .nav-list li {
-        margin-right: 10px
-    }
-
-    .nav-list li a {
-        font-size: 14px
-    }
-}
-
 .mobile-menu-button {
     display: none;
     font-size: 20px;
@@ -311,72 +324,4 @@ button#go:hover {
 
 .mobile-menu.active {
     display: flex
-}
-
-@media screen and (max-width:900px) {
-    body {
-        overflow: scroll;
-        background-attachment: fixed
-    }
-
-    nav ul {
-        margin-left: 35px;
-        gap: 10px
-    }
-
-    nav li {
-        padding: 0 10px
-    }
-
-    nav a {
-        font-size: 14px
-    }
-
-    .login-register {
-        display: flex;
-        justify-content: center;
-        align-items: center
-    }
-
-    .login-register a {
-        font-size: 14px;
-        margin-right: 10px
-    }
-
-    header img {
-        width: 100%;
-        max-width: 100%;
-        height: auto
-    }
-}
-
-@media (max-width:767px) {
-
-    .nav,
-    .results {
-        width: 100%
-    }
-
-    body,
-    html {
-        font-size: 12px
-    }
-
-    header {
-        justify-content: space-between
-    }
-
-    .nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background-color: #e3e6f3;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, .1)
-    }
-
-    .nav ul li {
-        font-size: 14px
-    }
 }

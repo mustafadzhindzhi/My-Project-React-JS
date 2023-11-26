@@ -41,7 +41,7 @@ function SendForm() {
     };
 
     return(
-        <section className="container">
+        <section className="sellUs">
             {formSubmitted ? (
                 <>
                 <h1>We will buy your car</h1>
@@ -49,21 +49,24 @@ function SendForm() {
                   Submitting an offer does not obligate you to sell your vehicle.
                 </p>
                 <div className="info">
-                  <div className="carInfo">
-                    <div className="carInfoCard">
+                  <div className="formInfo">
+                    <div className="formInfoCard">
                       <h2>All we need is a little information about the car</h2>
                       <p>Start by filling out the vehicle information</p>
                       <form className="carCard" onSubmit={handleSubmit}>
-                        <div className="input-group">
+                        <div className="group-input">
                           <label htmlFor="carNumber">Car Number</label>
-                          <div className="input-addon">
+                          <div className="addon-input">
                             <span className="flag-icon">🇪🇺</span>
                             <input type="text" id="carNumber" name="carNumber" placeholder="Enter car number" value={formData.carNumber} onChange={handleChange} />
                           </div>
                         </div>
-                        <div className="input-group">
-                          <label htmlFor="kilometers">Kilometers</label>
-                          <input type="text" id="kilometers" name="kilometers" placeholder="Enter kilometers" value={formData.kilometers} onChange={handleChange}/>
+                        <div className="group-input">
+                          <label htmlFor="carNumber">Car Number</label>
+                          <div className="addon-input2">
+                            <span className="flag-icon2">🇪🇺</span>
+                            <input type="text" id="kilometers" name="kilometers" placeholder="Enter kilometers" value={formData.kilometers} onChange={handleChange} />
+                          </div>
                         </div>
                         {error && <p style={{ color: "red" }}>{error}</p>}
                         <button id="go" type="submit">Send</button>
@@ -71,7 +74,7 @@ function SendForm() {
                       </form>
                     </div>
                   </div>
-                  <div className="someInfo">
+                  <div className="contentInfo">
                     <h2>What cars we buy?</h2>
                     <p>As a rule, we buy cars with a price below 30,000 euros, driven no more than 200,000 km and no more than 2010 model year. You can also offer an older, lightly driven or otherwise particularly good car.
                       You can instantly get an estimated price for certain Volkswagen cars.</p>
@@ -95,28 +98,31 @@ function SendForm() {
           Submitting an offer does not obligate you to sell your vehicle.
         </p>
         <div className="info">
-          <div className="carInfo">
-            <div className="carInfoCard">
+          <div className="formInfo">
+            <div className="formInfoCard">
               <h2>All we need is a little information about the car</h2>
               <p>Start by filling out the vehicle information</p>
               <form className="carCard" onSubmit={handleSubmit}>
-                <div className="input-group">
+                <div className="group-input">
                   <label htmlFor="carNumber">Car Number</label>
-                  <div className="input-addon">
-                    <span className="flag-icon">🇪🇺</span>
+                  <div className="addon-input">
+                    <span className="flag-icon"><img src="/public/images/license-plate.png" alt="" /></span>
                     <input type="text" id="carNumber" name="carNumber" placeholder="Enter car number" value={formData.carNumber} onChange={handleChange}/>
                   </div>
                 </div>
-                <div className="input-group">
+                <div className="group-input">
                   <label htmlFor="kilometers">Kilometers</label>
-                  <input type="text" id="kilometers" name="kilometers" placeholder="Enter kilometers" value={formData.kilometers} onChange={handleChange}/>
+                  <div className="addon-input">
+                  <span className="flag-icon"><img src="/public/images/odometer-for-kilometers-and-speed-control.png" alt="" /></span> 
+                    <input type="text" id="kilometers" name="kilometers" placeholder="Enter kilometers" value={formData.kilometers} onChange={handleChange}/>
+                  </div>
                 </div>
                 {error && <p style={{ color: "red" }}>{error}</p>}
-                <button id="go" type="submit">Send</button>
+                <button id="send-btn" type="submit">Send</button>
               </form>
             </div>
           </div>
-          <div className="someInfo">
+          <div className="contentInfo">
             <h2>What cars we buy?</h2>
             <p>As a rule, we buy cars with a price below 30,000 euros, driven no more than 200,000 km and no more than 2010 model year. You can also offer an older, lightly driven or otherwise particularly good car.
               You can instantly get an estimated price for certain Volkswagen cars.</p>
@@ -126,11 +132,12 @@ function SendForm() {
         </div>
         <div className="anotherInfo">
           <h2>Selling a car with us is easy</h2>
-          <p>1. Enter your vehicle information : Start by entering your vehicle registration number and other information in the attached form.</p>
-          <p>2. We will make you the best offer based on the information you provide: The more detailed you are about your car information, the better offer we will be able to give.</p>
-          <p>3. Make a decision to sell : Once you receive the offer, you can decide if you want to sell your car to us.</p>
-          <p>4. Arrange the delivery of the car : After you accept the offer, we will arrange the delivery of the car. After inspecting the vehicle, we will pay you the agreed amount. Congratulations, your vehicle is now in the possession of a new owner.</p>
-          <p>5. Find the new car of your dreams : You can also get a new car at the same time from our selection that offers thousands of quality options. We want to make every step of driving as easy as possible for you. </p>
+          <p>
+          1. Enter your vehicle information : Start by entering your vehicle registration number and other information in the attached form.<br/> <br/>
+          2. We will make you the best offer based on the information you provide: The more detailed you are about your car information, the better offer we will be able to give.<br/> <br/>
+          3. Make a decision to sell : Once you receive the offer, you can decide if you want to sell your car to us.<br/> <br/>
+          4. Arrange the delivery of the car : After you accept the offer, we will arrange the delivery of the car. After inspecting the vehicle, we will pay you the agreed amount. Congratulations, your vehicle is now in the possession of a new owner.<br/> <br/>
+          5. Find the new car of your dreams : You can also get a new car at the same time from our selection that offers thousands of quality options. We want to make every step of driving as easy as possible for you. </p> 
         </div>
         </>
         )}

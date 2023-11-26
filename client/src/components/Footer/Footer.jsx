@@ -38,11 +38,11 @@ const Footer = () => {
             <h4>Install App</h4>
             <p>From App Store or Google Play</p>
             <div className="row">
-              <img src="src/assets/images/app.jpg" alt="" />
-              <img src="src/assets/images/play.jpg" alt="" />
+              <img src="/public/images/app.jpg" alt="" />
+              <img src="/public/images/play.jpg" alt="" />
             </div>
             <p>Secured Payment Gateways</p>
-            <img src="src/assets/images/pay.png" alt="" />
+            <img src="/public/images/pay.png" alt="" />
           </div>
           <div className="copyright">
             <p>© Mycar.com, Inc. All rights reserved.</p>

@@ -2,48 +2,23 @@ body{
   font-style: "Work Sans";
 }
 
-#showresults,
-header,
-nav {
+#showresults{
   align-items: center;
   display: flex;
 }
 
-nav li,
-nav ul {
-  list-style: none;
-}
-
-.login-register a,
-nav a {
-  font-size: 25px;
-  font-weight: 400;
-  transition: 0.3s;
-  text-decoration: none;
-}
-
-label,
-nav .dropdown:hover .dropdown-menu {
+label{
   display: block;
   transition-delay: 0.8s;
 }
 
-nav .dropdown-menu li,
-select {
-  padding: 5px;
-}
-
 .wrapper .range-input,
-.wrapper .slider,
-nav .dropdown,
-nav li {
+.wrapper .slider {
   position: relative;
 }
 
 .button-style,
-.login-register a,
-nav .dropdown>a,
-nav a {
+.login-register a{
   text-decoration: none;
 }
 
@@ -54,74 +29,8 @@ html {
   font-family: Arial, sans-serif;
 }
 
-header {
-  background: #e2e2e2;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
-  justify-content: space-between;
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  max-height: 80px;
-}
-
 #showresults {
   justify-content: center;
-}
-
-nav li {
-  padding: 0 20px;
-}
-
-nav a {
-  color: #1a1a1a;
-}
-
-.login-register a:hover,
-nav a.active,
-nav a:hover {
-  color: #088178;
-}
-
-nav a.active::after,
-nav a:hover::after {
-  content: "";
-  width: 30%;
-  height: 2px;
-  background: #088178;
-  position: absolute;
-  bottom: -4px;
-  left: 20px;
-}
-
-nav .dropdown>a {
-  cursor: pointer;
-}
-
-nav .dropdown-menu {
-  display: none;
-  width: 200px;
-  position: absolute;
-  top: 30%;
-  left: 0;
-  padding: 8px;
-  list-style: none;
-  background: #fff;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  transition-delay: 0.8s;
-}
-
-.login-register {
-  text-align: end;
-  display: flex;
-  gap: 25px;
-  padding: 25px;
-  margin-right: 20px;
-}
-
-.login-register a {
-  color: #333;
 }
 
 #showresults button,
@@ -612,154 +521,4 @@ nav .dropdown-menu {
   background-color: #e2e2e2;
 }
 
-@media screen and (max-width: 1100px) {
-  .results .product {
-    width: calc(40% - 10px);
-  }
-}
 
-@media screen and (max-width: 900px) {
-  body {
-    overflow: scroll;
-    background-attachment: fixed;
-  }
-
-  nav ul {
-    margin-left: 30px;
-    gap: 5px;
-  }
-
-  nav li {
-    padding: 0 8px;
-  }
-
-  nav a {
-    font-size: 12px;
-  }
-
-  .login-register {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .login-register a {
-    font-size: 12px;
-    margin-right: 10px;
-  }
-
-  header img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  header {
-    justify-content: space-between;
-  }
-
-  .nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    background-color: #e3e6f3;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .nav ul li {
-    font-size: 14px;
-  }
-
-  .nav.active {
-    display: flex;
-  }
-
-  .vehichleSection {
-    flex-direction: column;
-  }
-
-  .dropdownButton {
-    display: block;
-    text-align: center;
-    margin: 1rem 0;
-  }
-
-  .separator,
-  .wrapper .price-input .field span {
-    margin-right: 10px;
-  }
-
-  .dropdownButton button {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-  }
-
-  .searchForm {
-    display: none;
-    max-width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  .vehicleSearch .searchForm h2 {
-    font-size: 20px;
-  }
-
-  .vehicleSearch .checkBoxTag {
-    width: 90px;
-    font-size: 12px;
-    margin-left: 5px;
-    margin-right: 5px;
-    height: 30%;
-    text-align: center;
-    align-items: center;
-  }
-
-  .brand-fieldset h3 {
-    font-size: 16px;
-  }
-
-  .wrapper h2 {
-    font-size: 16px !important;
-  }
-
-  .wrapper p {
-    font-size: 14px !important;
-  }
-
-  .show-search-form {
-    display: block;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-  }
-
-  .wrapper .price-input .field {
-    height: 1.8rem;
-  }
-
-  .separator {
-    margin-top: 7px;
-  }
-
-  .results {
-    margin: 0;
-  }
-
-  .results .products-container {
-    align-items: normal;
-  }
-
-  .results .product {
-    width: calc(40% - 10px);
-  }
-
-  .price-input input {
-    font-size: 13px;
-  }
-}
-  

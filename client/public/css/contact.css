@@ -1,36 +1,15 @@
-nav .dropdown,
-nav li {
-    position: relative
-}
 
-.login-register a,
-nav a {
-    font-size: 18px;
-    font-weight: 400;
-    transition: .3s;
-    text-decoration: none
-}
-
-#contact-details .map iframe,
-header img {
+#contact-details .map iframe {
     height: 100%;
     width: 100%
 }
 
-.login-register a,
-footer a,
-nav .dropdown>a,
-nav a {
-    text-decoration: none
-}
-
-footer a,
-nav .dropdown:hover .dropdown-menu {
+ a {
     display: block
 }
 
-footer a,
-footer h4 {
+ a,
+ h4 {
     margin-bottom: 10px
 }
 
@@ -41,97 +20,9 @@ html {
     font-family: Arial, sans-serif
 }
 
-header {
-    background: #e2e2e2;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .6);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    max-height: 50px
-}
-
-nav,
-nav ul {
-    align-items: center;
-    display: flex
-}
-
-header img {
-    max-width: 90px;
-    max-height: 60px;
-    padding-left: 20px;
-    border-radius: 20px
-}
-
-nav {
-    justify-content: center
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin-left: 40px;
-    gap: 25px;
-    justify-content: center
-}
-
-nav li {
-    list-style: none;
-    padding: 0 20px
-}
-
-nav a {
-    color: #1a1a1a
-}
-
-.login-register a:hover,
-footer .follow i:hover,
-footer a:hover,
-nav a.active,
-nav a:hover {
+ .follow i:hover,
+ a:hover{
     color: #088178
-}
-
-nav a.active::after,
-nav a:hover::after {
-    content: "";
-    width: 30%;
-    height: 2px;
-    background: #088178;
-    position: absolute;
-    bottom: -4px;
-    left: 20px
-}
-
-nav .dropdown>a {
-    cursor: pointer
-}
-
-nav .dropdown-menu {
-    display: none;
-    width: 200px;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    list-style: none;
-    background: #fff;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, .2)
-}
-
-.login-register {
-    text-align: end;
-    display: flex;
-    gap: 25px;
-    padding: 25px;
-    margin-right: 20px
-}
-
-.login-register a {
-    color: #333
 }
 
 #contact-details {
@@ -256,7 +147,7 @@ nav .dropdown-menu {
     color: #000
 }
 
-footer .col {
+ .col {
     display: inline-block;
     margin-left: 20px;
     margin-right: 20px;
@@ -266,115 +157,41 @@ footer .col {
     margin-bottom: 20px
 }
 
-footer .logo {
+ .logo {
     width: 100px;
     height: 100px;
     margin-bottom: 20px
 }
 
-footer h4 {
+ h4 {
     font-size: 16px
 }
 
-footer p {
+ p {
     font-size: 14px;
     margin: 0
 }
 
-footer a {
+ a {
     color: #222
 }
 
-footer .follow i {
+ .follow i {
     color: #465b52;
     padding-right: 4px;
     cursor: pointer
 }
 
-footer .install .row img {
+ .install .row img {
     border: 1px solid #088178;
     border-radius: 6px;
     margin: 10px 0
 }
 
-footer .copyright {
+ .copyright {
     text-align: center;
     margin-top: 30px;
     margin-bottom: 20px;
     font-size: 12px;
     color: #333
-}
-
-@media screen and (max-width:900px) {
-    body {
-        overflow: scroll;
-        background-attachment: fixed
-    }
-
-    nav ul {
-        margin-left: 30px;
-        gap: 5px
-    }
-
-    nav li {
-        padding: 0 8px
-    }
-
-    nav a {
-        font-size: 12px
-    }
-
-    .login-register {
-        display: flex;
-        justify-content: center;
-        align-items: center
-    }
-
-    .login-register a {
-        font-size: 12px;
-        margin-right: 10px
-    }
-
-    header img {
-        width: 100%;
-        max-width: 100%;
-        height: auto
-    }
-}
-
-@media screen and (max-width:768px) {
-
-    #form-details .people,
-    footer .col {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column
-    }
-
-    footer h4 {
-        font-size: 14px
-    }
-
-    footer a,
-    footer p {
-        font-size: 12px
-    }
-
-    footer a {
-        margin-bottom: 8px
-    }
-
-    #form-details {
-        flex-direction: column
-    }
-
-    #form-details form {
-        width: 100%
-    }
-
-    #form-details .people div {
-        margin-left: 0
-    }
 }

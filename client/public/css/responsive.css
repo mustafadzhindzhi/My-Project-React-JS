@@ -1,0 +1,373 @@
+@media screen and (max-width:1100px) {
+    .results .product {
+        width: calc(40% - 10px)
+    }
+}
+
+@media screen and (max-width:900px) {
+    body {
+        overflow: scroll;
+        background-attachment: fixed
+    }
+
+    nav ul {
+        margin-left: 30px;
+        gap: 5px
+    }
+
+    nav li {
+        padding: 0 8px
+    }
+
+    nav a {
+        font-size: 12px
+    }
+
+    .login-register {
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .login-register a {
+        font-size: 12px;
+        margin-right: 10px
+    }
+
+    header img {
+        width: 100%;
+        max-width: 100%;
+        height: auto
+    }
+
+    .login-container .left-column {
+        width: 100%; 
+        text-align: center; 
+        margin-bottom: 10px;
+    }
+
+    .login-container .right-column {
+        width: 100%; 
+        padding: 10px; 
+    }
+
+    .login-container .left-column a,
+    nav a {
+        font-size: 12px
+    }
+
+    .login-register {
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .login-register a {
+        font-size: 12px;
+        margin-right: 10px
+    }
+
+    .login-container {
+        width: 80%
+    }
+
+    .login-container .left-column {
+        width: 40%
+    }
+
+    .login-container .left-column .title-container h1 {
+        font-size: 18px
+    }
+
+    .login-container .left-column .title-container p {
+        font-size: 14px;
+        line-height: 18px
+    }
+
+    .login-container .left-column form label {
+        font-size: 10px
+    }
+
+    .login-container .left-column form input {
+        font-size: 14px;
+        line-height: 22px;
+        height: 35px
+    }
+
+    .login-container .right-column {
+        width: 30%
+    }
+
+    .login-container .right-column img {
+        width: 80%;
+        height: 80%
+    }
+
+    .login-container .right-column h2 {
+        font-size: 14px
+    }
+
+    .login-container .right-column p {
+        font-size: 14px;
+        color: #f2f3f5
+    }
+
+    .register-container {
+        width: 80%;
+    }
+
+    .register-container .left-column {
+        width: 100%; /* Make left column full-width to center its content */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .register-container .left-column .title-container h1 {
+        font-size: 18px;
+    }
+
+    .register-container .left-column .title-container p {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .register-container .left-column form label {
+        font-size: 10px;
+    }
+
+    .register-container .left-column form input {
+        font-size: 14px;
+        line-height: 22px;
+        height: 35px;
+    }
+
+    .register-container .left-column a {
+        font-size: 12px;
+    }
+
+    .register-container .right-column {
+        width: 30%;
+    }
+
+    .register-container .right-column img {
+        width: 80%;
+        height: 80%;
+    }
+
+    .register-container .right-column h2 {
+        font-size: 14px;
+    }
+
+    .register-container .right-column p {
+        font-size: 14px;
+        color: #f2f3f5;
+    }
+}
+
+@media (max-width:768px) {
+    header {
+        justify-content: space-between
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background-color: #e3e6f3;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .1)
+    }
+
+    .nav ul li {
+        font-size: 14px
+    }
+
+    .nav.active {
+        display: flex
+    }
+
+    .vehichleSection {
+        flex-direction: column
+    }
+
+    .dropdownButton {
+        display: block;
+        text-align: center;
+        margin: 1rem 0
+    }
+
+    .separator,
+    .wrapper .price-input .field span {
+        margin-right: 10px
+    }
+
+    .dropdownButton button {
+        display: block;
+        width: 100%;
+        padding: .75rem
+    }
+
+    .searchForm {
+        display: none;
+        max-width: 100%;
+        margin-bottom: 1rem
+    }
+
+    .vehicleSearch .searchForm h2 {
+        font-size: 20px
+    }
+
+    .vehicleSearch .checkBoxTag {
+        width: 90px;
+        font-size: 12px;
+        margin-left: 5px;
+        margin-right: 5px;
+        height: 30%;
+        text-align: center;
+        align-items: center
+    }
+
+    .brand-fieldset h3 {
+        font-size: 16px
+    }
+
+    .wrapper h2 {
+        font-size: 16px !important
+    }
+
+    .wrapper p {
+        font-size: 14px !important
+    }
+
+    .show-search-form {
+        display: block;
+        padding: .75rem;
+        margin-bottom: 1rem
+    }
+
+    .wrapper .price-input .field {
+        height: 1.8rem
+    }
+
+    .separator {
+        margin-top: 7px
+    }
+
+    .results {
+        margin: 0
+    }
+
+    .results .products-container {
+        align-items: normal
+    }
+
+    .results .product {
+        width: calc(40% - 10px)
+    }
+
+    .price-input input {
+        font-size: 13px
+    }
+
+    #form-details .people,
+     .col {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column
+    }
+
+     h4 {
+        font-size: 14px
+    }
+
+     a,
+     p {
+        font-size: 12px
+    }
+
+     a {
+        margin-bottom: 8px
+    }
+
+    #form-details {
+        flex-direction: column
+    }
+
+    #form-details form {
+        width: 100%
+    }
+
+    #form-details .people div {
+        margin-left: 0
+    }
+}
+
+@media screen and (max-width:767px) {
+
+    body,
+    html {
+        font-size: 12px
+    }
+
+    header {
+        justify-content: space-between
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background-color: #e3e6f3;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .1)
+    }
+
+    .nav ul li {
+        font-size: 14px
+    }
+
+    .nav.active {
+        display: flex
+    }
+
+    #hero {
+        height: 70vh;
+        padding: 0 80px;
+        background-position: top 30% right 30%
+    }
+
+    #banner {
+        height: 20vh
+    }
+
+    #sm-banner .banner-box {
+        min-width: 90%;
+        height: 30vh;
+        margin-bottom: 30px
+    }
+
+    #banner3 {
+        padding: 0 40px
+    }
+
+    #banner3 .banner-box {
+        width: 28%
+    }
+
+    .header,
+    .header-sellUs {
+        padding: .5rem
+    }
+
+    .nav,
+    .results {
+        width: 100%
+    }
+}
