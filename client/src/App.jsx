@@ -15,6 +15,7 @@ import { AuthProvider } from './contexts/authContext.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import Path from '../paths.js';
 import Logout from './components/logout/Logout.jsx';
+import { NotFound } from './components/not-found/NotFound.jsx';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path={Path.Login} element={<Login />} />
           <Route path={Path.Register} element={<Register />} />
           <Route path={Path.Logout} element={<Logout/>} />
+          <Route path='/*' element={<NotFound/>} />
         </Routes>
         <Footer/>
       </div>
