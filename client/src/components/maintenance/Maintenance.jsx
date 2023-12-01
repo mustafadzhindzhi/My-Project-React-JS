@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import * as formService from '../../services/formService.js';
+
 
 export default function Maintenance() {
     return (
@@ -13,7 +15,7 @@ export default function Maintenance() {
               <ul className="nav-list">
               <li><Link to="/BuyCar">Buy Car</Link></li>
                 <li><Link to="/sell">Sell your car</Link></li>
-                 <li><Link to="/maintenance">Maintenance</Link></li>
+                 <li><Link to="/contacts">Contact Us</Link></li>
               </ul>
             </nav>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as formService from '../../services/formService.js'
+import * as formService from '../../../services/formService.js';
 
 function SendForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -31,17 +31,31 @@ function SendForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     setAreBothInputsEmpty(formData.carNumber === "" && formData.kilometers === "");
-
-    formService.submitForm(
-      formData,
-      setFormSubmitted,
-      setCarNumberError,
-      setKilometersError,
-      setFormData
-    );
+  
+    if (
+      isCarNumberCorrect &&
+      isKilometersCorrect &&
+      !areBothInputsEmpty
+    ) {
+      // If all validations pass, submit the form
+      formService.submitForm(
+        formData,
+        setFormSubmitted,
+        setCarNumberError,
+        setKilometersError,
+        setFormData
+      );
+    } else {
+      setFormSubmitted(false);
+      setCarNumberError("");
+      setKilometersError("");
+      setIsCarNumberCorrect(false);
+      setIsKilometersCorrect(false);
+    }
   };
+  
 
   return (
     <section className="sellUs">

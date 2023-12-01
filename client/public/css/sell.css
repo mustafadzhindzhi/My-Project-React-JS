@@ -98,6 +98,21 @@ height: auto
     margin-bottom: 10px; 
 }
 
+#price, #image{
+    width: 97%;
+    padding: 5px;
+    min-height: 20px;
+    height: 100%;
+    border-radius: 0;
+}
+
+#description{
+    width: 97%;
+    padding: 5px;
+    min-height: 40px;
+    height: 100%;
+    border-radius: 0;
+}
 
 .form-group input[type="file"] {
     padding: 5px;
@@ -128,6 +143,10 @@ height: auto
 
 #toggle-comforts:checked + .comfort-list {
     display: flex;
+}
+
+#toggle-comforts{
+    color: white;
 }
 
 .publish-button {

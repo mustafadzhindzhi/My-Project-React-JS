@@ -1,4 +1,28 @@
+import React, { useState } from "react";
+
 export default function SellYourCar() {
+  const brands = ['---', 'Audi', 'BMW', 'Mercedes', 'Suzuki', 'Toyota'];
+  
+  const modelsByBrand = {
+    Audi: ['A4', 'A5', 'A6', 'A7'],
+    BMW: ['X1', 'X3', 'X5', 'X7'],
+    Mercedes: ['C 180', 'C 220', 'C 320', 'GLK'],
+    Suzuki: ['Kizashi', 'Jimny', 'Vitara'],
+    Toyota: ['4Runner', 'Land Cruiser', 'Avensis', 'CH-R'],
+  };
+
+  const [selectedBrand, setSelectedBrand] = useState('');
+  const [selectedModel, setSelectedModel] = useState('');
+  
+  const handleBrandChange = (event) => {
+    setSelectedBrand(event.target.value);
+    setSelectedModel('');
+  };
+
+  const handleModelChange = (event) => {
+    setSelectedModel(event.target.value);
+  };
+
   return (
     <div className="create-container">
       <div className="background-image" />
@@ -12,31 +36,26 @@ export default function SellYourCar() {
           </p>
         </div>
         <div className="form-group form-group-left">
-          <label htmlFor="price">Price:</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            placeholder="write your price here"
-          />
-        </div>
-        <div className="form-group form-group-left">
-          <label htmlFor="brand">Brand:</label>
-          <select id="brand">
-            <option value>---</option>
-            <option value="audi">Audi</option>
-            <option value="bmw">BMW</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="suzuki">Suzuki</option>
-            <option value="toyota">Toyota</option>
-          </select>
-        </div>
-        <div className="form-group form-group-left">
-          <label htmlFor="model">Model:</label>
-          <select id="model">
-            <option value>---</option>
-          </select>{" "}
-        </div>
+        <label htmlFor="brand">Brand:</label>
+        <select id="brand" onChange={handleBrandChange} value={selectedBrand}>
+          {brands.map((brand, index) => (
+            <option key={index} value={brand}>
+              {brand}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group form-group-left">
+        <label htmlFor="model">Model:</label>
+        <select id="model" onChange={handleModelChange} value={selectedModel}>
+          <option value="">---</option>
+          {modelsByBrand[selectedBrand]?.map((model, index) => (
+            <option key={index} value={model}>
+              {model}
+            </option>
+          ))}
+        </select>
+      </div>
         <div className="form-group form-group-left">
           <label htmlFor="fuel">Fuel:</label>
           <select id="brand">
@@ -56,6 +75,15 @@ export default function SellYourCar() {
             <option value="manual">Manual</option>
             <option value="semi-Automatic">Semi-Automatic</option>
           </select>
+        </div>
+        <div className="form-group form-group-left">
+          <label htmlFor="price">Price:</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            placeholder="write your price here"
+          />
         </div>
         <div className="form-group form-group-right" style={{ backgroundColor: "none" }}>
           <fieldset className="comfort-fieldset">
@@ -132,23 +160,32 @@ export default function SellYourCar() {
           </select>
         </div>
         <div className="form-group">
+          <label htmlFor="product-image">Description:</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            placeholder="description for the car"
+          />
+          </div>
+        <div className="form-group">
           <label htmlFor="product-image">Product Images (up to 3):</label>
           <input
-            type="number"
-            id="price"
-            name="price"
+            type="text"
+            id="image"
+            name="image"
             placeholder="link to image"
           />
           <input
-            type="number"
-            id="price"
-            name="price"
+            type="text"
+            id="image"
+            name="image"
             placeholder="link to image"
           />
           <input
-            type="number"
-            id="price"
-            name="price"
+            type="text"
+            id="image"
+            name="image"
             placeholder="link to image"
           />
           <div id="image-preview-container" />
