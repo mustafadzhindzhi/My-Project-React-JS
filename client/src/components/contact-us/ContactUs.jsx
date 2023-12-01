@@ -1,7 +1,16 @@
+import React, {useState} from "react";
+
 export default function ContactUs() {
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+    setFormSubmitted(true); 
+  };
+
     return (
         <div>
-          <section id="contact-details" className>
+          <section id="contact-details">
             <div className="details">
               <h2>Visit one of our agency location or contact us today</h2>
               <h3>Head Office</h3>
@@ -30,15 +39,28 @@ export default function ContactUs() {
             </div>
           </section>
           <section id="form-details">
-            <form action>
-              <span>LEAVE A MESSAGE</span>
-              <h2>We love to hear from you</h2>
-              <input type="text" placeholder="Your Name" />
-              <input type="text" placeholder="E-mail" />
-              <input type="text" placeholder="Subject" />
-              <textarea name id cols={30} rows={10} placeholder="Your Message" defaultValue={""} />
-              <button className="normal">Submit</button>
-            </form>
+          {formSubmitted ? (
+          <h1>Form Submitted! Thank you for your message.</h1>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <span>LEAVE A MESSAGE</span>
+            <h2>We love to hear from you</h2>
+            <input type="text" placeholder="Your Name" />
+            <input type="text" placeholder="E-mail" />
+            <input type="text" placeholder="Subject" />
+            <textarea
+              name="yourTextArea"
+              id="yourTextAreaId"
+              cols={30}
+              rows={10}
+              placeholder="Your Message"
+              defaultValue={""}
+            />
+            <button className="normal" type="submit">
+              Submit
+            </button>
+          </form>
+        )}
             <div className="people">
               <h1>Our Team</h1>
               <div>
