@@ -11,9 +11,11 @@ import Maintenance from './components/maintenance/Maintenance.jsx';
 import ContactUs from './components/contact-us/ContactUs.jsx';
 import Login from './components/login/Login.jsx';
 import Register from './components/register/Register.jsx';
+import { AuthProvider } from './contexts/authContext.jsx';
 
 function App() {
   return (
+    <AuthProvider>
       <div>
         <Header />
         <Routes>
@@ -28,6 +30,7 @@ function App() {
         </Routes>
         <Footer/>
       </div>
+      </AuthProvider>
   );
 }
 

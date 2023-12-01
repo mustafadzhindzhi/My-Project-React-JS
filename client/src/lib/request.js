@@ -1,4 +1,4 @@
-const buildOptions = (data) => {
+export const buildOptions = (data) => {
     const options = {};
 
     if (data) {
@@ -6,15 +6,15 @@ const buildOptions = (data) => {
         options.headers = {
             'content-type': 'application/json'
         };
-    } 
+    }
 
     const token = localStorage.getItem('accessToken');
 
-    if(token) {
+    if (token) {
         options.headers = {
             ...options.headers,
             'X-Authorization': token
-        }
+        };
     }
 
     return options;
