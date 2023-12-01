@@ -10,7 +10,7 @@ export default function Login(){
             </div>
             <form method="POST">
               <label htmlFor="emailOrPassword">Email or phone number <span>*</span></label>
-              <input type="text" name="emailOrPassword" id="emailOrPassword" />
+              <input type="text" name="email" id="email" />
               <label htmlFor="password">Password <span>*</span></label>
               <input type="password" name="password" id="password" />
               <a href="#">Forget your password?</a>

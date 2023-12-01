@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import AuthContext from "../../contexts/authContext.jsx";
+import useForm from "../../hooks/useForm.js";
+
 export default function Register() {
     return (
 
@@ -10,9 +14,9 @@ export default function Register() {
             </div>
             <form method="POST">
               <label htmlFor="emailOrPassword">Email or phone number <span>*</span></label>
-              <input type="text" name="username" id="username" />
+              <input type="text" name="email" id="email" />
               <label htmlFor="password">Username <span>*</span></label>
-              <input type="text" name="emailOrPassword" id="emailOrPassword" />
+              <input type="text" name="username" id="username" />
               <label htmlFor="password">Password <span>*</span></label>
               <input type="password" name="password" id="password" />
               <label htmlFor="password">Repeat Password <span>*</span></label>
