@@ -11,7 +11,7 @@ const Actual = () => {
         const data = await fetchNewsData();
         setNews(data);
       } catch (error) {
-        console.log(err);
+        console.log(error);
       }
     };
 
