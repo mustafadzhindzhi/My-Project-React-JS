@@ -4,26 +4,27 @@ import useForm from "../../hooks/useForm.js";
 import { Link } from "react-router-dom";
 
 const registerFormKeys = {
-  Email: "email",
-  Username: "username",
-  Password: "password",
-  ConfirmPassword: "repeatPass",
+  Email: 'email',
+  Username: 'username',
+  Password: 'password',
+  ConfirmPassword: 'repeatPass',
 };
 
 export default function Register() {
   const authContext = useContext(AuthContext);
-const { registerSubmitHandler } = authContext || {};
+  const { registerSubmitHandler } = authContext || {};
 
-const { values, onChange, onSubmit } = useForm(
-  typeof registerSubmitHandler === 'function' ? registerSubmitHandler : () => {},
-  {
-    [registerFormKeys.Email]: "",
-    [registerFormKeys.Username]: "",
-    [registerFormKeys.Password]: "",
-    [registerFormKeys.ConfirmPassword]: "",
-  }
-);
+  const { values, onChange, onSubmit, isSubmitting } = useForm(
+    typeof registerSubmitHandler === 'function' ? registerSubmitHandler : () => {},
+    {
+      [registerFormKeys.Email]: '',
+      [registerFormKeys.Username]: '',
+      [registerFormKeys.Password]: '',
+      [registerFormKeys.ConfirmPassword]: '',
+    }
+  );
 
+  const passwordMismatchError = values[registerFormKeys.Password] !== values[registerFormKeys.ConfirmPassword];
 
     return (
 
@@ -35,7 +36,7 @@ const { values, onChange, onSubmit } = useForm(
               <p>We're so excited to see you!</p>
             </div>
             <form onSubmit={onSubmit}>
-              <label htmlFor="emailOrPassword">Email or phone number <span>*</span></label>
+              <label htmlFor="emailOrPassword">Email<span>*</span></label>
               <input type="text" name="email" id="email" value={values[registerFormKeys.Email]} onChange={onChange}/>
               <label htmlFor="password">Username <span>*</span></label>
               <input type="text" name="username" id="username"  value={values[registerFormKeys.Username]} onChange={onChange}/>
@@ -43,7 +44,7 @@ const { values, onChange, onSubmit } = useForm(
               <input type="password" name="password" id="password" value={values[registerFormKeys.Password]} onChange={onChange} autoComplete="new-password"/>
               <label htmlFor="password">Repeat Password <span>*</span></label>
               <input type="password" name="repeatPass" id="repeatPass" value={values[registerFormKeys.ConfirmPassword]} onChange={onChange} autoComplete="new-password" />
-              <a href="login.html">You have an account, go to Login page</a>
+              {passwordMismatchError && <p className="error-message" style={{ color: 'red' }}>Passwords do not match</p>}
               <input type="submit" defaultValue="Register" />
             </form>
             <p>You already have an accout? <Link to="/login">Login</Link></p>

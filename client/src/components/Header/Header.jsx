@@ -36,13 +36,23 @@ const Header  = () => {
             </li>
             <li><Link to="/contacts">Contact Us</Link></li>
             <li id="logout"><Link to="/logout">Logout</Link></li>
-            <span>Hello {username}!</span>
+            <span id="span-welcome">Wellcome {username}!</span>
             
             </>)}
             
             {!isAuthenticated && (
               <>
-              <li><Link to="/contacts">Contact Us</Link></li>
+              <li><Link to="/sellWithUs">Sell with Us</Link></li>
+              <li className="dropdown">
+              <Link to="/maintenance">Maintenance</Link>
+              {/* <ul className="dropdown-menu">
+                <li><Link to="#">Change motor oil and filters</Link></li>
+                <li><Link to="#">Replace spark plugs</Link></li>
+                <li><Link to="#">Change tires</Link></li>
+                <li><Link to="#">Others</Link></li>
+              </ul> */}
+            </li>
+            <li><Link to="/contacts">Contact Us</Link></li>
               <div className="login-register">
               <Link to="/login">Login</Link>
               <Link to="/register">Register</Link>

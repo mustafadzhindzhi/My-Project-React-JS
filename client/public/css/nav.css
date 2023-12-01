@@ -28,6 +28,8 @@ nav {
     flex-grow: 1; 
 }
 
+
+
 nav ul {
     list-style: none;
     padding: 0;
@@ -112,4 +114,10 @@ nav .dropdown:hover .dropdown-menu {
 
 .login-register a:hover {
     color: #088178;
+}
+
+
+#span-welcome{
+    margin-left: 120px;
+    font-size: 23px;
 }
