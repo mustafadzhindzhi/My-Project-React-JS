@@ -3,7 +3,15 @@ const Path = {
     Logout: '/logout',
     CarEdit: 'cars/:carId/edit',
     CarDelete: '/cars/:carId/delete',
-    CarDetails: '/cars/:carId'
+    CarDetails: '/cars/:carId',
+    SellWithUs: '/sellWithUs',
+    SellCar: '/sell',
+    Maintenance: '/maintenance',
+    Contacts: '/contacts',
+    Login: '/login',
+    Register: '/register',
+    
+
 };
 
 export default Path;
