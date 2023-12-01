@@ -29,3 +29,14 @@ export const edit = async(carId, carData) => {
 
     return result;
 };
+
+//remove
+export const remove = async(carId) => request.remove(`${baseUrl}/${carId}`);
+
+//getNewest
+export const getNewest = async() => {
+    const query = encodeURIComponent(`offset=0&pageSize=10`);
+    const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc&${query}`);
+
+    return result;
+}

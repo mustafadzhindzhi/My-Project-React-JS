@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchForm from "./SearchForm";
 import Results from "./Results";
+
+import * as carService from '../../services/CarService.js'
 
 const VehicleSearch = () => {
   const [products, setProducts] = useState([
@@ -56,6 +58,17 @@ const VehicleSearch = () => {
         "Avant Business Advanced 40 TFSI 150 kW MHEV quattro S tronic **B&O, Webasto, Matrix LED **",
     },
   ]);
+
+  const [cars,setCars] = useState([]);
+  useEffect(() => {
+    carService.getAll()
+    .then((result) => setCars(result))
+    .catch(err => {
+      console.log(err);
+    }) 
+  }, []);
+
+  console.log(cars);
 
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [searchCriteria, setSearchCriteria] = useState({

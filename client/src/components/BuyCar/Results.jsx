@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+// import * as carService from '../../services/CarService.js';
+// import CarListItem from ''
+
 const Results = ({ products }) => {
   const [sortedProducts, setSortedProducts] = useState([...products]);
   const [sortOption, setSortOption] = useState('');
@@ -28,7 +31,6 @@ const Results = ({ products }) => {
       case 'ZA':
         setSortedProducts([...products].sort((a, b) => b.brand.localeCompare(a.brand)));
         break;
-      // Add more cases for other sorting options as needed
       default:
         setSortedProducts([...products]);
     }

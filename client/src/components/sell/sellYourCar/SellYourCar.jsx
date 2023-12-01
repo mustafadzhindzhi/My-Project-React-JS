@@ -1,6 +1,22 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom';
+import * as carService from "../../../services/CarService.js"
 
 export default function SellYourCar() {
+  const navigate = useNavigate();
+
+  const createCarSubmitHandler = async(e) => {
+    e.preventDefault();
+
+    const carData = Object.fromEntries(new FormData(e.currentTarget));
+
+    try{
+      await carService.create(carData);
+      navigate('/BuyCar')
+    }catch(err) {
+      console.log(err);
+    }
+  }
   const brands = ['---', 'Audi', 'BMW', 'Mercedes', 'Suzuki', 'Toyota'];
   
   const modelsByBrand = {
@@ -26,7 +42,7 @@ export default function SellYourCar() {
   return (
     <div className="create-container">
       <div className="background-image" />
-      <div className="product-form-container">
+      <div className="product-form-container" onSubmit={createCarSubmitHandler}>
         <div className="form-info">
           <h2>Sell Your Car</h2>
           <p>
@@ -190,7 +206,7 @@ export default function SellYourCar() {
           />
           <div id="image-preview-container" />
         </div>
-        <button className="publish-button" type="submit">
+        <button className="publish-button" type="submit" value="Publish">
           Publish
         </button>
       </div>
