@@ -46,56 +46,52 @@ html {
 #hero4 h4 {
     margin-top: 10px;
     width: 50%;
-    font-size: 92px;
-    color: #4d4339;
+    font-size: 75px;
+    color: #644628;
     font-weight: 800;
     font-family: "Open Sans";
     filter: drop-shadow(2.575px -4.286px 2.5px rgba(84, 82, 79, 0.22));
+    margin-bottom: 40px;
 }
 
 #hero4 h2 {
     width: 80%;
-    height: 65px;
-    font-size: 25px;
+    font-size: 23px;
     letter-spacing: 5px;
     color: rgb(24, 49, 10, 255, 0); 
     font-weight: 700;
     font-style: italic;
     font-family: "Open Sans";
-    margin-bottom: 10px;
-    margin-top: 30px;
     text-align: left;
     text-transform: uppercase;
+    margin-bottom: 25px;
 }
 
 #hero4 h1{
     width: 80%;
-    height: 65px;
-    font-size: 25px;
+    font-size: 23px;
     letter-spacing: 5px;
     color: rgb(24, 49, 10, 255, 0); 
     font-weight: 700;
     font-style: italic;
     font-family: "Open Sans";
     margin-bottom: 10px;
-    margin-top: 30px;
     text-align: left;
     text-transform: uppercase;
+    margin-bottom: 25px;
 }
 
 #hero4 p{
-    width: 80%;
-    height: 65px;
-    font-size: 25px;
+    width: 30%;
+    font-size: 23px;
     letter-spacing: 5px;
     color: rgb(24, 49, 10, 255, 0); 
     font-weight: 700;
     font-style: italic;
     font-family: "Open Sans";
-    margin-bottom: 10px;
-    margin-top: 30px;
     text-align: left;
     text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
 #hero4 button {
@@ -120,7 +116,7 @@ html {
     max-width: 100%;
     margin-left: 100px;
     margin-right: 100px;
-    padding: 40px;
+    padding: 20px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -128,16 +124,15 @@ html {
 }
 
 .sellUs h1 {
-    font-size: 40px;
-    font-weight: 700;
+    font-size: 33px;
+    font-weight: 600;
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
 .sellUs p {
-    font-size: 25px;
+    font-size: 21px;
     margin-bottom: 50px;
-    margin-top: 15px;
 }
 
 .info {
@@ -160,12 +155,12 @@ html {
 }
 
 .contentInfo h2 {
-    font-size: 34px;
+    font-size: 27px;
     font-weight: bold;
 }
 
 .contentInfo p {
-    font-size: 22px;
+    font-size: 18px;
     margin-top: 22px;
     letter-spacing: 1px;
 }
@@ -192,25 +187,29 @@ html {
     display: flex
 }
 
+.carCard{
+    width: 100%;
+    max-width: 618px;
+}
 .formInfoCard h2 {
-    font-size: 30px;
+    font-size: 25px;
     margin-top: 20px;
     padding: 15px
 }
 
 .formInfoCard form p {
-    font-size: 20px;
+    font-size: 17px;
     margin-bottom: 20px
 }
 
 .group-input {
-    margin: 15px 0;
+    margin: 13px 0;
     align-items: center;
     width: 100%
 }
 
 .group-input label {
-    font-size: 26px;
+    font-size: 20px;
     text-align: left;
     margin: 0 0 5px;
     width: 100%
@@ -228,8 +227,8 @@ html {
 }
 
 .addon-input .flag-icon img{
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     margin-right: 10px
 }
 
@@ -237,13 +236,13 @@ html {
 .group-input input[type=text] {
     width: 100%;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 input[type=text] {
     width: 100%;
     padding: 10px;
-    font-size: 24px;
+    font-size: 20px;
     border: 1px solid #ddd;
     border-radius: 5px
 }
@@ -254,7 +253,7 @@ button#send-btn {
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer
 }
 
@@ -270,7 +269,7 @@ button#send-btn:hover {
 }
 
 .anotherInfo h2 {
-    font-size: 40px;
+    font-size: 33px;
     font-weight: 700;
     text-align: center;
     margin-top: 30px;
@@ -278,7 +277,7 @@ button#send-btn:hover {
 }
 
 .anotherInfo p {
-    font-size: 25px;
+    font-size: 20px;
     text-align: left;
     margin-bottom: 30px;
 }

@@ -14,12 +14,17 @@ footer .col {
 }
 
 footer .col a{
-    font-size: 20px;
+    font-size: 18px;
     padding: 10px;
 }
 
+footer .col p{
+    font-size: 17px;
+    padding: 5px;
+}
+
 footer .install  p{
-    font-size: 20px;
+    font-size: 18px;
     padding: 10px;
 }
 
@@ -30,18 +35,18 @@ footer .logo {
 }
 
 footer h4 {
-    font-size: 23px;
+    font-size: 21px;
     padding-bottom: 20px
 }
 
 footer p {
-    font-size: 18px;
+    font-size: 17px;
     margin: 0 0 8px;
     padding: 0;
 }
 
 footer a {
-    font-size: 18px;
+    font-size: 17px;
     color: #222
 }
 

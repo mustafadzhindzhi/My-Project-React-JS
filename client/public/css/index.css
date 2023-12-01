@@ -10,7 +10,7 @@ html{
 
 #first-hero h3,
 #first-hero h4 {
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     color: #ffff
 }
 
@@ -87,25 +87,26 @@ html {
 
 .slide-text {
     position: absolute;
-    top: 90px;
-    left: 80px;
+    top:70px;
+    left: 10px;
     color: #fff;
-    width: 16em
+    width: 23em;
 }
 
 #first-hero h3 {
-    font-size: 70px;
+    font-size: 60px;
     font-weight: 700;
     z-index: 3;
     margin-left: 50px;
+    padding: 10px;
 }
 
 #first-hero h4 {
-    font-size: 30px;
+    font-size: 27px;
     z-index: 2;
     margin-left: 50px;
     max-width: 1000px;
-    width: 100%;
+    width: 60%;
 }
 
 .headerb {
@@ -121,6 +122,13 @@ html {
 .headerb nav,
 .mycar {
     flex: 1
+}
+
+.mycar h1{
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 50px;
 }
 
 .actual,
@@ -226,29 +234,73 @@ html {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center
-}
+    align-items: flex-start; /* Align items at the start of the cross axis */
+  }
+
+  /* ... (existing styles) */
+
+/* ... (existing styles) */
+
+.news {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the start of the cross axis */
+  }
+  
+  .container {
+    display: flex;
+    width: 100%;
+  }
+  
+  .mycar-container,
+  .lastnews-container {
+    flex: 1;
+  }
+  
+  .mycar {
+    padding: 60px 20px 20px;
+    width: 100%; 
+  }
+  
+  .lastnews-container {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .new {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 10px;
+    max-width: 300px;
+    width: 100%; 
+  }
+  
 
 .news h4 {
     font-size: 18px;
     margin-bottom: 40px
 }
 
-.mycar {
-    padding: 60px 20px 20px;
-    width: 55%;
-    margin-top: 0
-}
-
-.lastnews {
+.lastnews-container .lastnews {
     flex: 1;
     padding: 50px 20px 20px;
-    width: 60%;
+    width: 50%; 
     cursor: pointer;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin-top: 20px
+    margin-top: 20px;
+}
+
+.new-container .new {
+    background: rgba(255, 255, 255, .1);
+    padding: 20px;
+    margin: 10px;
+    max-width: 250px; /* Adjust the max-width value */
 }
 
 .mycar h3 {

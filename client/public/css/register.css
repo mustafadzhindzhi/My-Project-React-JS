@@ -57,6 +57,10 @@ html {
     font-size: 18px;
     line-height: 20px;
 }
+form{
+    max-width: 400px;
+    width: 100%;
+}
 
 .register-container .left-column form label {
     text-transform: uppercase;

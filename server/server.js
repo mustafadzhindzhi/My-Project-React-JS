@@ -1339,56 +1339,66 @@
     	}
     };
     var seedData = {
-    	recipes: {
+    	cars: {
     		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-    			name: "Easy Lasagna",
-    			img: "assets/lasagna.jpg",
-    			ingredients: [
-    				"1 tbsp Ingredient 1",
-    				"2 cups Ingredient 2",
-    				"500 g  Ingredient 3",
-    				"25 g Ingredient 4"
-    			],
-    			steps: [
-    				"Prepare ingredients",
-    				"Mix ingredients",
-    				"Cook until done"
-    			],
+    			brand: "Audi",
+    			model: "A4",
+    			price: 7800,
+                transmission: "Automatic",
+                fuel: "Diesel",
+                comforts: ["Leather seats", "Climate control"],
+                category: "New",
+    			image: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Audi_A4_40_TFSI_B9_FL_Ibis_White_%281%29_%28cropped%29.jpg",
+                description: "Best machine ever",
     			_createdOn: 1613551279012
     		},
     		"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-    			name: "Grilled Duck Fillet",
-    			img: "assets/roast.jpg",
-    			ingredients: [
-    				"500 g  Ingredient 1",
-    				"3 tbsp Ingredient 2",
-    				"2 cups Ingredient 3"
-    			],
-    			steps: [
-    				"Prepare ingredients",
-    				"Mix ingredients",
-    				"Cook until done"
-    			],
+    			brand: "Suzuki",
+    			model: "Jimny",
+    			price: 45000,
+                transmission: "Manual",
+                fuel: "Gasoline",
+                comforts: ["Leather seats", "Bluetooth"],
+                category: "Used",
+    			image: "https://upload.wikimedia.org/wikipedia/commons/1/13/2019_Suzuki_Jimny_SZ5_4X4_Automatic_1.5.jpg",
+                description: "The best jeep ever",
     			_createdOn: 1613551344360
     		},
     		"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
     			_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-    			name: "Roast Trout",
-    			img: "assets/fish.jpg",
-    			ingredients: [
-    				"4 cups Ingredient 1",
-    				"1 tbsp Ingredient 2",
-    				"1 tbsp Ingredient 3",
-    				"750 g  Ingredient 4",
-    				"25 g Ingredient 5"
-    			],
-    			steps: [
-    				"Prepare ingredients",
-    				"Mix ingredients",
-    				"Cook until done"
-    			],
+    			brand: "Mercedes",
+    			model: "GLK",
+    			price: 65000,
+                transmission: "Automatic",
+                fuel: "Diesel",
+                comforts: ["Leather seats", "Bluetooth"],
+                category: "New",
+    			image:         "https://upload.wikimedia.org/wikipedia/commons/6/66/Mercedes-Benz_GLK_220_CDI_4MATIC_Sport-Paket_AMG_%28X_204%2C_Facelift%29_%E2%80%93_Frontansicht%2C_24._August_2014%2C_D%C3%BCsseldorf.jpg",
+                description: "Really nice car",
+    			_createdOn: 1613551388703
+    		}
+    	},
+        news : {
+    		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
+    			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+    			title: "The new BMW x5 M is now here!",
+    			description: "Everything you should to know before buy it",
+    			image: "https://hips.hearstapps.com/hmg-prod/images/2024-bmw-x5-102-1675791494.jpg",
+    		},
+    		"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
+    			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+    			title: "Only Electrical cars and no crazy sound. Is this the future?",
+    			image: "https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/1062x597/format/jpg/quality/100/https://s.aolcdn.com/os/ab/_cms/2022/02/07162509/Best-electric-car-collage-22.jpg",
+                description: "We hope this is not the realit",
+    			_createdOn: 1613551344360
+    		},
+    		"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
+    			_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+    			title: "Is this the best offroad jeep for 2023? Or it's just a myth",
+    			image: "https://hips.hearstapps.com/hmg-prod/images/toyota-4runner-trd-sport-0100-trevor-raab-1646937443.jpg?crop=0.779xw:0.584xh;0.0603xw,0.274xh&resize=1200:*",
+                description: "The competition is great",
     			_createdOn: 1613551388703
     		}
     	},

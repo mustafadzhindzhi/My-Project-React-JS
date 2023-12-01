@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Maintenance() {
     return (
         <div>
@@ -9,14 +11,14 @@ export default function Maintenance() {
           <div className="headerb">
             <nav className="header-navigation">
               <ul className="nav-list">
-                <li><a href="./buyCar.html">Buy Car</a></li>
-                <li><a href="./sellYourCar.html">Sell your car</a></li>
-                <li><a href="./maintenance.html">Maintenance</a></li>
+              <li><Link to="/BuyCar">Buy Car</Link></li>
+                <li><Link to="/sell">Sell your car</Link></li>
+                 <li><Link to="/maintenance">Maintenance</Link></li>
               </ul>
             </nav>
           </div>
           <section className="container">
-            <h1>See the prices and book a serivice appointment</h1>
+            <h1>See the prices and book a service appointment</h1>
             <div className="info">
               <div className="carInfo2">
                 <div className="carInfoCard2">
