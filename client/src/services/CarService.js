@@ -12,10 +12,16 @@ export const getAll = async () => {
 }
 
 //one car
-export const getOne = async(carId) => {
+export const getOne = async (carId) => {
+  try {
     const result = await request.get(`${baseUrl}/${carId}`);
-
+    console.log("Fetch car data URL:", `${baseUrl}/${carId}`);
+    console.log("Fetch car data result:", result);
     return result;
+  } catch (error) {
+    console.error("Error fetching car data:", error);
+    throw error;
+  }
 };
 
 //model-brands

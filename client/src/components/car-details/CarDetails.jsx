@@ -1,34 +1,90 @@
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-
+import * as carService from "../../services/CarService.js";
+import AuthContext from "../../contexts/authContext.jsx";
 
 export default function CarDetails() {
+  const navigate = useNavigate();
+  const { email, userId } = useContext(AuthContext);
+  const [car, setCar] = useState({});
+  const { carId } = useParams();
+
+  useEffect(() => {
+    console.log("carId from URL:", carId);
+    console.log("Car image URL:", car.image);
+
+    console.log("Fetching car details for carId:", carId);
+
+    // Check if carId is undefined or not a valid ID
+    if (!carId) {
+      console.error("Invalid carId:", carId);
+      // Handle the error or redirect to a proper error page
+      return;
+    }
+
+    carService.getOne(carId)
+      .then((carData) => {
+        console.log("Fetched car data:", carData);
+        setCar(carData); // Update the state with the fetched car data
+      })
+      .catch((error) => {
+        console.error("Error fetching car data:", error);
+        // Handle the error...
+      });
+  }, [carId, navigate]);
+  
+
   return (
     <div>
+      <div>
+      {Object.keys(car).length === 0 && <p>Loading..</p>}
+      </div>
       <div className="car-details">
         <div className="car-image">
           <div className="swiper-container">
             <div className="swiper-wrapper">
-              <div className="swiper-slide"><img src="assets/images/audi a4 1.jpeg" alt="Car Image" /></div>
-              <div className="swiper-slide"><img src="assets/images/audi a4 2.jpeg" alt="Car Image" /></div>
-              <div className="swiper-slide"><img src="assets/images/audi a4 3.jpeg" alt="Car Image" /></div>
+              <div className="swiper-slide">
+                <img src={car.image} alt={car.brand} />
+              </div>
+              <div className="swiper-slide">
+                <img src="/public/images/audi a4 1.jpeg" alt="Car Image" />
+              </div>
+              <div className="swiper-slide">
+                <img src="assets/images/audi a4 3.jpeg" alt="Car Image" />
+              </div>
             </div>
-            <div className="swiper-button-next" style={{right: '5px', color: 'white'}} />
-            <div className="swiper-button-prev" style={{left: '30px', color: 'white'}} />
+            <div
+              className="swiper-button-next"
+              style={{ right: "5px", color: "white" }}
+            />
+            <div
+              className="swiper-button-prev"
+              style={{ left: "30px", color: "white" }}
+            />
           </div>
         </div>
         <div className="car-info">
-          <h2>Audi A4</h2>
-          <p>Price: $7800</p>
-          <p>Brand: Audi</p>
-          <p>Model: A4</p>
-          <p>Fuel: Gasoline</p>
-          <p>Transmission: Automatic</p>
-          <p>Comfort: Leather seats, climate control, sunroof</p>
-          <p>Rating: <span className="star">★</span><span className="star">★</span><span className="star">★</span><span className="star">★</span><span className="star">★</span></p>
+          <h2>{car.brand} {car.model}</h2>
+          <p>Price: ${car.price}</p>
+          <p>Brand: {car.brand}</p>
+          <p>Model: {car.model}</p>
+          <p>Fuel: {car.fuel}</p>
+          <p>Transmission: {car.transmission}</p>
+          <p>Comfort: {car.comforts}</p>
+          <p>
+            Rating: <span className="star">★</span>
+            <span className="star">★</span>
+            <span className="star">★</span>
+            <span className="star">★</span>
+            <span className="star">★</span>
+          </p>
           <div className="buttons">
             <button className="like-button">Like</button>
-            <button className="like-button">Edit</button>
+            {userId === car._ownerId && <>
+              <button className="like-button">Edit</button>
             <button className="like-button">Delete</button>
+            </>}
           </div>
         </div>
       </div>
@@ -38,7 +94,11 @@ export default function CarDetails() {
       </div>
       <section className="car-description">
         <h3>Description</h3>
-        <p>This is a detailed description of the car. It provides information about the car's features, performance, and more. You can add any additional details you want to highlight about the car here.</p>
+        <p>
+          This is a detailed description of the car. It provides information
+          about the car's features, performance, and more. You can add any
+          additional details you want to highlight about the car here.
+        </p>
       </section>
     </div>
   );

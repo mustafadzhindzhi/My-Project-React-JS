@@ -163,6 +163,28 @@
         font-size: 14px;
         color: #f2f3f5;
     }
+
+    .car-details{
+        height: 300px;
+    }
+    .car-info{
+        height: 250px;
+        margin-bottom: 10px;
+    }
+    .car-image img{
+        height: 280px;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 5px;
+       margin-left: 20px;
+    }
+    .like-button{
+        padding: 10px 8px;
+        margin-top: 10px;
+    }
 }
 
 @media (max-width:768px) {

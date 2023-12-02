@@ -1,21 +1,23 @@
 import { Link } from "react-router-dom";
+import Path from "../../../../paths.js";
 
-export default function CarListItem ({
-    _id,
-    brand,
-    model,
-    price,
-    image,
-    description,
+export default function CarListItem({
+  _id,
+  brand,
+  model,
+  price,
+  image,
+  description,
 }) {
   return (
-
     <div className="product">
       <div className="image-container">
-        <img src={image} alt={`${brand} ${model}`}/>
+        <img src={image} alt={`${brand} ${model}`} />
       </div>
       <div className="des">
-        <span>{brand} {model}</span>
+        <span>
+          {brand} {model}
+        </span>
         <h5>{description}</h5>
         <div className="star">
           <i className="fas fa-star" />
@@ -25,7 +27,7 @@ export default function CarListItem ({
           <i className="fas fa-star" />
         </div>
         <h4>${price}</h4>
-        <Link to={`/BuyCar/${_id}`}>
+        <Link to={`${Path.Buy}/${_id}`}>
           <button className="button-style">Show Details</button>
         </Link>
       </div>

@@ -33,7 +33,7 @@ function App() {
           <Route path={Path.Contacts} element={<ContactUs />} />
           <Route path={Path.Login} element={<Login />} />
           <Route path={Path.Register} element={<Register />} />
-          <Route path={Path.Details} element={<CarDetails />} />
+          <Route path="/BuyCar/:carId" element={<CarDetails />} />
           <Route path={Path.Logout} element={<Logout/>} />
           <Route path='/*' element={<NotFound/>} />
         </Routes>
