@@ -297,3 +297,17 @@ footer .copyright {
     width: 100%;
     text-align: center;
 }
+
+.rating {
+    display: flex;
+  }
+  
+  .star {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+  }
+  
+  .filled {
+    color: gold;
+  }

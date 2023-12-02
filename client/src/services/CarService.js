@@ -15,8 +15,7 @@ export const getAll = async () => {
 export const getOne = async (carId) => {
   try {
     const result = await request.get(`${baseUrl}/${carId}`);
-    console.log("Fetch car data URL:", `${baseUrl}/${carId}`);
-    console.log("Fetch car data result:", result);
+    
     return result;
   } catch (error) {
     console.error("Error fetching car data:", error);
@@ -70,15 +69,54 @@ export const getNewest = async() => {
 //like
 export const likeCar = async (carId, userId) => {
   try {
-    const response = await request.post(`${baseUrl}/${carId}/like`, { userId });
+    const response = await request.post(`${baseUrl}/${carId}/like`, {});
     if (!response.ok) {
-      console.error('Error liking car:', response.status, response.statusText);
+      const errorData = await response.json();
+      console.error('Error liking car:', response.status, errorData.message);
       throw new Error(`Failed to like car. Status: ${response.status}`);
     }
-    // Return the updated car data or a success message if needed
     return response.json();
   } catch (error) {
     console.error('Error liking car:', error);
     throw error;
   }
 };
+
+//stars
+export const submitRating = async (carId, userId, rating) => {
+  try {
+    const payload = { userId, rating };
+
+    const response = await request.post(`${baseUrl}/${carId}/rate`, payload);
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error submitting rating:', response.status, errorData.message);
+      throw new Error(`Failed to submit rating. Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error submitting rating:', error);
+    throw error;
+  }
+};
+
+//average rating star
+export const getAverageRating = async (carId) => {
+  try {
+    const response = await request.get(`${baseUrl}/${carId}/averageRating`);
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error fetching average rating:', response.status, errorData.message);
+      throw new Error(`Failed to fetch average rating. Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.averageRating;
+  } catch (error) {
+    console.error('Error fetching average rating:', error);
+    throw error;
+  }
+}
