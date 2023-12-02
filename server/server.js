@@ -1380,6 +1380,18 @@
     			_createdOn: 1613551388703
     		}
     	},
+        carbrands: {
+            brands: ['Audi', 'BMW', 'Opel', 'Suzuki', 'Toyota', 'Mercedes', 'Honda'],
+            modelsByBrand: {
+                Audi: ['A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'Q5', 'Q7', 'Q8', 'S8'],
+                Suzuki: ['Vitara', 'Jimny', 'Kizashi', 'Splash', 'Swift'],
+                BMW: ['116', '118', '120', '320', '330', 'M5', 'M3', '350', '530'],
+                Opel: ['Astra', 'Insignia', 'Antara', 'Ascona', 'CrosslandX'],
+                Toyota: ['4Runner', 'Land Cruiser', 'Rav4', 'Urban', 'C-HR', 'Supra'],
+                Mercedes: ['GLK', 'C220', 'C180', 'E220', 'E180', 'S63', 'R', 'ML'],
+                Honda: ['Accord', 'Civic', 'CR-V', 'Hr-v', 'Pilot'],
+            },
+        },
         news : {
     		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
@@ -1411,7 +1423,7 @@
     			_id: "0a272c58-b7ea-4e09-a000-7ec988248f66"
     		}
     	},
-    	records: {
+    	carBrands: {
     		i01: {
     			name: "John1",
     			val: 1,

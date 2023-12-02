@@ -1,38 +1,46 @@
-import React, { useState } from "react";
-import {useNavigate} from 'react-router-dom';
-import * as carService from "../../../services/CarService.js"
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import * as carService from "../../../services/CarService.js";
 
 export default function SellYourCar() {
   const navigate = useNavigate();
+  const [carBrands, setCarBrands] = useState([[], {}]);
+  const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedModel, setSelectedModel] = useState("");
 
-  const createCarSubmitHandler = async(e) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await carService.getCarBrands();
+        setCarBrands(data);
+      } catch (err) {
+        console.error("Error fetching car brands data:", err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const createCarSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const carData = Object.fromEntries(new FormData(e.currentTarget));
+    const carData = {
+      ...Object.fromEntries(new FormData(e.currentTarget)),
+      brand: selectedBrand,
+      model: selectedModel,
+    };
 
-    try{
+    try {
       await carService.create(carData);
-      navigate('/BuyCar')
-    }catch(err) {
-      console.log(err);
+      navigate("/BuyCar");
+    } catch (err) {
+      console.error(err);
     }
-  }
-  const brands = ['---', 'Audi', 'BMW', 'Mercedes', 'Suzuki', 'Toyota'];
-  
-  const modelsByBrand = {
-    Audi: ['A4', 'A5', 'A6', 'A7'],
-    BMW: ['X1', 'X3', 'X5', 'X7'],
-    Mercedes: ['C 180', 'C 220', 'C 320', 'GLK'],
-    Suzuki: ['Kizashi', 'Jimny', 'Vitara'],
-    Toyota: ['4Runner', 'Land Cruiser', 'Avensis', 'CH-R'],
   };
 
-  const [selectedBrand, setSelectedBrand] = useState('');
-  const [selectedModel, setSelectedModel] = useState('');
-  
   const handleBrandChange = (event) => {
     setSelectedBrand(event.target.value);
-    setSelectedModel('');
+    setSelectedModel("");
   };
 
   const handleModelChange = (event) => {
@@ -52,26 +60,28 @@ export default function SellYourCar() {
           </p>
         </div>
         <div className="form-group form-group-left">
-        <label htmlFor="brand">Brand:</label>
-        <select id="brand" onChange={handleBrandChange} value={selectedBrand}>
-          {brands.map((brand, index) => (
-            <option key={index} value={brand}>
-              {brand}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="form-group form-group-left">
-        <label htmlFor="model">Model:</label>
-        <select id="model" onChange={handleModelChange} value={selectedModel}>
-          <option value="">---</option>
-          {modelsByBrand[selectedBrand]?.map((model, index) => (
-            <option key={index} value={model}>
-              {model}
-            </option>
-          ))}
-        </select>
-      </div>
+          <label htmlFor="brand">Brand:</label>
+          <select id="brand" onChange={handleBrandChange} value={selectedBrand}>
+            <option value="">---</option>
+            {carBrands[0].length > 0 &&
+              carBrands[0].map((brand) => (
+                <option key={brand} value={brand}>
+                  {brand}
+                </option>
+              ))}
+          </select>
+        </div>
+        <div className="form-group form-group-left">
+          <label htmlFor="model">Model:</label>
+          <select id="model" onChange={handleModelChange} value={selectedModel}>
+            <option value="">---</option>
+            {carBrands[1][selectedBrand]?.map((model) => (
+              <option key={model} value={model}>
+                {model}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="form-group form-group-left">
           <label htmlFor="fuel">Fuel:</label>
           <select id="brand">
@@ -101,7 +111,10 @@ export default function SellYourCar() {
             placeholder="write your price here"
           />
         </div>
-        <div className="form-group form-group-right" style={{ backgroundColor: "none" }}>
+        <div
+          className="form-group form-group-right"
+          style={{ backgroundColor: "none" }}
+        >
           <fieldset className="comfort-fieldset">
             <div className="comfort-toggle">
               <button id="toggle-comforts">
@@ -183,7 +196,7 @@ export default function SellYourCar() {
             name="description"
             placeholder="description for the car"
           />
-          </div>
+        </div>
         <div className="form-group">
           <label htmlFor="product-image">Product Images (up to 3):</label>
           <input

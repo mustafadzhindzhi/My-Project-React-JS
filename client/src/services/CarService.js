@@ -1,6 +1,8 @@
 import * as request from '../lib/request.js';
 
-const baseUrl = 'http://localhost:3030/data/cars'; //i need to add my cars in server.js
+const baseUrl = 'http://localhost:3030/data/cars';
+const CAR_BRANDS_URL = 'http://localhost:3030/data/carbrands';  // Change this to match your new URL structure
+
 
 //all cars
 export const getAll = async () => {
@@ -15,6 +17,26 @@ export const getOne = async(carId) => {
 
     return result;
 };
+
+//model-brands
+const getCarBrands = async () => {
+    try {
+      console.log('Fetching car brands from:', CAR_BRANDS_URL); // Log the URL
+      const response = await fetch(CAR_BRANDS_URL);
+      if (!response.ok) {
+        console.error('Error fetching car brands:', response.status, response.statusText);
+        throw new Error(`Failed to fetch car brands. Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log('Car brands data:', data); // Log the response data
+      return data;
+    } catch (error) {
+      console.error('Error fetching car brands data:', error);
+      throw error;
+    }
+  };
+  
+  export { getCarBrands };
 
 //create
 export const create = async(carData) =>{
@@ -39,4 +61,4 @@ export const getNewest = async() => {
     const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc&${query}`);
 
     return result;
-}
+};
