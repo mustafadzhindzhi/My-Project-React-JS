@@ -9,8 +9,9 @@ html {
     font-family: Arial, sans-serif
 }
 
-.product-form-container {
-    width: 35%; 
+.createform {
+    width: 100%;
+    max-width: 500px;
     margin: 10px auto;
     padding: 30px; 
     border: 1px solid #ddd;
@@ -22,7 +23,11 @@ html {
     align-items: center;
 }
 
-.product-form-container h2 {
+.createform .product-form-container{
+    width: 100%;
+}
+
+.createform .product-form-container h2 {
     font-size: 24px; 
     text-align: center;
     margin-bottom: 20px;

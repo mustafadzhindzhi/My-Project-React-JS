@@ -10,6 +10,7 @@ const Path = {
     Contacts: '/contacts',
     Login: '/login',
     Register: '/register',
+    Buy: '/BuyCar'
     
 
 };

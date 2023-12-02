@@ -24,7 +24,7 @@ function App() {
       <div>
         <Header />
         <Routes>
-          <Route path="/buyCar" element={<Buy />} />
+          <Route path={Path.Buy} element={<Buy />} />
           <Route path={Path.Home} element={<Home />} />
           <Route path={Path.SellWithUs} element={<SellWithUs />} />
           <Route path={Path.SellCar} element={<SellYourCar />} />

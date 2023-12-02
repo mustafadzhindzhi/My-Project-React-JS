@@ -1,7 +1,7 @@
 import * as request from '../lib/request.js';
 
 const baseUrl = 'http://localhost:3030/data/cars';
-const CAR_BRANDS_URL = 'http://localhost:3030/data/carbrands';  // Change this to match your new URL structure
+const CAR_BRANDS_URL = 'http://localhost:3030/data/carbrands';  
 
 
 //all cars
@@ -21,14 +21,12 @@ export const getOne = async(carId) => {
 //model-brands
 const getCarBrands = async () => {
     try {
-      console.log('Fetching car brands from:', CAR_BRANDS_URL); // Log the URL
       const response = await fetch(CAR_BRANDS_URL);
       if (!response.ok) {
         console.error('Error fetching car brands:', response.status, response.statusText);
         throw new Error(`Failed to fetch car brands. Status: ${response.status}`);
       }
       const data = await response.json();
-      console.log('Car brands data:', data); // Log the response data
       return data;
     } catch (error) {
       console.error('Error fetching car brands data:', error);

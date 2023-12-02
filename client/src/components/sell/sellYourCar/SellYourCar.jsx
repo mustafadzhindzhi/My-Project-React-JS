@@ -7,6 +7,7 @@ export default function SellYourCar() {
   const [carBrands, setCarBrands] = useState([[], {}]);
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
+  const [selectedComforts, setSelectedComforts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,13 +24,17 @@ export default function SellYourCar() {
 
   const createCarSubmitHandler = async (e) => {
     e.preventDefault();
-
+    console.log("Submit button clicked!");
+  
     const carData = {
       ...Object.fromEntries(new FormData(e.currentTarget)),
       brand: selectedBrand,
       model: selectedModel,
+      Comforts: selectedComforts, // Add selected comforts to carData
     };
-
+  
+    console.log("Car Data:", carData);
+  
     try {
       await carService.create(carData);
       navigate("/BuyCar");
@@ -37,6 +42,7 @@ export default function SellYourCar() {
       console.error(err);
     }
   };
+  
 
   const handleBrandChange = (event) => {
     setSelectedBrand(event.target.value);
@@ -47,10 +53,23 @@ export default function SellYourCar() {
     setSelectedModel(event.target.value);
   };
 
+  const handleComfortChange = (event) => {
+    const comfort = event.target.value;
+    setSelectedComforts((prevComforts) => {
+      if (prevComforts.includes(comfort)) {
+        return prevComforts.filter((c) => c !== comfort);
+      } else {
+        return [...prevComforts, comfort];
+      }
+    });
+  };
+
+
   return (
     <div className="create-container">
       <div className="background-image" />
-      <div className="product-form-container" onSubmit={createCarSubmitHandler}>
+      <form className="createform" onSubmit={createCarSubmitHandler} >
+      <div className="product-form-container">
         <div className="form-info">
           <h2>Sell Your Car</h2>
           <p>
@@ -84,18 +103,18 @@ export default function SellYourCar() {
         </div>
         <div className="form-group form-group-left">
           <label htmlFor="fuel">Fuel:</label>
-          <select id="brand">
+          <select id="fuel" name="fuel">
             <option value>---</option>
             <option value="automatic">Diesel</option>
             <option value="manual">Gasoline</option>
-            <option value="semi-Automatic">Hybrid</option>
-            <option value="semi-Automatic">Electric</option>
-            <option value="semi-Automatic">Gas</option>
+            <option value="Hybrid">Hybrid</option>
+            <option value="Electric">Electric</option>
+            <option value="Gas">Gas</option>
           </select>{" "}
         </div>
         <div className="form-group form-group-left">
           <label htmlFor="transmission">Transmission:</label>
-          <select id="transmission">
+          <select id="transmission" name="transmission">
             <option value>---</option>
             <option value="automatic">Automatic</option>
             <option value="manual">Manual</option>
@@ -125,54 +144,60 @@ export default function SellYourCar() {
               <label>
                 <input
                   type="checkbox"
-                  id="comfort1"
-                  name="comfort"
-                  defaultValue="comfort1"
+                  id="Leather seats"
+                  name="Leather seats"
+                  defaultValue="Leather seats"
+                  onChange={handleComfortChange}
                 />{" "}
                 Leather seats
               </label>
               <label>
                 <input
                   type="checkbox"
-                  id="comfort2"
-                  name="comfort"
-                  defaultValue="comfort2"
+                  id="Climate control"
+                  name="Climate control"
+                  defaultValue="Climate control"
+                  onChange={handleComfortChange}
                 />{" "}
                 Climate control
               </label>
               <label>
                 <input
                   type="checkbox"
-                  id="comfort3"
-                  name="comfort"
-                  defaultValue="comfort3"
+                  id="Auto/Start Stop System"
+                  name="Auto/Start Stop System"
+                  defaultValue="Auto/Start Stop System"
+                  onChange={handleComfortChange}
                 />{" "}
-                Auto/Start Stop Function
+                Auto/Start Stop System
               </label>
               <label>
                 <input
                   type="checkbox"
-                  id="comfort4"
-                  name="comfort"
-                  defaultValue="comfort4"
+                  id="Bluetooth"
+                  name="Bluetooth"
+                  defaultValue="Bluetooth"
+                  onChange={handleComfortChange}
                 />{" "}
                 Bluetooth
               </label>
               <label>
                 <input
                   type="checkbox"
-                  id="comfort5"
-                  name="comfort"
-                  defaultValue="comfort5"
+                  id="Steptronic, Tiptronic"
+                  name="Steptronic, Tiptronic"
+                  defaultValue="Steptronic, Tiptronic"
+                  onChange={handleComfortChange}
                 />
                 Steptronic, Tiptronic
               </label>
               <label>
                 <input
                   type="checkbox"
-                  id="comfort6"
-                  name="comfort"
-                  defaultValue="comfort6"
+                  id="Bordcomputer"
+                  name="Bordcomputer"
+                  defaultValue="Bordcomputer"
+                  onChange={handleComfortChange}
                 />
                 Bordcomputer
               </label>
@@ -181,7 +206,7 @@ export default function SellYourCar() {
         </div>
         <div className="form-group">
           <label htmlFor="transmission">Type:</label>
-          <select id="transmission">
+          <select id="type" name="type">
             <option value>---</option>
             <option value="new">New</option>
             <option value="manual">Used</option>
@@ -223,6 +248,7 @@ export default function SellYourCar() {
           Publish
         </button>
       </div>
+      </form>
     </div>
   );
 }
