@@ -7,14 +7,18 @@ const Results = () => {
   const [products, setProducts] = useState([]);
   const [sortedProducts, setSortedProducts] = useState([...products]);
   const [sortOption, setSortOption] = useState("");
+  const [numDisplayedProducts, setNumDisplayedProducts] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(0);
 
   useEffect(() => {
-    carService
-      .getAll()
+    carService.getAll()
       .then((result) => {
         setProducts(result);
+        setSortedProducts(result);
+        setNumDisplayedProducts(result.length);
+        setTotalProducts(result.length);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
@@ -41,10 +45,10 @@ const Results = () => {
     }
   }, [products, sortOption]);
 
-  const productsToDisplay =
-    sortedProducts.length > 0 ? sortedProducts : products;
+  const productsToDisplay = sortedProducts.length > 0 ? sortedProducts : products;
+
   const productElements = productsToDisplay.map((product) => (
-    // Use your CarListItem component to render each product
+
     <CarListItem
       key={product._id}
       brand={product.brand}
@@ -59,9 +63,6 @@ const Results = () => {
     const option = event.target.value;
     setSortOption(option);
   };
-
-  const numDisplayedProducts = sortedProducts.length;
-  const totalProducts = products.length;
 
   return (
     <div className="results">

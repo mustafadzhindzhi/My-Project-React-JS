@@ -108,16 +108,6 @@ const handleSliderChange = (event) => {
     setComfortsVisible((prev) => !prev);
   };
 
-  const openModal = (car) => {
-    setSelectedCar(car);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedCar(null);
-    setModalOpen(false);
-  };
-
   const handleFormSubmit = (event) => {
     event.preventDefault(); 
     onSearch(formData); 

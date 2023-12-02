@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as carService from "../../../services/CarService.js";
-import Path from "../../../../paths.js";
 
 export default function SellYourCar() {
   const navigate = useNavigate();
