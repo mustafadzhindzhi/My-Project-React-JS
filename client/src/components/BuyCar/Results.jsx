@@ -1,36 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import * as carService from '../../services/CarService.js';
-import CarListItem from './carListItem/CarListItem.jsx';
+import * as carService from "../../services/CarService.js";
+import CarListItem from "./carListItem/CarListItem.jsx";
 
 const Results = () => {
   const [products, setProducts] = useState([]);
   const [sortedProducts, setSortedProducts] = useState([...products]);
-  const [sortOption, setSortOption] = useState('');
+  const [sortOption, setSortOption] = useState("");
 
   useEffect(() => {
-    carService.getAll()
-    .then((result) => setProducts(result))
-    .catch((err) => {
-      console.log(err);
-    })
+    carService
+      .getAll()
+      .then((result) => {
+        setProducts(result);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
-    if(sortOption !== '') {
+    if (sortOption !== "") {
       const sortedProductCopy = [...products];
 
       switch (sortOption) {
-        case 'priceAscending':
+        case "priceAscending":
           sortedProductCopy.sort((a, b) => a.price - b.price);
           break;
-        case 'priceDescending':
+        case "priceDescending":
           sortedProductCopy.sort((a, b) => b.price - a.price);
           break;
-        case 'AZ':
+        case "AZ":
           sortedProductCopy.sort((a, b) => a.brand.localeCompare(b.brand));
           break;
-        case 'ZA':
+        case "ZA":
           sortedProductCopy.sort((a, b) => b.brand.localeCompare(a.brand));
           break;
         // default:
@@ -40,9 +41,23 @@ const Results = () => {
     }
   }, [products, sortOption]);
 
+  const productsToDisplay =
+    sortedProducts.length > 0 ? sortedProducts : products;
+  const productElements = productsToDisplay.map((product) => (
+    // Use your CarListItem component to render each product
+    <CarListItem
+      key={product._id}
+      brand={product.brand}
+      model={product.model}
+      price={product.price}
+      image={product.image}
+      description={product.description}
+    />
+  ));
+
   const handleSortChange = (event) => {
     const option = event.target.value;
-    setSortOption(option);   
+    setSortOption(option);
   };
 
   const numDisplayedProducts = sortedProducts.length;
@@ -52,7 +67,9 @@ const Results = () => {
     <div className="results">
       <div className="topBar">
         <div className="categoryName">
-          <label>{numDisplayedProducts} products of {totalProducts}</label>
+          <label>
+            {numDisplayedProducts} products of {totalProducts}
+          </label>
         </div>
         <fieldset className="sortFieldset">
           <label htmlFor="sorting" className="sortLabel">
@@ -69,17 +86,9 @@ const Results = () => {
           </select>
         </fieldset>
       </div>
-      <div className="products-container">
-        {sortedProducts.map((car) => {
-          <CarListItem key={car._id} {...car} />
-        })}
-      </div>
+      <div className="products-container">{productElements}</div>
     </div>
   );
-
-
-}
+};
 
 export default Results;
-
-
