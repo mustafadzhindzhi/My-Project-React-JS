@@ -11,30 +11,15 @@ export default function CarDetails() {
   const { carId } = useParams();
 
   useEffect(() => {
-    console.log("carId from URL:", carId);
-    console.log("Car image URL:", car.image);
-
-    console.log("Fetching car details for carId:", carId);
-
-    // Check if carId is undefined or not a valid ID
-    if (!carId) {
-      console.error("Invalid carId:", carId);
-      // Handle the error or redirect to a proper error page
-      return;
-    }
-
     carService.getOne(carId)
       .then((carData) => {
-        console.log("Fetched car data:", carData);
-        setCar(carData); // Update the state with the fetched car data
+        setCar(carData); 
       })
       .catch((error) => {
         console.error("Error fetching car data:", error);
-        // Handle the error...
       });
   }, [carId, navigate]);
   
-
   return (
     <div>
       <div>
