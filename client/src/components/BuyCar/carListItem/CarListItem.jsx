@@ -5,35 +5,30 @@ export default function CarListItem ({
     brand,
     model,
     price,
-    transmission,
-    fuel,
-    comforts,
-    category,
     image,
     description,
 }) {
-    return (
-        <div className="products-container">
-        {sortedProducts.map((car, index) => (
-           <div className="product" key={index}>
-            <div className="image-container">
-              <img src={car.image} alt={car.brand} />
-            </div>
-            <div className="des">
-              <span>{car.brand} {car.model}</span>
-              <h5>{car.description}</h5>
-              <div className="star">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <i key={index} className="fas fa-star"></i>
-                ))}
-              </div>
-              <h4>${car.price}</h4>
-              <a href={car.detailsLink}>
-                <button className="button-style">Show Details</button>
-              </a>
-            </div>
-          </div>
-        ))}
+  return (
+
+    <div className="product">
+      <div className="image-container">
+        <img src={image} alt={brand} />
       </div>
-    )
+      <div className="des">
+        <span>{brand} {model}</span>
+        <h5>{description}</h5>
+        <div className="star">
+          <i className="fas fa-star" />
+          <i className="fas fa-star" />
+          <i className="fas fa-star" />
+          <i className="fas fa-star" />
+          <i className="fas fa-star" />
+        </div>
+        <h4>${price}</h4>
+        <Link to={`/cars/${_id}`}>
+          <button className="button-style">Show Details</button>
+        </Link>
+      </div>
+    </div>
+  );
 }

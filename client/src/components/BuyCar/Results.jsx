@@ -1,43 +1,52 @@
 import React, { useState, useEffect } from 'react';
 
-// import * as carService from '../../services/CarService.js';
-// import CarListItem from ''
+import * as carService from '../../services/CarService.js';
+import CarListItem from './carListItem/CarListItem.jsx';
 
-const Results = ({ products }) => {
+const Results = () => {
+  const [products, setProducts] = useState([]);
   const [sortedProducts, setSortedProducts] = useState([...products]);
   const [sortOption, setSortOption] = useState('');
 
   useEffect(() => {
-    // Sort the products when the products prop changes
-    setSortedProducts([...products]);
-  }, [products]);
+    carService.getAll()
+    .then((result) => setProducts(result))
+    .catch((err) => {
+      console.log(err);
+    })
+  }, []);
 
+  useEffect(() => {
+    if(sortOption !== '') {
+      const sortedProductCopy = [...products];
+
+      switch (sortOption) {
+        case 'priceAscending':
+          sortedProductCopy.sort((a, b) => a.price - b.price);
+          break;
+        case 'priceDescending':
+          sortedProductCopy.sort((a, b) => b.price - a.price);
+          break;
+        case 'AZ':
+          sortedProductCopy.sort((a, b) => a.brand.localeCompare(b.brand));
+          break;
+        case 'ZA':
+          sortedProductCopy.sort((a, b) => b.brand.localeCompare(a.brand));
+          break;
+        // default:
+        //   setSortedProducts([...products]);
+      }
+      setSortedProducts(sortedProductCopy);
+    }
+  }, [products, sortOption]);
 
   const handleSortChange = (event) => {
     const option = event.target.value;
-    setSortOption(option);
-
-    // Sort the products based on the selected option
-    switch (option) {
-      case 'priceAscending':
-        setSortedProducts([...products].sort((a, b) => a.price - b.price));
-        break;
-      case 'priceDescending':
-        setSortedProducts([...products].sort((a, b) => b.price - a.price));
-        break;
-      case 'AZ':
-        setSortedProducts([...products].sort((a, b) => a.brand.localeCompare(b.brand)));
-        break;
-      case 'ZA':
-        setSortedProducts([...products].sort((a, b) => b.brand.localeCompare(a.brand)));
-        break;
-      default:
-        setSortedProducts([...products]);
-    }
+    setSortOption(option);   
   };
 
-  const numDisplayedProducts = sortedProducts.length; 
-  const totalProducts = products.length; 
+  const numDisplayedProducts = sortedProducts.length;
+  const totalProducts = products.length;
 
   return (
     <div className="results">
@@ -61,29 +70,14 @@ const Results = ({ products }) => {
         </fieldset>
       </div>
       <div className="products-container">
-        {sortedProducts.map((car, index) => (
-           <div className="product" key={index}>
-            <div className="image-container">
-              <img src={car.image} alt={car.brand} />
-            </div>
-            <div className="des">
-              <span>{car.brand} {car.model}</span>
-              <h5>{car.description}</h5>
-              <div className="star">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <i key={index} className="fas fa-star"></i>
-                ))}
-              </div>
-              <h4>${car.price}</h4>
-              <a href={car.detailsLink}>
-                <button className="button-style">Show Details</button>
-              </a>
-            </div>
-          </div>
-        ))}
+        {sortedProducts.map((car) => {
+          <CarListItem key={car._id} {...car} />
+        })}
       </div>
     </div>
   );
+
+
 }
 
 export default Results;
