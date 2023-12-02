@@ -59,9 +59,6 @@ export default function SellYourCar() {
       image: imageUrls,
     };
   
-    console.log("Image URLs:", imageUrls);
-    console.log("Car Data:", carData);
-  
     try {
       await carService.create(carData);
       navigate("/BuyCar");

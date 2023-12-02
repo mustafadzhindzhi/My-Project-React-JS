@@ -48,7 +48,6 @@ const Results = () => {
   const productsToDisplay = sortedProducts.length > 0 ? sortedProducts : products;
 
   const productElements = productsToDisplay.map((product) => {
-    console.log("Product Object:", product); // Add this line
     return (
       <CarListItem
         key={product._id}
