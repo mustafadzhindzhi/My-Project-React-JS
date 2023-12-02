@@ -10,9 +10,8 @@ const Path = {
     Contacts: '/contacts',
     Login: '/login',
     Register: '/register',
-    Buy: '/BuyCar'
-    
-
+    Buy: '/BuyCar',
+    Details: '/BuyCar/:carId'
 };
 
 export default Path;

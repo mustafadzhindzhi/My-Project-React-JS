@@ -25,7 +25,7 @@ export default function CarListItem ({
           <i className="fas fa-star" />
         </div>
         <h4>${price}</h4>
-        <Link to={`/cars/${_id}`}>
+        <Link to={`/BuyCar/${_id}`}>
           <button className="button-style">Show Details</button>
         </Link>
       </div>

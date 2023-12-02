@@ -38,14 +38,15 @@ const Results = ({ filteredProducts }) => {
   }, [sortOption]);
 
   const productElements = Array.isArray(filteredProducts)
-    ? filteredProducts.map((product) => (
+    ? filteredProducts.map((car) => (
         <CarListItem
-          key={product._id}
-          brand={product.brand}
-          model={product.model}
-          price={product.price}
-          image={product.image}
-          description={product.description}
+          key={car._id}
+          brand={car.brand}
+          model={car.model}
+          price={car.price}
+          image={car.image}
+          description={car.description}
+          _id={car._id}
         />
       ))
     : null;
