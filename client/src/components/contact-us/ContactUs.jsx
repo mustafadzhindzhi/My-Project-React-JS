@@ -40,7 +40,27 @@ export default function ContactUs() {
           </section>
           <section id="form-details">
           {formSubmitted ? (
-          <h1>Form Submitted! Thank you for your message.</h1>
+            <>
+            <form onSubmit={handleSubmit}>
+            <span>LEAVE A MESSAGE</span>
+            <h2>We love to hear from you</h2>
+            <input type="text" placeholder="Your Name" />
+            <input type="text" placeholder="E-mail" />
+            <input type="text" placeholder="Subject" />
+            <textarea
+              name="yourTextArea"
+              id="yourTextAreaId"
+              cols={30}
+              rows={10}
+              placeholder="Your Message"
+              defaultValue={""}
+            />
+            <button className="normal" type="submit">
+              Submit
+            </button>
+            <h1>Form Submitted! Thank you for your message.</h1>
+          </form>
+          </>
         ) : (
           <form onSubmit={handleSubmit}>
             <span>LEAVE A MESSAGE</span>
