@@ -12,7 +12,7 @@ export default function CarListItem ({
 
     <div className="product">
       <div className="image-container">
-        <img src={image} alt={brand} />
+        <img src={image} alt={`${brand} ${model}`}/>
       </div>
       <div className="des">
         <span>{brand} {model}</span>

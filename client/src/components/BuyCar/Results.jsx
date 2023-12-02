@@ -47,17 +47,19 @@ const Results = () => {
 
   const productsToDisplay = sortedProducts.length > 0 ? sortedProducts : products;
 
-  const productElements = productsToDisplay.map((product) => (
-
-    <CarListItem
-      key={product._id}
-      brand={product.brand}
-      model={product.model}
-      price={product.price}
-      image={product.image}
-      description={product.description}
-    />
-  ));
+  const productElements = productsToDisplay.map((product) => {
+    console.log("Product Object:", product); // Add this line
+    return (
+      <CarListItem
+        key={product._id}
+        brand={product.brand}
+        model={product.model}
+        price={product.price}
+        image={product.image}
+        description={product.description}
+      />
+    );
+  });
 
   const handleSortChange = (event) => {
     const option = event.target.value;
