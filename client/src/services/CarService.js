@@ -66,3 +66,19 @@ export const getNewest = async() => {
 
     return result;
 };
+
+//like
+export const likeCar = async (carId, userId) => {
+  try {
+    const response = await request.post(`${baseUrl}/${carId}/like`, { userId });
+    if (!response.ok) {
+      console.error('Error liking car:', response.status, response.statusText);
+      throw new Error(`Failed to like car. Status: ${response.status}`);
+    }
+    // Return the updated car data or a success message if needed
+    return response.json();
+  } catch (error) {
+    console.error('Error liking car:', error);
+    throw error;
+  }
+};

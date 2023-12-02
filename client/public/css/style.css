@@ -1,6 +1,7 @@
 @import url('css-reset.css');
 
 @import url('index.css');
+@import url('details.css');
 @import url('sellCar.css');
 @import url('sell.css');
 @import url('maintenance.css');
@@ -11,7 +12,6 @@
 @import url('nav.css');
 @import url('footer.css');
 @import url('responsive.css');
-@import url('details.css');
 @import url('404.css');
 
 *{
