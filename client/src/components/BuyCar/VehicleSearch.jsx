@@ -26,23 +26,25 @@ const VehicleSearch = () => {
   }, []);
 
   const handleSearch = (criteria) => {
-    console.log("Search button clicked!");
     console.log("Received criteria:", criteria);
-
-    // Merge the new criteria with the existing searchCriteria
+  
     const newSearchCriteria = {
-      ...searchCriteria,
-      ...criteria,
+      brand: criteria.brand || "",
+      model: criteria.model || "",
+      minPrice: criteria.minPrice || 0,
+      maxPrice: criteria.maxPrice || 100000,
+      transmission: criteria.transmission || "",
+      fuel: criteria.fuel || "",
+      comforts: criteria.comforts || [],
     };
-
+  
     console.log("Chosen search criteria:", newSearchCriteria);
-
-    // Update the searchCriteria state
     setSearchCriteria(newSearchCriteria);
+    console.log("Updated searchCriteria:", newSearchCriteria);
   };
+  
 
   useEffect(() => {
-    // Use the criteria passed to the function for filtering
     const filtered = cars.filter((car) => {
       const brandMatch =
         !searchCriteria.brand ||
@@ -81,9 +83,8 @@ const VehicleSearch = () => {
       );
     });
 
-    // Update the filteredProducts state
     setFilteredProducts(filtered);
-  }, [searchCriteria, cars]); // Only re-run the effect if searchCriteria or cars change
+  }, [searchCriteria, cars]); 
 
   return (
     <div className="vehicleSearch">

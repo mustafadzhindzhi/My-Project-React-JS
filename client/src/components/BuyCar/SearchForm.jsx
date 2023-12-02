@@ -124,22 +124,27 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
     onSearch(formData);
   };
 
-  const handleSearchClick = () => {
-    const transformedFormData = {
-      brand: selectedBrandModel.brand,
-      model: selectedBrandModel.model,
-      minPrice: formData.minRange,
-      maxPrice: formData.maxRange,
-      transmission: formData.transmission,
-      fuel: formData.fuel,
-      comforts: formData.comforts,
-    };
-  
-    console.log("Search button clicked!");
-    console.log("Chosen search criteria:", transformedFormData);
-  
-    onSearch(transformedFormData);
+ const handleSearchClick = () => {
+  const transformedFormData = {
+    brand: selectedBrandModel.brand,
+    model: selectedBrandModel.model,
+    transmission: formData.transmission,
+    fuel: formData.fuel,
+    comforts: formData.comforts,
   };
+
+  if (formData.minRange !== 0) {
+    transformedFormData.minPrice = formData.minRange;
+  }
+
+  if (formData.maxRange !== 0) {
+    transformedFormData.maxPrice = formData.maxRange;
+  }
+
+  console.log("Chosen search criteria:", transformedFormData);
+
+  onSearch(transformedFormData);
+};
   
 
   const handleBrandChange = (event) => {
@@ -147,7 +152,6 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
     console.log("New Brand:", newBrand);
     setSelectedBrandModel((prev) => ({ ...prev, brand: newBrand }));
 
-    // Clear the model if it doesn't belong to the selected brand
     if (!carBrands[1][newBrand]?.includes(selectedBrandModel.model)) {
       setSelectedBrandModel((prev) => ({ ...prev, model: "" }));
     }
@@ -210,7 +214,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
                     name="category"
                     value={category}
                     checked={formData.category === category}
-                    onChange={() => {}} // This function is added to prevent React warnings
+                    onChange={() => {}} 
                   />
                   <span className="checkBoxTag">{category}</span>
                 </label>

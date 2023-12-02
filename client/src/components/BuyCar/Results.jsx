@@ -1,30 +1,24 @@
 import React, { useState, useEffect } from "react";
-
-import * as carService from "../../services/CarService.js";
 import CarListItem from "./carListItem/CarListItem.jsx";
 
-const Results = () => {
-  const [products, setProducts] = useState([]);
-  const [sortedProducts, setSortedProducts] = useState([...products]);
+const Results = ({ filteredProducts }) => {
+  const [sortedProducts, setSortedProducts] = useState([]);
   const [sortOption, setSortOption] = useState("");
   const [numDisplayedProducts, setNumDisplayedProducts] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
 
   useEffect(() => {
-    carService.getAll()
-      .then((result) => {
-        setProducts(result);
-        setSortedProducts(result);
-        setNumDisplayedProducts(result.length);
-        setTotalProducts(result.length);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+    const productsToDisplay = filteredProducts !== undefined ? filteredProducts : [];
+
+    setSortedProducts([...productsToDisplay]);
+    setNumDisplayedProducts(productsToDisplay.length);
+    setTotalProducts(productsToDisplay.length);
+  }, [filteredProducts]);
 
   useEffect(() => {
     if (sortOption !== "") {
-      const sortedProductCopy = [...products];
-
+      const sortedProductCopy = [...sortedProducts];
+  
       switch (sortOption) {
         case "priceAscending":
           sortedProductCopy.sort((a, b) => a.price - b.price);
@@ -38,27 +32,23 @@ const Results = () => {
         case "ZA":
           sortedProductCopy.sort((a, b) => b.brand.localeCompare(a.brand));
           break;
-        // default:
-        //   setSortedProducts([...products]);
       }
       setSortedProducts(sortedProductCopy);
     }
-  }, [products, sortOption]);
+  }, [sortOption]);
 
-  const productsToDisplay = sortedProducts.length > 0 ? sortedProducts : products;
-
-  const productElements = productsToDisplay.map((product) => {
-    return (
-      <CarListItem
-        key={product._id}
-        brand={product.brand}
-        model={product.model}
-        price={product.price}
-        image={product.image}
-        description={product.description}
-      />
-    );
-  });
+  const productElements = Array.isArray(filteredProducts)
+    ? filteredProducts.map((product) => (
+        <CarListItem
+          key={product._id}
+          brand={product.brand}
+          model={product.model}
+          price={product.price}
+          image={product.image}
+          description={product.description}
+        />
+      ))
+    : null;
 
   const handleSortChange = (event) => {
     const option = event.target.value;
@@ -83,8 +73,6 @@ const Results = () => {
             <option value="priceDescending">Price Descending</option>
             <option value="AZ">Brand and model: A-Z</option>
             <option value="ZA">Brand and model: Z-A</option>
-            <option value="oldest">Oldest</option>
-            <option value="newest">Newest</option>
           </select>
         </fieldset>
       </div>
