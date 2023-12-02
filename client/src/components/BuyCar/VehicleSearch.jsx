@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from "react";
 import SearchForm from "./SearchForm";
 import Results from "./Results";
-
-import * as carService from '../../services/CarService.js';
+import * as carService from "../../services/CarService.js";
 
 const VehicleSearch = () => {
   const [cars, setCars] = useState([]);
-
-  useEffect(() => {
-    carService.getAll()
-      .then((result) => setCars(result))
-      .catch(err => {
-        console.error(err);
-      });
-  }, []);
-
-  const [filteredProducts, setFilteredProducts] = useState(cars);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchCriteria, setSearchCriteria] = useState({
     brand: "",
     model: "",
@@ -26,42 +16,58 @@ const VehicleSearch = () => {
     comforts: [],
   });
 
+  useEffect(() => {
+    carService
+      .getAll()
+      .then((result) => setCars(result))
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   const handleSearch = (criteria) => {
+    console.log("Search button clicked!");
+    console.log("Received criteria:", criteria);
+
+    // Merge the new criteria with the existing searchCriteria
     const newSearchCriteria = {
       ...searchCriteria,
       ...criteria,
     };
 
-    setSearchCriteria(newSearchCriteria);
+    console.log("Chosen search criteria:", newSearchCriteria);
 
+    // Update the searchCriteria state
+    setSearchCriteria(newSearchCriteria);
+  };
+
+  useEffect(() => {
+    // Use the criteria passed to the function for filtering
     const filtered = cars.filter((car) => {
       const brandMatch =
-        !newSearchCriteria.brand ||
-        newSearchCriteria.brand === "" ||
-        car.brand === newSearchCriteria.brand;
+        !searchCriteria.brand ||
+        searchCriteria.brand === "" ||
+        car.brand === searchCriteria.brand;
 
       const modelMatch =
-        !newSearchCriteria.model || car.model === newSearchCriteria.model;
+        !searchCriteria.model || car.model === searchCriteria.model;
 
       const priceMatch =
-        (newSearchCriteria.minPrice === 0 ||
-          car.price >= newSearchCriteria.minPrice) &&
-        (newSearchCriteria.maxPrice === 0 ||
-          car.price <= newSearchCriteria.maxPrice);
+        (searchCriteria.minPrice === 0 || car.price >= searchCriteria.minPrice) &&
+        (searchCriteria.maxPrice === 0 || car.price <= searchCriteria.maxPrice);
 
       const transmissionMatch =
-        !newSearchCriteria.transmission ||
+        !searchCriteria.transmission ||
         car.transmission.trim().toLowerCase() ===
-        newSearchCriteria.transmission.trim().toLowerCase();
+          searchCriteria.transmission.trim().toLowerCase();
 
       const fuelMatch =
-        !newSearchCriteria.fuel ||
-        car.fuel.trim().toLowerCase() ===
-        newSearchCriteria.fuel.trim().toLowerCase();
+        !searchCriteria.fuel ||
+        car.fuel.trim().toLowerCase() === searchCriteria.fuel.trim().toLowerCase();
 
       const comfortsMatch =
-        newSearchCriteria.comforts.length === 0 ||
-        newSearchCriteria.comforts.every((comfort) =>
+        searchCriteria.comforts.length === 0 ||
+        searchCriteria.comforts.every((comfort) =>
           car.comforts.includes(comfort)
         );
 
@@ -75,8 +81,9 @@ const VehicleSearch = () => {
       );
     });
 
+    // Update the filteredProducts state
     setFilteredProducts(filtered);
-  };
+  }, [searchCriteria, cars]); // Only re-run the effect if searchCriteria or cars change
 
   return (
     <div className="vehicleSearch">
@@ -85,11 +92,13 @@ const VehicleSearch = () => {
           searchCriteria={{ ...searchCriteria, cars: filteredProducts }}
           onSearch={handleSearch}
         />
-        <Results products={filteredProducts} />
+        <Results
+          filteredProducts={filteredProducts}
+          searchCriteria={searchCriteria}
+        />
       </div>
     </div>
   );
 };
 
 export default VehicleSearch;
-

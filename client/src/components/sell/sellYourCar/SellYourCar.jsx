@@ -48,7 +48,6 @@ export default function SellYourCar() {
     
     const formData = new FormData(e.currentTarget);
   
-    // Move the declaration of imageUrls before using it
     const imageUrls = Array.from(formData.getAll("image"));
   
     const carData = {
@@ -66,7 +65,6 @@ export default function SellYourCar() {
       console.error(err);
     }
   };
-  
 
   const handleBrandChange = (event) => {
     setSelectedBrand(event.target.value);
