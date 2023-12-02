@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as carService from "../../../services/CarService.js";
+import Path from "../../../../paths.js";
 
 export default function SellYourCar() {
   const navigate = useNavigate();
@@ -8,6 +9,7 @@ export default function SellYourCar() {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
   const [selectedComforts, setSelectedComforts] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,17 +26,31 @@ export default function SellYourCar() {
 
   const createCarSubmitHandler = async (e) => {
     e.preventDefault();
+    
+    const requiredFields = ["brand", "model", "fuel", "transmission", "price", "type", "description"];
+    const isAnyFieldEmpty = requiredFields.some(field => !e.currentTarget[field]?.value);
+
+    if (isAnyFieldEmpty) {
+      const errorMessage = "All fields are required. Please fill out all required fields.";
+      setErrorMessage(errorMessage);
+      return;
+    }
+
     console.log("Submit button clicked!");
-  
+
+    const formData = new FormData(e.currentTarget);
     const carData = {
-      ...Object.fromEntries(new FormData(e.currentTarget)),
+      ...Object.fromEntries(formData),
       brand: selectedBrand,
       model: selectedModel,
-      Comforts: selectedComforts, // Add selected comforts to carData
+      Comforts: selectedComforts,
     };
-  
+
+    const imageUrls = Array.from(formData.getAll("image"));
+    console.log("Image URLs:", imageUrls);
+
     console.log("Car Data:", carData);
-  
+
     try {
       await carService.create(carData);
       navigate("/BuyCar");
@@ -42,7 +58,6 @@ export default function SellYourCar() {
       console.error(err);
     }
   };
-  
 
   const handleBrandChange = (event) => {
     setSelectedBrand(event.target.value);
@@ -247,6 +262,7 @@ export default function SellYourCar() {
         <button className="publish-button" type="submit" value="Publish">
           Publish
         </button>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
       </form>
     </div>
