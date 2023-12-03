@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import * as carService from "../../services/CarService.js";
 import AuthContext from "../../contexts/authContext.jsx";
+import Path from "../../../paths.js";
+import { pathToUrl } from "../../utils/pathUtils.js";
 
 export default function CarDetails() {
   const navigate = useNavigate();
@@ -121,7 +123,9 @@ export default function CarDetails() {
           <div className="buttons">
             {userId === car._ownerId ? (
               <>
-                <button className="like-button">Edit</button>
+                <Link to={pathToUrl(Path.CarEdit, { carId })}>
+                  <button className="like-button">Edit</button>
+                </Link>
                 <button className="like-button">Delete</button>
               </>
             ) : (

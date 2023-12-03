@@ -163,36 +163,36 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   };
   
 
-  useEffect(() => {
-    if (searchCriteria && searchCriteria.cars) {
-      const newFilteredCars = searchCriteria.cars.filter((car) => {
-        const carBrand = car.brand.toLowerCase();
-        const carModel = car.model.toLowerCase();
-        const selectedBrand = formData.brand.toLowerCase();
-        const selectedModel = formData.model.toLowerCase();
+  // useEffect(() => {
+  //   if (searchCriteria && searchCriteria.cars) {
+  //     const newFilteredCars = searchCriteria.cars.filter((car) => {
+  //       const carBrand = car.brand.toLowerCase();
+  //       const carModel = car.model.toLowerCase();
+  //       const selectedBrand = formData.brand.toLowerCase();
+  //       const selectedModel = formData.model.toLowerCase();
 
-        const brandMatches = selectedBrand
-          ? carBrand.includes(selectedBrand)
-          : true;
-        const modelMatches = selectedModel
-          ? carModel.includes(selectedModel)
-          : true;
-        const transmissionMatches = formData.transmission
-          ? car.transmission.trim().toLowerCase() ===
-            formData.transmission.trim().toLowerCase()
-          : true;
-        const fuelMatches = formData.fuel
-          ? car.fuel.toLowerCase() === formData.fuel.toLowerCase()
-          : true;
+  //       const brandMatches = selectedBrand
+  //         ? carBrand.includes(selectedBrand)
+  //         : true;
+  //       const modelMatches = selectedModel
+  //         ? carModel.includes(selectedModel)
+  //         : true;
+  //       const transmissionMatches = formData.transmission
+  //         ? car.transmission.trim().toLowerCase() ===
+  //           formData.transmission.trim().toLowerCase()
+  //         : true;
+  //       const fuelMatches = formData.fuel
+  //         ? car.fuel.toLowerCase() === formData.fuel.toLowerCase()
+  //         : true;
 
-        return (
-          brandMatches && modelMatches && transmissionMatches && fuelMatches
-        );
-      });
+  //       return (
+  //         brandMatches && modelMatches && transmissionMatches && fuelMatches
+  //       );
+  //     });
 
-      setFilteredCars(newFilteredCars);
-    }
-  }, [searchCriteria, formData]);
+  //     setFilteredCars(newFilteredCars);
+  //   }
+  // }, [searchCriteria, formData]);
 
   return (
     <>

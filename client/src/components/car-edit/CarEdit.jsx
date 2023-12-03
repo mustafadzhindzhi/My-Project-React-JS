@@ -1,111 +1,101 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import * as carService from "../../../services/CarService.js";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function SellYourCar() {
+import * as carService from "../../services/CarService.js";
+import { useEffect, useState } from "react";
+// import { pathToUrl } from "../../utils/pathUtils.js";
+// import Path from "../../../paths.js";
+// import { handleComfortChange } from "../../utils/handleComfortChange.js";
+
+export default function CarEdit() {
   const navigate = useNavigate();
+  const { carId } = useParams();
+  const [car, setCar] = useState({
+    brand: "",
+    model: "",
+    fuel: "",
+    transmission: "",
+    price: "",
+    type: "",
+    description: "",
+    comforts: [],
+  });
   const [carBrands, setCarBrands] = useState([[], {}]);
-  const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedModel, setSelectedModel] = useState("");
-  const [selectedComforts, setSelectedComforts] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await carService.getCarBrands();
-        setCarBrands(data);
+        const carData = await carService.getOne(carId);
+        setCar((prevCar) => ({
+          ...prevCar,
+          ...carData,
+          comforts: carData.comforts || [], 
+        }));
+  
+        // Fetch car brands data
+        const brandsData = await carService.getCarBrands();
+        setCarBrands(brandsData);
       } catch (err) {
-        console.error("Error fetching car brands data:", err);
+        console.error("Error fetching car data:", err);
       }
     };
-
+  
     fetchData();
-  }, []);
+  }, [carId]);
+  
 
-  const createCarSubmitHandler = async (e) => {
+  const editCarSubmitHandler = async (e) => {
     e.preventDefault();
-  
-    const requiredFields = [
-      "brand",
-      "model",
-      "fuel",
-      "transmission",
-      "price",
-      "type",
-      "description",
-    ];
-    const isAnyFieldEmpty = requiredFields.some(
-      (field) => !e.currentTarget[field]?.value
-    );
-  
-    if (isAnyFieldEmpty) {
-      const errorMessage =
-        "All fields are required. Please fill out all required fields.";
-      setErrorMessage(errorMessage);
-      return;
-    }
-    
-    const formData = new FormData(e.currentTarget);
-  
-    const imageUrls = Array.from(formData.getAll("image"));
-  
-    const carData = {
-      ...Object.fromEntries(formData),
-      brand: selectedBrand,
-      model: selectedModel,
-      comforts: selectedComforts,
-      image: imageUrls,
-    };
-  
+
+    const values = Object.fromEntries(new FormData(e.currentTarget));
+
     try {
-      await carService.create(carData);
+      await carService.edit(carId, { ...values, comforts: car.comforts });
+      console.log("Car edited successfully!");
       navigate("/BuyCar");
     } catch (err) {
-      console.error(err);
+      console.error("Error editing car:", err);
     }
   };
 
-  const handleBrandChange = (event) => {
-    setSelectedBrand(event.target.value);
-    setSelectedModel("");
-  };
+  const onChange = (e) => {
+    const { name, value } = e.target;
 
-  const handleModelChange = (event) => {
-    setSelectedModel(event.target.value);
+    setCar((prevCar) => ({
+      ...prevCar,
+      [name]: value,
+    }));
   };
 
   const handleComfortChange = (event) => {
     const comfort = event.target.value;
-    setSelectedComforts((prevComforts) => {
-      if (prevComforts.includes(comfort)) {
-        return prevComforts.filter((c) => c !== comfort);
+    const isChecked = event.target.checked;
+  
+    setCar((prevCar) => {
+      const prevComforts = prevCar.comforts || [];
+  
+      if (isChecked) {
+        // If checked, add the comfort to the selected comforts array
+        return { ...prevCar, comforts: [...prevComforts, comfort] };
       } else {
-        return [...prevComforts, comfort];
+        // If unchecked, remove the comfort from the selected comforts array
+        const updatedComforts = prevComforts.filter((c) => c !== comfort);
+        return { ...prevCar, comforts: updatedComforts };
       }
     });
   };
-
+  
   return (
     <div className="create-container">
       <div className="background-image" />
-      <form className="createform" onSubmit={createCarSubmitHandler}>
+      <form className="createform" onSubmit={editCarSubmitHandler}>
         <div className="product-form-container">
           <div className="form-info">
             <h2>Sell Your Car</h2>
-            <p>
-              Fill out the details below to list your car for sale on our
-              website. Make sure to provide accurate information to attract
-              potential buyers.
-            </p>
+            <p>Change what is needed! Be wise!</p>
           </div>
           <div className="form-group form-group-left">
             <label htmlFor="brand">Brand:</label>
-            <select
-              id="brand"
-              onChange={handleBrandChange}
-              value={selectedBrand}
-            >
+            <select id="brand" onChange={onChange} value={car.brand}>
               <option value="">---</option>
               {carBrands[0].length > 0 &&
                 carBrands[0].map((brand) => (
@@ -115,15 +105,12 @@ export default function SellYourCar() {
                 ))}
             </select>
           </div>
+
           <div className="form-group form-group-left">
             <label htmlFor="model">Model:</label>
-            <select
-              id="model"
-              onChange={handleModelChange}
-              value={selectedModel}
-            >
+            <select id="model" onChange={onChange} value={car.model}>
               <option value="">---</option>
-              {carBrands[1][selectedBrand]?.map((model) => (
+              {carBrands[1][car.brand]?.map((model) => (
                 <option key={model} value={model}>
                   {model}
                 </option>
@@ -132,7 +119,7 @@ export default function SellYourCar() {
           </div>
           <div className="form-group form-group-left">
             <label htmlFor="fuel">Fuel:</label>
-            <select id="fuel" name="fuel">
+            <select id="fuel" name="fuel" onChange={onChange} value={car.fuel}>
               <option value>---</option>
               <option value="automatic">Diesel</option>
               <option value="manual">Gasoline</option>
@@ -143,7 +130,12 @@ export default function SellYourCar() {
           </div>
           <div className="form-group form-group-left">
             <label htmlFor="transmission">Transmission:</label>
-            <select id="transmission" name="transmission">
+            <select
+              id="transmission"
+              name="transmission"
+              onChange={onChange}
+              value={car.transmission}
+            >
               <option value>---</option>
               <option value="automatic">Automatic</option>
               <option value="manual">Manual</option>
@@ -157,6 +149,8 @@ export default function SellYourCar() {
               id="price"
               name="price"
               placeholder="write your price here"
+              onChange={onChange}
+              value={car.price}
             />
           </div>
           <div
@@ -177,7 +171,8 @@ export default function SellYourCar() {
                     name="Leather seats"
                     defaultValue="Leather seats"
                     onChange={handleComfortChange}
-                  />{" "}
+                    checked={car.comforts.includes("Leather seats")}
+                  />
                   Leather seats
                 </label>
                 <label>
@@ -187,6 +182,7 @@ export default function SellYourCar() {
                     name="Climate control"
                     defaultValue="Climate control"
                     onChange={handleComfortChange}
+                    checked={car.comforts.includes("Climate control")}
                   />{" "}
                   Climate control
                 </label>
@@ -197,6 +193,7 @@ export default function SellYourCar() {
                     name="Auto/Start Stop System"
                     defaultValue="Auto/Start Stop System"
                     onChange={handleComfortChange}
+                    checked={car.comforts.includes("Auto/Start Stop System")}
                   />{" "}
                   Auto/Start Stop System
                 </label>
@@ -207,6 +204,7 @@ export default function SellYourCar() {
                     name="Bluetooth"
                     defaultValue="Bluetooth"
                     onChange={handleComfortChange}
+                    checked={car.comforts.includes("Bluetooth")}
                   />{" "}
                   Bluetooth
                 </label>
@@ -217,6 +215,7 @@ export default function SellYourCar() {
                     name="Steptronic, Tiptronic"
                     defaultValue="Steptronic, Tiptronic"
                     onChange={handleComfortChange}
+                    checked={car.comforts.includes("Steptronic, Tiptronic")}
                   />
                   Steptronic, Tiptronic
                 </label>
@@ -227,6 +226,7 @@ export default function SellYourCar() {
                     name="Bordcomputer"
                     defaultValue="Bordcomputer"
                     onChange={handleComfortChange}
+                    checked={car.comforts.includes("Bordcomputer")}
                   />
                   Bordcomputer
                 </label>
@@ -235,7 +235,7 @@ export default function SellYourCar() {
           </div>
           <div className="form-group">
             <label htmlFor="transmission">Type:</label>
-            <select id="type" name="type">
+            <select id="type" name="type" onChange={onChange} value={car.type}>
               <option value>---</option>
               <option value="new">New</option>
               <option value="manual">Used</option>
@@ -249,6 +249,8 @@ export default function SellYourCar() {
               id="description"
               name="description"
               placeholder="description for the car"
+              onChange={onChange}
+              value={car.description}
             />
           </div>
           <div className="form-group">
@@ -258,25 +260,26 @@ export default function SellYourCar() {
               id="image"
               name="image"
               placeholder="link to image"
+              onChange={onChange}
+              value={car.image}
             />
             {/* <input
-              type="text"
-              id="image"
-              name="image2"
-              placeholder="link to image"
-            />
-            <input
-              type="text"
-              id="image"
-              name="image3"
-              placeholder="link to image"
-            /> */}
+                  type="text"
+                  id="image"
+                  name="image2"
+                  placeholder="link to image"
+                />
+                <input
+                  type="text"
+                  id="image"
+                  name="image3"
+                  placeholder="link to image"
+                /> */}
             <div id="image-preview-container" />
           </div>
           <button className="publish-button" type="submit" value="Publish">
             Publish
           </button>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
       </form>
     </div>

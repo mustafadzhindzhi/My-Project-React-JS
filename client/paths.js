@@ -1,9 +1,8 @@
 const Path = {
     Home: '/',
     Logout: '/logout',
-    CarEdit: 'cars/:carId/edit',
+    CarEdit: '/BuyCar/:carId/edit',
     CarDelete: '/cars/:carId/delete',
-    CarDetails: '/cars/:carId',
     SellWithUs: '/sellWithUs',
     SellCar: '/sell',
     Maintenance: '/maintenance',
