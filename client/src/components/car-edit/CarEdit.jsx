@@ -2,15 +2,12 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import * as carService from "../../services/CarService.js";
 import { useEffect, useState } from "react";
-// import { pathToUrl } from "../../utils/pathUtils.js";
-// import Path from "../../../paths.js";
-// import { handleComfortChange } from "../../utils/handleComfortChange.js";
 
 export default function CarEdit() {
   const navigate = useNavigate();
   const { carId } = useParams();
   const [car, setCar] = useState({
-    brand: "",
+    brand: "",  
     model: "",
     fuel: "",
     transmission: "",
@@ -20,18 +17,23 @@ export default function CarEdit() {
     comforts: [],
   });
   const [carBrands, setCarBrands] = useState([[], {}]);
+  const [selectedBrand, setSelectedBrand] = useState("");
+const [selectedModel, setSelectedModel] = useState("");
 
-  useEffect(() => {
+useEffect(() => {
     const fetchData = async () => {
       try {
         const carData = await carService.getOne(carId);
+        
+        setSelectedBrand(carData.brand || "");  // Update selected brand
+        setSelectedModel(carData.model || "");  // Update selected model
+  
         setCar((prevCar) => ({
           ...prevCar,
           ...carData,
-          comforts: carData.comforts || [], 
+          comforts: carData.comforts || [],
         }));
-  
-        // Fetch car brands data
+    
         const brandsData = await carService.getCarBrands();
         setCarBrands(brandsData);
       } catch (err) {
@@ -41,14 +43,21 @@ export default function CarEdit() {
   
     fetchData();
   }, [carId]);
-  
 
   const editCarSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const values = Object.fromEntries(new FormData(e.currentTarget));
-
     try {
+      const formData = new FormData(e.currentTarget);
+
+      const values = Object.fromEntries(formData);
+
+      setCar((prevCar) => ({
+        ...prevCar,
+        ...values,
+        comforts: car.comforts,
+      }));
+
       await carService.edit(carId, { ...values, comforts: car.comforts });
       console.log("Car edited successfully!");
       navigate("/BuyCar");
@@ -59,7 +68,16 @@ export default function CarEdit() {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-
+  
+    console.log(`Changing ${name} to ${value}`);
+  
+    if (name === "brand") {
+      setSelectedBrand(value);
+      setSelectedModel(""); // Reset selected model when the brand changes
+    } else if (name === "model") {
+      setSelectedModel(value);
+    }
+  
     setCar((prevCar) => ({
       ...prevCar,
       [name]: value,
@@ -69,21 +87,19 @@ export default function CarEdit() {
   const handleComfortChange = (event) => {
     const comfort = event.target.value;
     const isChecked = event.target.checked;
-  
+
     setCar((prevCar) => {
       const prevComforts = prevCar.comforts || [];
-  
+
       if (isChecked) {
-        // If checked, add the comfort to the selected comforts array
         return { ...prevCar, comforts: [...prevComforts, comfort] };
       } else {
-        // If unchecked, remove the comfort from the selected comforts array
         const updatedComforts = prevComforts.filter((c) => c !== comfort);
         return { ...prevCar, comforts: updatedComforts };
       }
     });
   };
-  
+
   return (
     <div className="create-container">
       <div className="background-image" />
@@ -95,7 +111,7 @@ export default function CarEdit() {
           </div>
           <div className="form-group form-group-left">
             <label htmlFor="brand">Brand:</label>
-            <select id="brand" onChange={onChange} value={car.brand}>
+            <select id="brand" onChange={onChange} value={car.brand || ""}>
               <option value="">---</option>
               {carBrands[0].length > 0 &&
                 carBrands[0].map((brand) => (
@@ -104,18 +120,26 @@ export default function CarEdit() {
                   </option>
                 ))}
             </select>
+            {console.log("Selected Brand:", car.brand)}
           </div>
 
           <div className="form-group form-group-left">
             <label htmlFor="model">Model:</label>
-            <select id="model" onChange={onChange} value={car.model}>
+            <select
+              id="model"
+              onChange={onChange}
+              value={car.model || ""}
+              disabled={!car.brand}
+            >
               <option value="">---</option>
-              {carBrands[1][car.brand]?.map((model) => (
-                <option key={model} value={model}>
-                  {model}
-                </option>
-              ))}
+              {car.brand &&
+                carBrands[1][car.brand]?.map((model) => (
+                  <option key={model} value={model}>
+                    {model}
+                  </option>
+                ))}
             </select>
+            {console.log("Selected Model:", car.model)}
           </div>
           <div className="form-group form-group-left">
             <label htmlFor="fuel">Fuel:</label>
