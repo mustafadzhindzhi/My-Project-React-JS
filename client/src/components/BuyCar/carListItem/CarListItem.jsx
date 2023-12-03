@@ -14,25 +14,24 @@ export default function CarListItem({
 
   const [averageRating, setAverageRating] = useState(0);
 
-  // useEffect(() => {
-  //   const fetchAverageRating = async() => {
-  //     try {
-  //       const data = await getAverageRating(_id);
-  //       setAverageRating(data.averageRating);
-  //     } catch (error) {
-  //       console.error('Error fetching average rating:', error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchAverageRating = async() => {
+      try {
+        const data = await getAverageRating(_id);
+        setAverageRating(data.averageRating);
+      } catch (error) {
+        console.error('Error fetching average rating:', error);
+      }
+    };
     
-  //   fetchAverageRating();
-  // }, [_id]);
+    fetchAverageRating();
+  }, [_id]);
 
   const handleRatingSubmit = async (rating) => {
     const userId = '35c62d76-8152-4626-8712-eeb96381bea8';
 
     try {
       await submitRating(_id, userId, rating);
-      // After submitting a rating, refetch the average rating
       fetchAverageRating();
       console.log('Successfully submitted rating for the car!');
     } catch (error) {
@@ -46,7 +45,7 @@ export default function CarListItem({
         <img src={image} alt={`${brand} ${model}`} />
       </div>
       <div className="des">
-        <span>
+        <span >
           {brand} {model}
         </span>
         <h5>{description}</h5>

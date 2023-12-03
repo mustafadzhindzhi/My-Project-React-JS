@@ -56,6 +56,7 @@ export default function SellYourCar() {
       model: selectedModel,
       comforts: selectedComforts,
       image: imageUrls,
+      likes: 0,
     };
   
     try {

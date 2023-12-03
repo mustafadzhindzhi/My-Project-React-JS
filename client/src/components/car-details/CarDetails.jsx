@@ -41,13 +41,14 @@ export default function CarDetails() {
         console.error("Invalid carId or userId");
         return;
       }
-
+      const token = localStorage.getItem('accessToken');
+  
       const payload = { userId: userId };
-
       console.log("Like Payload:", payload);
-
-      await carService.likeCar(carId, payload);
-
+      console.log('carId:', carId);
+  
+      await carService.likeCar(carId, payload, token);
+  
       const updatedCarData = await carService.getOne(carId);
       setLikeCount(updatedCarData.likes);
       setLiked(true);
@@ -55,6 +56,7 @@ export default function CarDetails() {
       console.error("Error liking car:", error);
     }
   };
+  
 
   useEffect(() => {
     const storedRatings =
@@ -127,6 +129,16 @@ export default function CarDetails() {
                   <button className="like-button">Edit</button>
                 </Link>
                 <button className="like-button">Delete</button>
+                <>
+                <button
+                  className={`like-button ${liked ? "liked" : ""}`}
+                  onClick={handleLike}
+                  disabled={liked}
+                >
+                  {liked ? "Liked" : "Like"}
+                </button>
+                <span>Likes: {likeCount}</span>
+              </>
               </>
             ) : (
               <>

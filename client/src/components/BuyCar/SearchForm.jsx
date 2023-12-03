@@ -225,6 +225,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
         <label htmlFor="brand">Brand:</label>
         <select
           id="brand"
+          name="brand"
           onChange={handleBrandChange}
           value={selectedBrandModel.brand}
         >
@@ -242,6 +243,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
         <label htmlFor="model">Model:</label>
         <select
           id="model"
+          name="model"
           onChange={handleModelChange}
           value={selectedBrandModel.model}
         >

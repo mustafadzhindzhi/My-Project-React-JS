@@ -1349,7 +1349,7 @@
                 fuel: "Diesel",
                 comforts: ["Leather seats", "Climate control"],
                 category: "New",
-    			image: "[https://upload.wikimedia.org/wikipedia/commons/d/dc/Audi_A4_40_TFSI_B9_FL_Ibis_White_%281%29_%28cropped%29.jpg]",
+    			image: "https://media.ed.edmunds-media.com/audi/a4/2022/oem/2022_audi_a4_sedan_prestige-s-line_fq_oem_8_1280.jpg",
                 description: "Best machine ever",
     			_createdOn: 1613551279012,
                 likes: 3,
@@ -1367,7 +1367,7 @@
     			image: "https://upload.wikimedia.org/wikipedia/commons/1/13/2019_Suzuki_Jimny_SZ5_4X4_Automatic_1.5.jpg",
                 description: "The best jeep ever",
     			_createdOn: 1613551344360,
-                likes: 0,
+                likes: 5,
                 rating: 0,
     		},
     		"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
@@ -1382,7 +1382,7 @@
     			image:         "https://upload.wikimedia.org/wikipedia/commons/6/66/Mercedes-Benz_GLK_220_CDI_4MATIC_Sport-Paket_AMG_%28X_204%2C_Facelift%29_%E2%80%93_Frontansicht%2C_24._August_2014%2C_D%C3%BCsseldorf.jpg",
                 description: "Really nice car",
     			_createdOn: 1613551388703,
-                likes: 0,
+                likes: 7,
                 rating: 4.5,
     		}
     	},
