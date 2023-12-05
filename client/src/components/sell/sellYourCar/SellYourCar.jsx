@@ -258,25 +258,13 @@ export default function SellYourCar() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="product-image">Product Images (up to 3):</label>
+            <label htmlFor="product-image">Product Images:</label>
             <input
               type="text"
               id="image"
               name="image"
               placeholder="link to image"
             />
-            {/* <input
-              type="text"
-              id="image"
-              name="image2"
-              placeholder="link to image"
-            />
-            <input
-              type="text"
-              id="image"
-              name="image3"
-              placeholder="link to image"
-            /> */}
             <div id="image-preview-container" />
           </div>
           <button className="publish-button" type="submit" value="Publish">

@@ -48,18 +48,20 @@ useEffect(() => {
 
   const editCarSubmitHandler = async (e) => {
     e.preventDefault();
-
+  
     try {
       const formData = new FormData(e.currentTarget);
-
       const values = Object.fromEntries(formData);
-
+  
+      // Preserve existing state for brand, model, and comforts
       setCar((prevCar) => ({
         ...prevCar,
         ...values,
-        comforts: car.comforts,
+        brand: prevCar.brand, // Preserve existing brand
+        model: prevCar.model, // Preserve existing model
+        comforts: prevCar.comforts || [],
       }));
-
+  
       await carService.edit(carId, { ...values, comforts: car.comforts });
       console.log("Car edited successfully!");
       navigate("/BuyCar");
@@ -67,21 +69,20 @@ useEffect(() => {
       console.error("Error editing car:", err);
     }
   };
+  
 
   const onChange = (e) => {
     const { name, value } = e.target;
   
-    console.log(`Changing ${name} to ${value}`);
-  
     if (name === "brand") {
       setSelectedBrand(value);
-      setSelectedModel(""); // Reset selected model when the brand changes
+      setSelectedModel(""); 
     } else if (name === "model") {
       setSelectedModel(value);
     }
   
-    setCar((prevCar) => ({
-      ...prevCar,
+    setCar((currentCar) => ({
+      ...currentCar,
       [name]: value,
     }));
   };
@@ -113,7 +114,7 @@ useEffect(() => {
           </div>
           <div className="form-group form-group-left">
             <label htmlFor="brand">Brand:</label>
-            <select id="brand" onChange={onChange} value={car.brand || "defaultBrand"}>
+            <select name="brand" id="brand" onChange={onChange} value={car.brand || "defaultBrand"}>
               <option value="">---</option>
               {carBrands[0].length > 0 &&
                 carBrands[0].map((brand) => (
@@ -132,6 +133,7 @@ useEffect(() => {
               onChange={onChange}
               value={car.model || ""}
               disabled={!car.brand}
+              name="model"
             >
               <option value="">---</option>
               {car.brand &&
