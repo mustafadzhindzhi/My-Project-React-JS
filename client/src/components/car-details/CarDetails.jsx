@@ -22,10 +22,11 @@ export default function CarDetails() {
       navigate("/error");
       return;
     }
-
+  
     carService
       .getOne(carId)
       .then((carData) => {
+        console.log("Car Data:", carData); // Add this line for debugging
         setCar(carData);
         setLikeCount(carData.likes);
       })
@@ -34,7 +35,7 @@ export default function CarDetails() {
         navigate("/error");
       });
   }, [carId, navigate]);
-
+  
   const handleLike = async () => {
     try {
       if (!carId || !userId) {
@@ -85,24 +86,33 @@ export default function CarDetails() {
     }
   };
 
+  const deleteButtonClickHandler = async () => {
+    const hasConfirmed = confirm(`Are you sure you want to delete ${car.brand} ${car.model}`);
+
+    if(hasConfirmed) {
+      await carService.remove(carId);
+
+      navigate('/BuyCar')
+    }
+  }
+
   return (
     <div>
-      <div>{Object.keys(car).length === 0 && <p>Loading..</p>}</div>
+      <div>{Object.keys(car).length === 0 && <p>No cars for the moment</p>}</div>
       <div className="car-details">
         <div className="car-image">
           <img src={car.image} alt={car.brand} />
         </div>
-        {console.log("Car Image Array:", car.image)}
         <div className="car-info">
           <h2>
             {car.brand} {car.model}
           </h2>
-          <p>Price: ${car.price}</p>
-          <p>Brand: {car.brand}</p>
-          <p>Model: {car.model}</p>
-          <p>Fuel: {car.fuel}</p>
-          <p>Transmission: {car.transmission}</p>
-          <p>
+          <p name="price" id="price">Price: ${car.price}</p>
+          <p name="brand" id="brand">Brand: {car.brand}</p>
+          <p name="model" id="model">Model: {car.model}</p>
+          <p name="fuel" id="fuel">Fuel: {car.fuel}</p>
+          <p name="transmission" id="transmission">Transmission: {car.transmission}</p>
+          <p name="comforts" id="comforts">
             Comfort:{" "}
             {car.comforts &&
               car.comforts.map((comfort, index) => (
@@ -128,7 +138,7 @@ export default function CarDetails() {
                 <Link to={pathToUrl(Path.CarEdit, { carId })}>
                   <button className="like-button">Edit</button>
                 </Link>
-                <button className="like-button">Delete</button>
+                <button className="like-button" onClick={deleteButtonClickHandler}>Delete</button>
                 <>
                 <button
                   className={`like-button ${liked ? "liked" : ""}`}

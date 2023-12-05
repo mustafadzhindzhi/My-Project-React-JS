@@ -45,7 +45,7 @@ export default function CarListItem({
         <img src={image} alt={`${brand} ${model}`} />
       </div>
       <div className="des">
-        <span >
+        <span name="brand">
           {brand} {model}
         </span>
         <h5>{description}</h5>

@@ -7,7 +7,7 @@ export default function CarEdit() {
   const navigate = useNavigate();
   const { carId } = useParams();
   const [car, setCar] = useState({
-    brand: "",  
+    brand: "defaultBrand",
     model: "",
     fuel: "",
     transmission: "",
@@ -16,9 +16,11 @@ export default function CarEdit() {
     description: "",
     comforts: [],
   });
+  
   const [carBrands, setCarBrands] = useState([[], {}]);
   const [selectedBrand, setSelectedBrand] = useState("");
 const [selectedModel, setSelectedModel] = useState("");
+
 
 useEffect(() => {
     const fetchData = async () => {
@@ -111,7 +113,7 @@ useEffect(() => {
           </div>
           <div className="form-group form-group-left">
             <label htmlFor="brand">Brand:</label>
-            <select id="brand" onChange={onChange} value={car.brand || ""}>
+            <select id="brand" onChange={onChange} value={car.brand || "defaultBrand"}>
               <option value="">---</option>
               {carBrands[0].length > 0 &&
                 carBrands[0].map((brand) => (

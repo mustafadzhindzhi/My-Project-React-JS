@@ -45,7 +45,7 @@ export default function SellYourCar() {
       setErrorMessage(errorMessage);
       return;
     }
-    
+  
     const formData = new FormData(e.currentTarget);
   
     const imageUrls = Array.from(formData.getAll("image"));
@@ -57,6 +57,8 @@ export default function SellYourCar() {
       comforts: selectedComforts,
       image: imageUrls,
       likes: 0,
+      fuel: formData.get("fuel"),  // Set the "fuel" property
+      transmission: formData.get("transmission"),  // Set the "transmission" property
     };
   
     try {
@@ -66,6 +68,7 @@ export default function SellYourCar() {
       console.error(err);
     }
   };
+  
 
   const handleBrandChange = (event) => {
     setSelectedBrand(event.target.value);
@@ -106,6 +109,7 @@ export default function SellYourCar() {
               id="brand"
               onChange={handleBrandChange}
               value={selectedBrand}
+              name="brand"
             >
               <option value="">---</option>
               {carBrands[0].length > 0 &&
@@ -122,6 +126,7 @@ export default function SellYourCar() {
               id="model"
               onChange={handleModelChange}
               value={selectedModel}
+              name="model"
             >
               <option value="">---</option>
               {carBrands[1][selectedBrand]?.map((model) => (
@@ -135,8 +140,8 @@ export default function SellYourCar() {
             <label htmlFor="fuel">Fuel:</label>
             <select id="fuel" name="fuel">
               <option value>---</option>
-              <option value="automatic">Diesel</option>
-              <option value="manual">Gasoline</option>
+              <option value="diesel">Diesel</option>
+              <option value="gasoline">Gasoline</option>
               <option value="Hybrid">Hybrid</option>
               <option value="Electric">Electric</option>
               <option value="Gas">Gas</option>
