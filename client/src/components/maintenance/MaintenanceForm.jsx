@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import * as formService from "../../services/formService.js";
-import { useState } from "react";
+import React, { forwardRef, useRef, useState, useImperativeHandle } from "react";
+import { Link } from "react-router-dom";
 
-export default function MaintenanceForm ( ) {
+const MaintenanceForm = forwardRef((props, ref) => {
     const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState(formService.formInitialState);
   const [carNumberError, setCarNumberError] = useState("");
@@ -10,6 +10,16 @@ export default function MaintenanceForm ( ) {
   const [isCarNumberCorrect, setIsCarNumberCorrect] = useState(false);
   const [isKilometersCorrect, setIsKilometersCorrect] = useState(false);
   const [areBothInputsEmpty, setAreBothInputsEmpty] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    scrollIntoView: () => {
+      if (containerRef.current) {
+        containerRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }));
+
+  const containerRef = useRef();
 
   const handleChange = (event) => {
     formService.handleInputChange(
@@ -55,7 +65,7 @@ export default function MaintenanceForm ( ) {
   };
 
     return(
-        <section className="container">
+        <section className="container" ref={containerRef}>
         {formSubmitted ? (
           <>
             <h1>See the prices and book a service appointment</h1>
@@ -292,4 +302,6 @@ export default function MaintenanceForm ( ) {
         )}
       </section>
     )
-}
+})
+
+export default MaintenanceForm;
