@@ -33,14 +33,14 @@ html {
 
 #hero4 {
     background-image: url("../images/LM22_17D_Touring_SF_nb_8R0A5927_3qtr_rear_2_epk_srgb_2-1280x854.png");
-    height: 90vh;
+    height: 85vh;
     background-size: cover;
     background-position: center;
     padding: 0 80px;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding-top: 220px;
+    padding-top: 150px;
 }
 
 #hero4 h4 {

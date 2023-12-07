@@ -27,8 +27,8 @@ useEffect(() => {
       try {
         const carData = await carService.getOne(carId);
         
-        setSelectedBrand(carData.brand || "");  // Update selected brand
-        setSelectedModel(carData.model || "");  // Update selected model
+        setSelectedBrand(carData.brand || "");  
+        setSelectedModel(carData.model || "");  
   
         setCar((prevCar) => ({
           ...prevCar,

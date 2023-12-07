@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { forwardRef, useRef, useState, useImperativeHandle } from "react";
 import * as formService from "../../../services/formService.js";
 
-function SendForm() {
+const SendForm = forwardRef((props, ref) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState(formService.formInitialState);
   const [carNumberError, setCarNumberError] = useState("");
@@ -9,6 +9,16 @@ function SendForm() {
   const [isCarNumberCorrect, setIsCarNumberCorrect] = useState(false);
   const [isKilometersCorrect, setIsKilometersCorrect] = useState(false);
   const [areBothInputsEmpty, setAreBothInputsEmpty] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    scrollIntoView: () => {
+      if (containerRef.current) {
+        containerRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }));
+  
+  const containerRef = useRef();
 
   const handleChange = (event) => {
     formService.handleInputChange(
@@ -56,7 +66,7 @@ function SendForm() {
   
   return (
     <>
-      <section className="sellUs">
+      <section className="sellUs" ref={containerRef}>
         <h1>We will buy your car</h1>
         <p>Submitting an offer does not obligate you to sell your vehicle.</p>
       <div className="info">
@@ -148,7 +158,7 @@ function SendForm() {
                     </div>
   
                     <button id="send-btn" type="submit"> Send </button>
-                    <h1>Thank we will call you back</h1>
+                    <h1>Thanks we will call you back</h1>
                     {areBothInputsEmpty && (
                       <p style={{ color: "red", marginTop: "5px" }}>
                         Both fields are required.
@@ -298,6 +308,7 @@ function SendForm() {
             </section>
           </>
     );
-}
+})
 
 export default SendForm;
+                
