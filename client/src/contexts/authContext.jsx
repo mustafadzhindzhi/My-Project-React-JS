@@ -1,10 +1,7 @@
-// authContext.js
-
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Path from "../../paths.js";
 import * as authService from "../services/authService.js";
-import * as jwt_decode from 'jwt-decode';
 import usePersistedState from "../hooks/usePersistedSate.js";
 
 const AuthContext = createContext();
