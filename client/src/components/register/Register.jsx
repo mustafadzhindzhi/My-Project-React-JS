@@ -14,7 +14,7 @@ export default function Register() {
   const authContext = useContext(AuthContext);
   const { registerSubmitHandler } = authContext || {};
 
-  const { values, onChange, onSubmit, isSubmitting } = useForm(
+  const { values, onChange, onSubmit } = useForm(
     typeof registerSubmitHandler === 'function' ? registerSubmitHandler : () => {},
     {
       [registerFormKeys.Email]: '',

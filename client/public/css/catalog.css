@@ -45,10 +45,12 @@ html {
   align-items: flex-start;
   padding: 20px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .search-container {
   display: flex;
+  width: 100%;
 }
 
 .search-container .searchForm {
@@ -60,8 +62,8 @@ html {
 }
 
 .searchForm {
-  width: 40%;
-  max-width: 420px;
+  width: 35%;
+  max-width: 400px;
   height: 100%;
   max-height: 1400px;
   background-color: rgba(0, 0, 0, 0.1);
@@ -75,12 +77,12 @@ html {
 }
 
 .vehicleSearch .searchForm h2 {
-  font-size: 2.5vw;
+  font-size: 2.2vw;
   font-weight: 700;
   letter-spacing: 0.060em;
   line-height: 1.5px;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
 }
 
 .vehicleSearch .searchForm .vehicleFormSearch {
@@ -100,7 +102,7 @@ html {
   justify-content: center;
   border: none;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .vehichleSection {
@@ -113,7 +115,7 @@ html {
   align-items: center;
   margin-right: 2%;
   cursor: pointer;
-  font-size: 23px;
+  font-size: 21px;
   margin-right: 12px;
   margin-left: 12px;
 }
@@ -144,7 +146,7 @@ html {
 .check.selected {
     border: 2px solid #333;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .brand-fieldset {
@@ -159,11 +161,11 @@ html {
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 3px;
-    font-size: 20px;
+    font-size: 18px;
   }
   
   h3 {
-    font-size: 1.4vw;
+    font-size: 1.2vw;
     margin-bottom: 1em;
     text-align: left;
     font-weight: bold;
@@ -178,13 +180,13 @@ html {
   }
   
   .wrapper p {
-    font-size: 1.3vw ;
+    font-size: 1.1vw ;
     margin-top: 2em;
     margin-bottom: 10%;
   }
 
   .wrapper h2{
-    font-size: 11px;
+    font-size: 10px;
     text-align: center;
   }
   
@@ -202,7 +204,7 @@ html {
   }
 
   .field span{
-    font-size: 25px;
+    font-size: 20px;
     margin-right: 3px;
   }
   
@@ -213,7 +215,7 @@ html {
     border: 1px solid #999;
     border-radius: 5px;
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     margin-left: 2%;
   }
   
@@ -234,7 +236,7 @@ html {
   }
   
   .wrapper .slider {
-    height: 0.4vw;
+    height: 0.3vw;
     background-color: #ddd;
     border-radius: 5px;
   }
@@ -259,7 +261,7 @@ html {
   }
   
   .wrapper .range-input input::-webkit-slider-thumb {
-    height: 1.2vw;
+    height: 1.1vw;
     width: 0.1vw;
     background-color: #0074cc;
     border-radius: 50%;
@@ -293,6 +295,10 @@ html {
     font-size: 1.3vw;
     margin-top: 15px;
     margin-bottom: 20px;
+    color: black;
+  }
+
+  #toggle-comforts{
     color: black;
   }
   
@@ -350,7 +356,7 @@ html {
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    font-size: 25px;
+    font-size: 21px;
     margin-left: 105px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -364,6 +370,10 @@ html {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-left: 30px;
     background: #f7f7f7;
+    margin-right: auto; 
+    max-height: auto;
+    height: 100%;
+    width: 90%;
   }
   
   .topBar {
@@ -520,5 +530,3 @@ html {
   justify-content: space-between;
   background-color: #e2e2e2;
 }
-
-
