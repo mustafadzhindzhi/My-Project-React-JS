@@ -2,11 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import * as carService from "../../services/CarService.js";
-import * as likeService from "../../services/likeService.js"; // Import likeService
+import * as likeService from "../../services/likeService.js"; 
 import AuthContext from "../../contexts/authContext.jsx";
 import Path from "../../../paths.js";
 import { pathToUrl } from "../../utils/pathUtils.js";
-import CarListItem from "../BuyCar/carListItem/CarListItem.jsx";
 
 export default function CarDetails() {
   const navigate = useNavigate();
