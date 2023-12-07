@@ -139,3 +139,34 @@ export const getAverageRating = async (carId) => {
     throw error;
   }
 }
+export const getAllSorted = async (sortOption) => {
+  try {
+    let sortByParam = '';
+
+    if (sortOption === 'priceAscending') {
+      sortByParam = 'price';
+    } else if (sortOption === 'priceDescending') {
+      sortByParam = 'price desc';
+    } else if (sortOption === 'brandModelAscending') {
+      sortByParam = 'brand,model';
+    } else if (sortOption === 'brandModelDescending') {
+      sortByParam = 'brand desc,model desc';
+    }
+
+    const response = await fetch(`${baseUrl}?sortBy=${encodeURIComponent(sortByParam)}`);
+    
+    if (!response.ok) {
+      console.error('Error fetching sorted cars:', response.status, response.statusText);
+      throw new Error(`Failed to fetch sorted cars. Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching sorted cars data:', error);
+    throw error;
+  }
+};
+
+
+

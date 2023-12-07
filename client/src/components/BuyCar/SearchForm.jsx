@@ -16,8 +16,6 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   };
 
   const [carBrands, setCarBrand] = useState([[], {}]);
-  const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedModel, setSelectedModel] = useState("");
   const [filteredCars, setFilteredCars] = useState([]);
   const [comfortsVisible, setComfortsVisible] = useState(false);
   const [selectedBrandModel, setSelectedBrandModel] = useState({
@@ -38,6 +36,37 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
     };
     fetchBrands();
   }, []);
+
+  useEffect(() => {
+    if (searchCriteria && searchCriteria.cars) {
+      const newFilteredCars = searchCriteria.cars.filter((car) => {
+        const carBrand = car.brand.toLowerCase();
+        const carModel = car.model.toLowerCase();
+        const selectedBrand = formData.brand.toLowerCase();
+        const selectedModel = formData.model.toLowerCase();
+
+        const brandMatches = selectedBrand
+          ? carBrand.includes(selectedBrand)
+          : true;
+        const modelMatches = selectedModel
+          ? carModel.includes(selectedModel)
+          : true;
+        const transmissionMatches = formData.transmission
+          ? car.transmission.trim().toLowerCase() ===
+            formData.transmission.trim().toLowerCase()
+          : true;
+        const fuelMatches = formData.fuel
+          ? car.fuel.toLowerCase() === formData.fuel.toLowerCase()
+          : true;
+
+        return (
+          brandMatches && modelMatches && transmissionMatches && fuelMatches
+        );
+      });
+
+      setFilteredCars(newFilteredCars);
+    }
+  }, [searchCriteria, formData]);
 
   const handleChange = (event) => {
     const { name, value, type } = event.target;
@@ -89,12 +118,6 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
     }));
   };
 
-  const handleCategoryClick = (event, category) => {
-    event.preventDefault();
-    const newCategory = formData.category === category ? "" : category;
-    setFormData({ ...formData, category: newCategory });
-  };
-
   const handleComfortChange = (event) => {
     const { name, value } = event.target;
 
@@ -124,28 +147,27 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
     onSearch(formData);
   };
 
- const handleSearchClick = () => {
-  const transformedFormData = {
-    brand: selectedBrandModel.brand,
-    model: selectedBrandModel.model,
-    transmission: formData.transmission,
-    fuel: formData.fuel,
-    comforts: formData.comforts,
+  const handleSearchClick = () => {
+    const transformedFormData = {
+      brand: selectedBrandModel.brand,
+      model: selectedBrandModel.model,
+      transmission: formData.transmission,
+      fuel: formData.fuel,
+      comforts: formData.comforts,
+    };
+
+    if (formData.minRange !== 0) {
+      transformedFormData.minPrice = formData.minRange;
+    }
+
+    if (formData.maxRange !== 0) {
+      transformedFormData.maxPrice = formData.maxRange;
+    }
+
+    console.log("Chosen search criteria:", transformedFormData);
+
+    onSearch(transformedFormData);
   };
-
-  if (formData.minRange !== 0) {
-    transformedFormData.minPrice = formData.minRange;
-  }
-
-  if (formData.maxRange !== 0) {
-    transformedFormData.maxPrice = formData.maxRange;
-  }
-
-  console.log("Chosen search criteria:", transformedFormData);
-
-  onSearch(transformedFormData);
-};
-  
 
   const handleBrandChange = (event) => {
     const newBrand = event.target.value;
@@ -158,41 +180,9 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   };
   const handleModelChange = (event) => {
     const newModel = event.target.value;
-  console.log("New Model:", newModel);
-  setSelectedBrandModel((prev) => ({ ...prev, model: newModel }));
+    console.log("New Model:", newModel);
+    setSelectedBrandModel((prev) => ({ ...prev, model: newModel }));
   };
-  
-
-  useEffect(() => {
-    if (searchCriteria && searchCriteria.cars) {
-      const newFilteredCars = searchCriteria.cars.filter((car) => {
-        const carBrand = car.brand.toLowerCase();
-        const carModel = car.model.toLowerCase();
-        const selectedBrand = formData.brand.toLowerCase();
-        const selectedModel = formData.model.toLowerCase();
-
-        const brandMatches = selectedBrand
-          ? carBrand.includes(selectedBrand)
-          : true;
-        const modelMatches = selectedModel
-          ? carModel.includes(selectedModel)
-          : true;
-        const transmissionMatches = formData.transmission
-          ? car.transmission.trim().toLowerCase() ===
-            formData.transmission.trim().toLowerCase()
-          : true;
-        const fuelMatches = formData.fuel
-          ? car.fuel.toLowerCase() === formData.fuel.toLowerCase()
-          : true;
-
-        return (
-          brandMatches && modelMatches && transmissionMatches && fuelMatches
-        );
-      });
-
-      setFilteredCars(newFilteredCars);
-    }
-  }, [searchCriteria, formData]);
 
   return (
     <>
@@ -200,61 +190,41 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
         <h2>Search car</h2>
         <div className="vehicleFormSearch">
           <form name="car-form" className="form" onSubmit={handleFormSubmit}>
-            {/* <fieldset className="fieldset_fieldset1">
-              {["New", "Used", "For parts"].map((category) => (
-                <label
-                  key={category}
-                  className={`check ${
-                    formData.category === category ? "selected" : ""
-                  }`}
-                  onClick={(event) => handleCategoryClick(event, category)}
-                >
-                  <input
-                    type="radio"
-                    name="category"
-                    value={category}
-                    checked={formData.category === category}
-                    onChange={() => {}} 
-                  />
-                  <span className="checkBoxTag">{category}</span>
-                </label>
-              ))}
-            </fieldset> */}
 
             <fieldset className="brand-fieldset">
-        <label htmlFor="brand">Brand:</label>
-        <select
-          id="brand"
-          name="brand"
-          onChange={handleBrandChange}
-          value={selectedBrandModel.brand}
-        >
-          <option value="">---</option>
-          {carBrands[0].length > 0 &&
-            carBrands[0].map((brand) => (
-              <option key={brand} value={brand}>
-                {brand}
-              </option>
-            ))}
-        </select>
-      </fieldset>
+              <label htmlFor="brand">Brand:</label>
+              <select
+                id="brand"
+                name="brand"
+                onChange={handleBrandChange}
+                value={selectedBrandModel.brand}
+              >
+                <option value="">---</option>
+                {carBrands[0].length > 0 &&
+                  carBrands[0].map((brand) => (
+                    <option key={brand} value={brand}>
+                      {brand}
+                    </option>
+                  ))}
+              </select>
+            </fieldset>
 
-      <fieldset className="model-fieldset">
-        <label htmlFor="model">Model:</label>
-        <select
-          id="model"
-          name="model"
-          onChange={handleModelChange}
-          value={selectedBrandModel.model}
-        >
-          <option value="">---</option>
-          {carBrands[1][selectedBrandModel.brand]?.map((model) => (
-            <option key={model} value={model}>
-              {model}
-            </option>
-          ))}
-        </select>
-      </fieldset>
+            <fieldset className="model-fieldset">
+              <label htmlFor="model">Model:</label>
+              <select
+                id="model"
+                name="model"
+                onChange={handleModelChange}
+                value={selectedBrandModel.model}
+              >
+                <option value="">---</option>
+                {carBrands[1][selectedBrandModel.brand]?.map((model) => (
+                  <option key={model} value={model}>
+                    {model}
+                  </option>
+                ))}
+              </select>
+            </fieldset>
 
             <div className="wrapper">
               <h2

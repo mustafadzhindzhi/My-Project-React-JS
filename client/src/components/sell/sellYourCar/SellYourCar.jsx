@@ -32,7 +32,6 @@ export default function SellYourCar() {
       "fuel",
       "transmission",
       "price",
-      "type",
       "description",
     ];
     const isAnyFieldEmpty = requiredFields.some(
@@ -239,15 +238,15 @@ export default function SellYourCar() {
               </div>
             </fieldset>
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="transmission">Type:</label>
-            {/* <select id="type" name="type">
+            <select id="type" name="type">
               <option value>---</option>
               <option value="new">New</option>
               <option value="manual">Used</option>
               <option value="for-parts">For parts</option>
-            </select> */}
-          </div>
+            </select>
+          </div> */}
           <div className="form-group">
             <label htmlFor="product-image">Description:</label>
             <input
