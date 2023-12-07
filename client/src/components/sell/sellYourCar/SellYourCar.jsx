@@ -241,12 +241,12 @@ export default function SellYourCar() {
           </div>
           <div className="form-group">
             <label htmlFor="transmission">Type:</label>
-            <select id="type" name="type">
+            {/* <select id="type" name="type">
               <option value>---</option>
               <option value="new">New</option>
               <option value="manual">Used</option>
               <option value="for-parts">For parts</option>
-            </select>
+            </select> */}
           </div>
           <div className="form-group">
             <label htmlFor="product-image">Description:</label>

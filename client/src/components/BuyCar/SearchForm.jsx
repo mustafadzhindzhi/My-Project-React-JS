@@ -163,36 +163,36 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   };
   
 
-  // useEffect(() => {
-  //   if (searchCriteria && searchCriteria.cars) {
-  //     const newFilteredCars = searchCriteria.cars.filter((car) => {
-  //       const carBrand = car.brand.toLowerCase();
-  //       const carModel = car.model.toLowerCase();
-  //       const selectedBrand = formData.brand.toLowerCase();
-  //       const selectedModel = formData.model.toLowerCase();
+  useEffect(() => {
+    if (searchCriteria && searchCriteria.cars) {
+      const newFilteredCars = searchCriteria.cars.filter((car) => {
+        const carBrand = car.brand.toLowerCase();
+        const carModel = car.model.toLowerCase();
+        const selectedBrand = formData.brand.toLowerCase();
+        const selectedModel = formData.model.toLowerCase();
 
-  //       const brandMatches = selectedBrand
-  //         ? carBrand.includes(selectedBrand)
-  //         : true;
-  //       const modelMatches = selectedModel
-  //         ? carModel.includes(selectedModel)
-  //         : true;
-  //       const transmissionMatches = formData.transmission
-  //         ? car.transmission.trim().toLowerCase() ===
-  //           formData.transmission.trim().toLowerCase()
-  //         : true;
-  //       const fuelMatches = formData.fuel
-  //         ? car.fuel.toLowerCase() === formData.fuel.toLowerCase()
-  //         : true;
+        const brandMatches = selectedBrand
+          ? carBrand.includes(selectedBrand)
+          : true;
+        const modelMatches = selectedModel
+          ? carModel.includes(selectedModel)
+          : true;
+        const transmissionMatches = formData.transmission
+          ? car.transmission.trim().toLowerCase() ===
+            formData.transmission.trim().toLowerCase()
+          : true;
+        const fuelMatches = formData.fuel
+          ? car.fuel.toLowerCase() === formData.fuel.toLowerCase()
+          : true;
 
-  //       return (
-  //         brandMatches && modelMatches && transmissionMatches && fuelMatches
-  //       );
-  //     });
+        return (
+          brandMatches && modelMatches && transmissionMatches && fuelMatches
+        );
+      });
 
-  //     setFilteredCars(newFilteredCars);
-  //   }
-  // }, [searchCriteria, formData]);
+      setFilteredCars(newFilteredCars);
+    }
+  }, [searchCriteria, formData]);
 
   return (
     <>
@@ -200,7 +200,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
         <h2>Search car</h2>
         <div className="vehicleFormSearch">
           <form name="car-form" className="form" onSubmit={handleFormSubmit}>
-            <fieldset className="fieldset_fieldset1">
+            {/* <fieldset className="fieldset_fieldset1">
               {["New", "Used", "For parts"].map((category) => (
                 <label
                   key={category}
@@ -219,7 +219,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
                   <span className="checkBoxTag">{category}</span>
                 </label>
               ))}
-            </fieldset>
+            </fieldset> */}
 
             <fieldset className="brand-fieldset">
         <label htmlFor="brand">Brand:</label>

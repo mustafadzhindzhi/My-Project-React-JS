@@ -43,7 +43,6 @@ const VehicleSearch = () => {
     console.log("Updated searchCriteria:", newSearchCriteria);
   };
   
-
   useEffect(() => {
     const filtered = cars.filter((car) => {
       const brandMatch =
