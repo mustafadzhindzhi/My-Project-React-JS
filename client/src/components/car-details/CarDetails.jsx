@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import * as carService from "../../services/CarService.js";
-import * as likeService from "../../services/likeService.js"; 
+import * as likeService from "../../services/likeService.js";
 import AuthContext from "../../contexts/authContext.jsx";
 import Path from "../../../paths.js";
 import { pathToUrl } from "../../utils/pathUtils.js";
@@ -42,14 +42,8 @@ export default function CarDetails() {
         console.error("Invalid carId or userId");
         return;
       }
-      const token = localStorage.getItem('accessToken');
-
-      const payload = { userId: userId };
-
-      // Use the like service to add a like
+      const token = localStorage.getItem("accessToken");
       await likeService.addLike({ carId, userId, token });
-
-      // Update the like count using the service
       const updatedLikeCount = await likeService.getAllLikesForCar(carId);
       setLikeCount(updatedLikeCount);
 
@@ -66,7 +60,7 @@ export default function CarDetails() {
 
     const newAverageRating =
       storedRatings.reduce((sum, rating) => sum + rating, 0) /
-      storedRatings.length || 0;
+        storedRatings.length || 0;
 
     setAverageRating(Math.round(newAverageRating * 10) / 10);
   }, [carId]);
@@ -80,21 +74,23 @@ export default function CarDetails() {
 
       const newAverageRating =
         newRatings.reduce((sum, rating) => sum + rating, 0) /
-        newRatings.length || 0;
+          newRatings.length || 0;
 
       setAverageRating(Math.round(newAverageRating * 10) / 10);
     }
   };
 
   const deleteButtonClickHandler = async () => {
-    const hasConfirmed = window.confirm(`Are you sure you want to delete ${car.brand} ${car.model}`);
+    const hasConfirmed = window.confirm(
+      `Are you sure you want to delete ${car.brand} ${car.model}`
+    );
 
-    if(hasConfirmed) {
+    if (hasConfirmed) {
       await carService.remove(carId);
 
-      navigate('/BuyCar')
+      navigate("/BuyCar");
     }
-  }
+  };
 
   return (
     <div>
@@ -106,11 +102,21 @@ export default function CarDetails() {
           <h2>
             {car.brand} {car.model}
           </h2>
-          <p name="price" id="price">Price: ${car.price}</p>
-          <p name="brand" id="brand">Brand: {car.brand}</p>
-          <p name="model" id="model">Model: {car.model}</p>
-          <p name="fuel" id="fuel">Fuel: {car.fuel}</p>
-          <p name="transmission" id="transmission">Transmission: {car.transmission}</p>
+          <p name="price" id="price">
+            Price: ${car.price}
+          </p>
+          <p name="brand" id="brand">
+            Brand: {car.brand}
+          </p>
+          <p name="model" id="model">
+            Model: {car.model}
+          </p>
+          <p name="fuel" id="fuel">
+            Fuel: {car.fuel}
+          </p>
+          <p name="transmission" id="transmission">
+            Transmission: {car.transmission}
+          </p>
           <p name="comforts" id="comforts">
             Comfort:{" "}
             {car.comforts &&
@@ -137,7 +143,12 @@ export default function CarDetails() {
                 <Link to={pathToUrl(Path.CarEdit, { carId })}>
                   <button className="like-button">Edit</button>
                 </Link>
-                <button className="like-button" onClick={deleteButtonClickHandler}>Delete</button>
+                <button
+                  className="like-button"
+                  onClick={deleteButtonClickHandler}
+                >
+                  Delete
+                </button>
               </>
             ) : (
               <>
