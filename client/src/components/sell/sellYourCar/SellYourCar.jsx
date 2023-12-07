@@ -34,6 +34,7 @@ export default function SellYourCar() {
       "price",
       "description",
     ];
+
     const isAnyFieldEmpty = requiredFields.some(
       (field) => !e.currentTarget[field]?.value
     );
@@ -56,8 +57,8 @@ export default function SellYourCar() {
       comforts: selectedComforts,
       image: imageUrls,
       likes: 0,
-      fuel: formData.get("fuel"),  // Set the "fuel" property
-      transmission: formData.get("transmission"),  // Set the "transmission" property
+      fuel: formData.get("fuel"),  
+      transmission: formData.get("transmission"),
     };
   
     try {
@@ -67,7 +68,6 @@ export default function SellYourCar() {
       console.error(err);
     }
   };
-  
 
   const handleBrandChange = (event) => {
     setSelectedBrand(event.target.value);
@@ -238,15 +238,6 @@ export default function SellYourCar() {
               </div>
             </fieldset>
           </div>
-          {/* <div className="form-group">
-            <label htmlFor="transmission">Type:</label>
-            <select id="type" name="type">
-              <option value>---</option>
-              <option value="new">New</option>
-              <option value="manual">Used</option>
-              <option value="for-parts">For parts</option>
-            </select>
-          </div> */}
           <div className="form-group">
             <label htmlFor="product-image">Description:</label>
             <input
