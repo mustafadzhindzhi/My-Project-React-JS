@@ -172,17 +172,35 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   const handleBrandChange = (event) => {
     const newBrand = event.target.value;
     console.log("New Brand:", newBrand);
+  
+    // Update selectedBrandModel
     setSelectedBrandModel((prev) => ({ ...prev, brand: newBrand }));
-
+  
+    // Update formData with the selected brand
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      brand: newBrand,
+      model: "", 
+    }));
+  
     if (!carBrands[1][newBrand]?.includes(selectedBrandModel.model)) {
+      // Reset model in selectedBrandModel if it's not in the new brand's models
       setSelectedBrandModel((prev) => ({ ...prev, model: "" }));
     }
   };
+  
   const handleModelChange = (event) => {
     const newModel = event.target.value;
     console.log("New Model:", newModel);
+  
     setSelectedBrandModel((prev) => ({ ...prev, model: newModel }));
+  
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      model: newModel,
+    }));
   };
+  
 
   return (
     <>
