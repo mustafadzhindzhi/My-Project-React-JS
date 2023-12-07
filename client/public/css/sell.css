@@ -145,11 +145,11 @@ height: auto
     margin-top: 10px;
 }
 
-#toggle-comforts:checked + .comfort-list {
+#toggle-comforts2:checked + .comfort-list {
     display: flex;
 }
 
-#toggle-comforts{
+#toggle-comforts2{
     color: white;
 }
 

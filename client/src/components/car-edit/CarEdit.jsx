@@ -149,8 +149,8 @@ useEffect(() => {
             <label htmlFor="fuel">Fuel:</label>
             <select id="fuel" name="fuel" onChange={onChange} value={car.fuel}>
               <option value>---</option>
-              <option value="automatic">Diesel</option>
-              <option value="manual">Gasoline</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Gasoline">Gasoline</option>
               <option value="Hybrid">Hybrid</option>
               <option value="Electric">Electric</option>
               <option value="Gas">Gas</option>
@@ -305,8 +305,8 @@ useEffect(() => {
                 /> */}
             <div id="image-preview-container" />
           </div>
-          <button className="publish-button" type="submit" value="Publish">
-            Publish
+          <button className="publish-button" type="submit" value="Edit">
+            Edit
           </button>
         </div>
       </form>

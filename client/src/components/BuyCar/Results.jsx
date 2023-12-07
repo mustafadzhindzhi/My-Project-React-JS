@@ -44,19 +44,24 @@ const Results = ({ filteredProducts }) => {
     }
   }, [sortOption]);
 
-  const productElements = Array.isArray(sortedProducts)
-    ? sortedProducts.map((car) => (
-        <CarListItem
-          key={car._id}
-          brand={car.brand}
-          model={car.model}
-          price={car.price}
-          image={car.image}
-          description={car.description}
-          _id={car._id}
-        />
-      ))
-    : null;
+  const productElements =
+  Array.isArray(sortedProducts) && sortedProducts.length > 0 ? (
+    sortedProducts.map((car) => (
+      <CarListItem
+        key={car._id}
+        brand={car.brand}
+        model={car.model}
+        price={car.price}
+        image={car.image}
+        description={car.description}
+        _id={car._id}
+      />
+    ))
+  ) : (
+    <p style={{ fontSize: '1.5em', fontWeight: 'bold', margin: '10px 0', textAlign: 'center', color: 'red' }}>
+      No cars found.
+    </p>
+  );
 
   const handleSortChange = (event) => {
     const option = event.target.value;
@@ -64,10 +69,7 @@ const Results = ({ filteredProducts }) => {
     if (option === "") {
       setSortOption("");
     } else {
-      // Split the option into an array
       const propList = option.split(" ");
-
-      // Format the array into a string
       const sortByParam = propList
         .map((prop) => encodeURIComponent(prop))
         .join("%20");

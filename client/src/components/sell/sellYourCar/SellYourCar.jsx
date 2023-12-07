@@ -170,7 +170,7 @@ export default function SellYourCar() {
           >
             <fieldset className="comfort-fieldset">
               <div className="comfort-toggle">
-                <button id="toggle-comforts">
+                <button id="toggle-comforts2">
                   Comforts <span className="arrow">▼</span>
                 </button>
               </div>
