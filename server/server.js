@@ -1352,7 +1352,6 @@
     			image: "https://dealerimages.dealereprocess.com/image/upload/c_limit,f_auto,fl_lossy,w_auto/v1/svp/dep/22toyota4runnertrdsport/toyota_224runnertrdsport_angularfront_armygreen",
                 description: "Best machine ever",
     			_createdOn: 1613551279012,
-                likes: 3,
                 rating: 5,
     		},
     		"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
@@ -1367,7 +1366,6 @@
     			image: "https://cdn.riastatic.com/photosnewr/auto/new_auto_storage/audi-q8__1755137-620x465x72.jpg",
                 description: "The best jeep ever",
     			_createdOn: 1613551344360,
-                likes: 5,
                 rating: 0,
     		},
     		"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
@@ -1382,7 +1380,6 @@
     			image:         "https://m.atcdn.co.uk/vms/media/a06050c4ef5247e3bf75cfdb97b8fe89.jpg",
                 description: "Really nice car",
     			_createdOn: 1613551388703,
-                likes: 7,
                 rating: 4.5,
     		}
     	},
@@ -1420,6 +1417,9 @@
     			_createdOn: 1613551388703
     		}
     	},
+        likes:{
+            
+        },
     	comments: {
     		"0a272c58-b7ea-4e09-a000-7ec988248f66": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",

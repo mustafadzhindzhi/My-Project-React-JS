@@ -26,10 +26,10 @@ const Results = ({ filteredProducts }) => {
         case "priceDescending":
           sortedProductCopy.sort((a, b) => b.price - a.price);
           break;
-        case "AZ":
+        case "A-Z":
           sortedProductCopy.sort((a, b) => a.brand.localeCompare(b.brand));
           break;
-        case "ZA":
+        case "Z-A":
           sortedProductCopy.sort((a, b) => b.brand.localeCompare(a.brand));
           break;
       }
@@ -70,7 +70,7 @@ const Results = ({ filteredProducts }) => {
           </label>
           <select id="sortCar" value={sortOption} onChange={handleSortChange}>
             <option value="">---</option>
-            <option value="priceAscending">Price Ascending</option>
+            <option value="priceAscending" className="priceAscending">Price Ascending</option>
             <option value="priceDescending">Price Descending</option>
             <option value="AZ">Brand and model: A-Z</option>
             <option value="ZA">Brand and model: Z-A</option>

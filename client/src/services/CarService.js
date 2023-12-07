@@ -100,6 +100,7 @@ export const likeCar = async (carId, userId, authToken) => {
   }
 };
 
+
 //stars
 export const submitRating = async (carId, userId, rating) => {
   try {

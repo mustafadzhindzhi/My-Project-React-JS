@@ -2,9 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import * as carService from "../../services/CarService.js";
+import * as likeService from "../../services/likeService.js"; // Import likeService
 import AuthContext from "../../contexts/authContext.jsx";
 import Path from "../../../paths.js";
 import { pathToUrl } from "../../utils/pathUtils.js";
+import CarListItem from "../BuyCar/carListItem/CarListItem.jsx";
 
 export default function CarDetails() {
   const navigate = useNavigate();
@@ -22,11 +24,10 @@ export default function CarDetails() {
       navigate("/error");
       return;
     }
-  
+
     carService
       .getOne(carId)
       .then((carData) => {
-        console.log("Car Data:", carData); // Add this line for debugging
         setCar(carData);
         setLikeCount(carData.likes);
       })
@@ -35,7 +36,7 @@ export default function CarDetails() {
         navigate("/error");
       });
   }, [carId, navigate]);
-  
+
   const handleLike = async () => {
     try {
       if (!carId || !userId) {
@@ -43,21 +44,21 @@ export default function CarDetails() {
         return;
       }
       const token = localStorage.getItem('accessToken');
-  
+
       const payload = { userId: userId };
-      console.log("Like Payload:", payload);
-      console.log('carId:', carId);
-  
-      await carService.likeCar(carId, payload, token);
-  
-      const updatedCarData = await carService.getOne(carId);
-      setLikeCount(updatedCarData.likes);
+
+      // Use the like service to add a like
+      await likeService.addLike({ carId, userId, token });
+
+      // Update the like count using the service
+      const updatedLikeCount = await likeService.getAllLikesForCar(carId);
+      setLikeCount(updatedLikeCount);
+
       setLiked(true);
     } catch (error) {
       console.error("Error liking car:", error);
     }
   };
-  
 
   useEffect(() => {
     const storedRatings =
@@ -66,7 +67,7 @@ export default function CarDetails() {
 
     const newAverageRating =
       storedRatings.reduce((sum, rating) => sum + rating, 0) /
-        storedRatings.length || 0;
+      storedRatings.length || 0;
 
     setAverageRating(Math.round(newAverageRating * 10) / 10);
   }, [carId]);
@@ -80,14 +81,14 @@ export default function CarDetails() {
 
       const newAverageRating =
         newRatings.reduce((sum, rating) => sum + rating, 0) /
-          newRatings.length || 0;
+        newRatings.length || 0;
 
       setAverageRating(Math.round(newAverageRating * 10) / 10);
     }
   };
 
   const deleteButtonClickHandler = async () => {
-    const hasConfirmed = confirm(`Are you sure you want to delete ${car.brand} ${car.model}`);
+    const hasConfirmed = window.confirm(`Are you sure you want to delete ${car.brand} ${car.model}`);
 
     if(hasConfirmed) {
       await carService.remove(carId);
@@ -98,7 +99,6 @@ export default function CarDetails() {
 
   return (
     <div>
-      <div>{Object.keys(car).length === 0 && <p>No cars for the moment</p>}</div>
       <div className="car-details">
         <div className="car-image">
           <img src={car.image} alt={car.brand} />
@@ -139,16 +139,6 @@ export default function CarDetails() {
                   <button className="like-button">Edit</button>
                 </Link>
                 <button className="like-button" onClick={deleteButtonClickHandler}>Delete</button>
-                <>
-                <button
-                  className={`like-button ${liked ? "liked" : ""}`}
-                  onClick={handleLike}
-                  disabled={liked}
-                >
-                  {liked ? "Liked" : "Like"}
-                </button>
-                <span>Likes: {likeCount}</span>
-              </>
               </>
             ) : (
               <>
@@ -168,6 +158,11 @@ export default function CarDetails() {
       <div className="car-description">
         <h2>Car Description</h2>
         <p>{car.description}</p>
+      </div>
+      <div className="car-description">
+        <h2>Information</h2>
+        <p>Phone Number: +359 00000000</p>
+        <p></p>
       </div>
     </div>
   );
