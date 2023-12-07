@@ -53,7 +53,7 @@ export default function Login() {
             value={values[loginFormKeys.Password]}
             autoComplete="current-password"
           />
-          <label htmlFor="rememberMe">Remember Me</label>
+          <label htmlFor="rememberMe" className="remember">Remember Me</label>
           <input
             type="checkbox"
             name={loginFormKeys.RememberMe}
