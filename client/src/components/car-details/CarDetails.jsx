@@ -7,7 +7,7 @@ import AuthContext from "../../contexts/authContext.jsx";
 import Path from "../../../paths.js";
 import { pathToUrl } from "../../utils/pathUtils.js";
 
-export default function CarDetails() {
+const CarDetails = () => {
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
   const [car, setCar] = useState({});
@@ -16,40 +16,67 @@ export default function CarDetails() {
   const { carId } = useParams();
   const [ratings, setRatings] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
+  const [likeId, setLikeId] = useState("");
 
   useEffect(() => {
-    if (!carId) {
-      console.error("Invalid carId:", carId);
-      navigate("/error");
-      return;
+    const fetchData = async () => {
+      const initialLikes = await likeService.getAllLikes(carId);
+      setLikeCount(initialLikes.length);
+  
+      let foundLike = initialLikes.find((el) => el.userId === userId);
+  
+      if (foundLike) {
+        setLikeId(foundLike._id);
+        setLiked(true);
+      }
+    };
+      if (carId) {
+      carService
+        .getOne(carId)
+        .then((carData) => {
+          setCar(carData);
+  
+          const likes = Number(carData.likes);
+          setLikeCount(isNaN(likes) ? 0 : likes);
+        })
+        .catch((error) => {
+          console.error("Error fetching car data:", error);
+          navigate("/error");
+        });
     }
-
-    carService
-      .getOne(carId)
-      .then((carData) => {
-        setCar(carData);
-        setLikeCount(carData.likes);
-      })
-      .catch((error) => {
-        console.error("Error fetching car data:", error);
-        navigate("/error");
-      });
-  }, [carId, navigate]);
+  }, [carId, navigate, userId]);
 
   const handleLike = async () => {
     try {
-      if (!carId || !userId) {
-        console.error("Invalid carId or userId");
-        return;
-      }
-      const token = localStorage.getItem("accessToken");
-      await likeService.addLike({ carId, userId, token });
-      const updatedLikeCount = await likeService.getAllLikesForCar(carId);
-      setLikeCount(updatedLikeCount);
+      if (!likeId) {
+        const result = await likeService.addLike({ carId, userId });
 
-      setLiked(true);
+        setLikeCount((prevLike) => prevLike + 1);
+        setLikeId(result._id);
+        setLiked(true);
+      } else {
+        await likeService.unLike(likeId);
+        setLikeCount((prevLike) => prevLike - 1);
+        setLikeId("");
+        setLiked(false);
+      }
+    } catch (err) {
+      console.log('Error liking car:', err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      if (likeId) {
+        await likeService.unLike(likeId);
+        setLikeCount((prevLike) => prevLike - 1);
+        setLikeId("");
+        setLiked(false);
+      } else {
+        console.log('You have not liked this car.');
+      }
     } catch (error) {
-      console.error("Error liking car:", error);
+      console.error('Error unliking car:', error);
     }
   };
 
@@ -87,7 +114,6 @@ export default function CarDetails() {
 
     if (hasConfirmed) {
       await carService.remove(carId);
-
       navigate("/BuyCar");
     }
   };
@@ -154,10 +180,9 @@ export default function CarDetails() {
               <>
                 <button
                   className={`like-button ${liked ? "liked" : ""}`}
-                  onClick={handleLike}
-                  disabled={liked}
+                  onClick={liked ? handleUnlike : handleLike}
                 >
-                  {liked ? "Liked" : "Like"}
+                  {liked ? "Unlike" : "Like"}
                 </button>
                 <span>Likes: {likeCount}</span>
               </>
@@ -176,4 +201,6 @@ export default function CarDetails() {
       </div>
     </div>
   );
-}
+};
+
+export default CarDetails;

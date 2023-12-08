@@ -10,6 +10,10 @@ export const addLike = async (data) => {
     return await request.post(baseUrl, data);
 };
 
+export const unLike = async(likeId) => {
+    await request.remove(`${baseUrl}/${likeId}`)
+}
+
 export const checkCarLiked = async (carId, userId) => {
     return await request.get(`${baseUrl}?where=carId%3D%22${carId}%22%20and%20_ownerId%3D%22${userId}%22%count`);
 };
