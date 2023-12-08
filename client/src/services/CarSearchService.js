@@ -1,4 +1,5 @@
 const CarSearchService = {
+    
     filterCars: (cars, formData) => {
       const newFilteredCars = cars.filter((car) => {
         const carBrand = car.brand.toLowerCase();
@@ -113,6 +114,19 @@ const CarSearchService = {
         model: newModel,
       }));
     },
+    getInitialFormData: () => ({
+        category: "",
+        brand: "",
+        model: "",
+        minPrice: 0,
+        maxPrice: 0,
+        minRange: 0,
+        maxRange: 0,
+        transmission: "",
+        fuel: "",
+        comforts: [],
+      }),
+    
   };
   
   export default CarSearchService;

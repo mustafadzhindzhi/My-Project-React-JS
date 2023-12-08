@@ -3,19 +3,6 @@ import * as carService from "../../services/CarService.js";
 import CarSearchService from "../../services/CarSearchService.js";
 
 const SearchForm = ({ searchCriteria, onSearch }) => {
-  const initialFormData = {
-    category: "",
-    brand: "",
-    model: "",
-    minPrice: 0,
-    maxPrice: 0,
-    minRange: 0,
-    maxRange: 0,
-    transmission: "",
-    fuel: "",
-    comforts: [],
-  };
-
   const [carBrands, setCarBrand] = useState([[], {}]);
   const [filteredCars, setFilteredCars] = useState([]);
   const [comfortsVisible, setComfortsVisible] = useState(false);
@@ -24,7 +11,9 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
     model: "",
   });
 
-  const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState(
+    CarSearchService.getInitialFormData()
+  );
 
   useEffect(() => {
     const fetchBrands = async () => {
@@ -50,8 +39,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   }, [searchCriteria, formData]);
 
   const handleChange = (event) => {
-    const { name, value, type } = event.target;
-    setFormData(CarSearchService.handleFormChange(formData, name, value, type));
+    setFormData(CarSearchService.handleFormChange(formData, event));
   };
 
   const handleSliderChange = (event) => {
@@ -72,9 +60,8 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   };
 
   const handleSearchClick = () => {
-    const transformedFormData = CarSearchService.transformSearchCriteria(
-      formData
-    );
+    const transformedFormData =
+      CarSearchService.transformSearchCriteria(formData);
 
     console.log("Chosen search criteria:", transformedFormData);
 
@@ -91,15 +78,19 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   };
 
   const handleModelChange = (event) => {
-    CarSearchService.handleModelChange(event, setFormData, setSelectedBrandModel);
+    CarSearchService.handleModelChange(
+      event,
+      setFormData,
+      setSelectedBrandModel
+    );
   };
+  
   return (
     <>
       <div className="searchForm">
         <h2>Search car</h2>
         <div className="vehicleFormSearch">
           <form name="car-form" className="form" onSubmit={handleFormSubmit}>
-
             <fieldset className="brand-fieldset">
               <label htmlFor="brand">Brand:</label>
               <select
@@ -117,7 +108,6 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
                   ))}
               </select>
             </fieldset>
-
             <fieldset className="model-fieldset">
               <label htmlFor="model">Model:</label>
               <select
@@ -134,7 +124,6 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
                 ))}
               </select>
             </fieldset>
-
             <div className="wrapper">
               <h2
                 style={{
@@ -196,7 +185,6 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
                 />
               </div>
             </div>
-
             <fieldset className="brand-fieldset">
               <label htmlFor="transmission">Transmission:</label>
               <select
