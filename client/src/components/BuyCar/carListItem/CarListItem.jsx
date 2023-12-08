@@ -41,13 +41,11 @@ export default function CarListItem({
             <i
               key={star}
               className={star <= averageRating ? "fas fa-star" : "far fa-star"}
-              // Rating is disabled when not on details page
               onClick={() => {}}
             />
           ))}
         </div>
         <h4>${price}</h4>
-        {/* The "Show Details" button can still link to the details page */}
         <Link to={`${Path.Buy}/${_id}`}>
           <button className="button-style">Show Details</button>
         </Link>

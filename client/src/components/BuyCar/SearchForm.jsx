@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as carService from "../../services/CarService.js";
+import CarSearchService from "../../services/CarSearchService.js";
 
 const SearchForm = ({ searchCriteria, onSearch }) => {
   const initialFormData = {
@@ -39,30 +40,10 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
 
   useEffect(() => {
     if (searchCriteria && searchCriteria.cars) {
-      const newFilteredCars = searchCriteria.cars.filter((car) => {
-        const carBrand = car.brand.toLowerCase();
-        const carModel = car.model.toLowerCase();
-        const selectedBrand = formData.brand.toLowerCase();
-        const selectedModel = formData.model.toLowerCase();
-
-        const brandMatches = selectedBrand
-          ? carBrand.includes(selectedBrand)
-          : true;
-        const modelMatches = selectedModel
-          ? carModel.includes(selectedModel)
-          : true;
-        const transmissionMatches = formData.transmission
-          ? car.transmission.trim().toLowerCase() ===
-            formData.transmission.trim().toLowerCase()
-          : true;
-        const fuelMatches = formData.fuel
-          ? car.fuel.toLowerCase() === formData.fuel.toLowerCase()
-          : true;
-
-        return (
-          brandMatches && modelMatches && transmissionMatches && fuelMatches
-        );
-      });
+      const newFilteredCars = CarSearchService.filterCars(
+        searchCriteria.cars,
+        formData
+      );
 
       setFilteredCars(newFilteredCars);
     }
@@ -70,72 +51,15 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
 
   const handleChange = (event) => {
     const { name, value, type } = event.target;
-    let newCategory = formData.category;
-
-    if (name === "category") {
-      newCategory = formData.category === value ? "" : value;
-    }
-
-    let newValue = value;
-
-    if (type === "range") {
-      newValue = parseInt(value, 10);
-    }
-
-    const newFormData = {
-      ...formData,
-      [name]: newValue,
-      category: newCategory,
-    };
-
-    if (name === "brand") {
-      setSelectedBrand(newValue);
-      setSelectedModel("");
-      newFormData.model = "";
-    }
-
-    if (name === "model") {
-      setSelectedModel(newValue);
-    }
-
-    setFormData(newFormData);
-
-    const checkbox = event.target.closest(".check");
-    if (checkbox) {
-      checkbox.classList.toggle("selected", newCategory === value);
-    }
+    setFormData(CarSearchService.handleFormChange(formData, name, value, type));
   };
 
   const handleSliderChange = (event) => {
-    const { name, value } = event.target;
-    const intValue = parseInt(value, 10);
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: intValue,
-      minPrice: name === "minRange" ? intValue : prevFormData.minPrice,
-      maxPrice: name === "maxRange" ? intValue : prevFormData.maxPrice,
-    }));
+    setFormData(CarSearchService.handleSliderChange(formData, event));
   };
 
   const handleComfortChange = (event) => {
-    const { name, value } = event.target;
-
-    const newComforts = [...formData.comforts];
-
-    if (newComforts.includes(value)) {
-      const index = newComforts.indexOf(value);
-      if (index !== -1) {
-        newComforts.splice(index, 1);
-      }
-    } else {
-      newComforts.push(value);
-    }
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      comforts: newComforts,
-    }));
+    setFormData(CarSearchService.handleComfortChange(formData, event));
   };
 
   const toggleComforts = () => {
@@ -148,21 +72,9 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   };
 
   const handleSearchClick = () => {
-    const transformedFormData = {
-      brand: selectedBrandModel.brand,
-      model: selectedBrandModel.model,
-      transmission: formData.transmission,
-      fuel: formData.fuel,
-      comforts: formData.comforts,
-    };
-
-    if (formData.minRange !== 0) {
-      transformedFormData.minPrice = formData.minRange;
-    }
-
-    if (formData.maxRange !== 0) {
-      transformedFormData.maxPrice = formData.maxRange;
-    }
+    const transformedFormData = CarSearchService.transformSearchCriteria(
+      formData
+    );
 
     console.log("Chosen search criteria:", transformedFormData);
 
@@ -170,38 +82,17 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   };
 
   const handleBrandChange = (event) => {
-    const newBrand = event.target.value;
-    console.log("New Brand:", newBrand);
-  
-    // Update selectedBrandModel
-    setSelectedBrandModel((prev) => ({ ...prev, brand: newBrand }));
-  
-    // Update formData with the selected brand
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      brand: newBrand,
-      model: "", 
-    }));
-  
-    if (!carBrands[1][newBrand]?.includes(selectedBrandModel.model)) {
-      // Reset model in selectedBrandModel if it's not in the new brand's models
-      setSelectedBrandModel((prev) => ({ ...prev, model: "" }));
-    }
+    CarSearchService.handleBrandChange(
+      event,
+      setFormData,
+      setSelectedBrandModel,
+      carBrands
+    );
   };
-  
-  const handleModelChange = (event) => {
-    const newModel = event.target.value;
-    console.log("New Model:", newModel);
-  
-    setSelectedBrandModel((prev) => ({ ...prev, model: newModel }));
-  
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      model: newModel,
-    }));
-  };
-  
 
+  const handleModelChange = (event) => {
+    CarSearchService.handleModelChange(event, setFormData, setSelectedBrandModel);
+  };
   return (
     <>
       <div className="searchForm">
