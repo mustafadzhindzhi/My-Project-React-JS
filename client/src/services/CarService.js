@@ -167,6 +167,3 @@ export const getAllSorted = async (sortOption) => {
     throw error;
   }
 };
-
-
-
