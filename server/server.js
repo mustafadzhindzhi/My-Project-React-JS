@@ -1418,7 +1418,9 @@
     		}
     	},
         likes:{
-            
+        },
+        rating : {
+
         },
     	comments: {
     		"0a272c58-b7ea-4e09-a000-7ec988248f66": {
