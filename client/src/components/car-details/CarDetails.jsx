@@ -164,30 +164,32 @@ const CarDetails = () => {
             <span className="average-rating">{averageRating.toFixed(1)}</span>
           </div>
           <div className="buttons">
-            {userId === car._ownerId ? (
-              <>
-                <Link to={pathToUrl(Path.CarEdit, { carId })}>
-                  <button className="like-button">Edit</button>
-                </Link>
-                <button
-                  className="like-button"
-                  onClick={deleteButtonClickHandler}
-                >
-                  Delete
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  className={`like-button ${liked ? "liked" : ""}`}
-                  onClick={liked ? handleUnlike : handleLike}
-                >
-                  {liked ? "Unlike" : "Like"}
-                </button>
-                <span>Likes: {likeCount}</span>
-              </>
-            )}
-          </div>
+        {userId === car._ownerId ? (
+          <>
+            <Link to={pathToUrl(Path.CarEdit, { carId })}>
+              <button className="like-button">Edit</button>
+            </Link>
+            <button
+              className="like-button"
+              onClick={deleteButtonClickHandler}
+            >
+              Delete
+            </button>
+          </>
+        ) : (
+          userId && userId !== car._ownerId && (
+            <>
+              <button
+                className={`like-button ${liked ? "liked" : ""}`}
+                onClick={liked ? handleUnlike : handleLike}
+              >
+                {liked ? "Unlike" : "Like"}
+              </button>
+              <span>Likes: {likeCount}</span>
+            </>
+          )
+        )}
+      </div>
         </div>
       </div>
       <div className="car-description">

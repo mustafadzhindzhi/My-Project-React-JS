@@ -1398,7 +1398,7 @@
         news : {
     		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-    			title: "The new BMW x5 M is now here!",
+    			title: "The new BMW x5 M is here now!",
     			description: "Everything you should to know before buy it",
     			image: "https://hips.hearstapps.com/hmg-prod/images/2024-bmw-x5-102-1675791494.jpg",
     		},
