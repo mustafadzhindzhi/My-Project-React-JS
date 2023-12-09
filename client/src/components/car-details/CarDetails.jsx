@@ -150,6 +150,8 @@ const CarDetails = () => {
                 <span key={index}>{comfort} </span>
               ))}
           </p>
+          { userId && userId !== car._ownerId && 
+          <>
           <p>Rating:</p>
           <div className="rating">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -163,6 +165,7 @@ const CarDetails = () => {
             ))}
             <span className="average-rating">{averageRating.toFixed(1)}</span>
           </div>
+          </>}
           <div className="buttons">
         {userId === car._ownerId ? (
           <>

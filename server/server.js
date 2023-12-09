@@ -1356,15 +1356,15 @@
     		},
     		"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-    			brand: "Audi",
-    			model: "Q8",
-    			price: 45000,
-                transmission: "Manual",
-                fuel: "Gasoline",
+    			brand: "Volvo",
+    			model: "XC90",
+    			price: 75000,
+                transmission: "Automatic",
+                fuel: "Hybrid",
                 comforts: ["Leather seats", "Bluetooth"],
-                category: "Used",
-    			image: "https://cdn.riastatic.com/photosnewr/auto/new_auto_storage/audi-q8__1755137-620x465x72.jpg",
-                description: "The best jeep ever",
+                category: "New",
+    			image: "https://m.atcdn.co.uk/vms/media/3d211e7366e14438b5a325a7c0938b12.jpg",
+                description: "The Volvo XC90 combines luxurious comfort, advanced safety features, and robust performance.",
     			_createdOn: 1613551344360,
                 rating: 0,
     		},
@@ -1384,7 +1384,7 @@
     		}
     	},
         carbrands: {
-            brands: ['Audi', 'BMW', 'Opel', 'Suzuki', 'Toyota', 'Mercedes', 'Honda'],
+            brands: ['Audi', 'BMW', 'Opel', 'Suzuki', 'Toyota', 'Mercedes', 'Honda', 'Volvo'],
             modelsByBrand: {
                 Audi: ['A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'Q5', 'Q7', 'Q8', 'S8'],
                 Suzuki: ['Vitara', 'Jimny', 'Kizashi', 'Splash', 'Swift'],
@@ -1393,6 +1393,7 @@
                 Toyota: ['4Runner', 'Land Cruiser', 'Rav4', 'Urban', 'C-HR', 'Supra'],
                 Mercedes: ['GLK', 'C220', 'C180', 'E220', 'E180', 'S63', 'R', 'ML'],
                 Honda: ['Accord', 'Civic', 'CR-V', 'Hr-v', 'Pilot'],
+                Volvo: ['S40', 'S60', 'S80', 'S90', 'XC40', 'XC60', 'XC90', ]
             },
         },
         news : {
