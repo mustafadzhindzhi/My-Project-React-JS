@@ -47,7 +47,6 @@ const SendForm = forwardRef((props, ref) => {
     );
 
     if (isCarNumberCorrect && isKilometersCorrect && !areBothInputsEmpty) {
-      // If all validations pass, submit the form
       formService.submitForm(
         formData,
         setFormSubmitted,

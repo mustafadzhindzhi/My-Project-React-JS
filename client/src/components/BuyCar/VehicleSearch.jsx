@@ -25,9 +25,7 @@ const VehicleSearch = () => {
       });
   }, []);
 
-  const handleSearch = (criteria) => {
-    console.log("Received criteria:", criteria);
-  
+  const handleSearch = (criteria) => {  
     const newSearchCriteria = {
       brand: criteria.brand || "",
       model: criteria.model || "",
@@ -38,9 +36,7 @@ const VehicleSearch = () => {
       comforts: criteria.comforts || [],
     };
   
-    console.log("Chosen search criteria:", newSearchCriteria);
     setSearchCriteria(newSearchCriteria);
-    console.log("Updated searchCriteria:", newSearchCriteria);
   };
   
   useEffect(() => {

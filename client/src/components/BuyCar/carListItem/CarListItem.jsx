@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import Path from "../../../../paths.js";
-import { useState, useEffect } from "react";
-import { getAverageRating } from "../../../services/CarService.js";
 
 export default function CarListItem({
   _id,
@@ -11,20 +9,6 @@ export default function CarListItem({
   image,
   description,
 }) {
-  // const [averageRating, setAverageRating] = useState(0);
-
-  // useEffect(() => {
-  //   const fetchAverageRating = async () => {
-  //     try {
-  //       const data = await getAverageRating(_id);
-  //       setAverageRating(data.averageRating);
-  //     } catch (error) {
-  //       console.error('Error fetching average rating:', error);
-  //     }
-  //   };
-
-  //   fetchAverageRating();
-  // }, [_id]);
 
   return (
     <div className="product">

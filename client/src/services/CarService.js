@@ -71,9 +71,7 @@ export const likeCar = async (carId, userId, authToken) => {
   try {
     const allCars = await getAll();
     const carToUpdate = allCars.find((car) => car._id === carId);
-
-    console.log('Car to update:', carToUpdate);
-
+    
     if (!carToUpdate) {
       throw new Error(`Car with ID ${carId} not found`);
     }
@@ -100,45 +98,7 @@ export const likeCar = async (carId, userId, authToken) => {
   }
 };
 
-
-//stars
-export const submitRating = async (carId, userId, rating) => {
-  try {
-    const payload = { userId, rating };
-
-    const response = await request.post(`${baseUrl}/${carId}/rate`, payload);
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error submitting rating:', response.status, errorData.message);
-      throw new Error(`Failed to submit rating. Status: ${response.status}`);
-    }
-
-    return response.json();
-  } catch (error) {
-    console.error('Error submitting rating:', error);
-    throw error;
-  }
-};
-
-//average rating star
-export const getAverageRating = async (carId) => {
-  try {
-    const response = await request.get(`${baseUrl}/${carId}/averageRating`);
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error fetching average rating:', response.status, errorData.message);
-      throw new Error(`Failed to fetch average rating. Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.averageRating;
-  } catch (error) {
-    console.error('Error fetching average rating:', error);
-    throw error;
-  }
-}
+//sorting
 export const getAllSorted = async (sortOption) => {
   try {
     let sortByParam = '';

@@ -72,8 +72,6 @@ const CarDetails = () => {
         setLikeCount((prevLike) => prevLike - 1);
         setLikeId("");
         setLiked(false);
-      } else {
-        console.log('You have not liked this car.');
       }
     } catch (error) {
       console.error('Error unliking car:', error);

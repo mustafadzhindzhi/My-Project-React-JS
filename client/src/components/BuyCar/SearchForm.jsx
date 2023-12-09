@@ -63,9 +63,6 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   const handleSearchClick = () => {
     const transformedFormData =
       CarSearchService.transformSearchCriteria(formData);
-
-    console.log("Chosen search criteria:", transformedFormData);
-
     onSearch(transformedFormData);
   };
 

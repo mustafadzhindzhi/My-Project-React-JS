@@ -20,20 +20,14 @@ export default function Register() {
   const { values, onChange, onSubmit } = useForm(
     async () => {
       try {
-        // Reset previous error
         setUserExistsError(null);
-
         await registerSubmitHandler(values);
-
-        // Handle successful registration, e.g., redirect user
+        
       } catch (error) {
-        // Handle registration error
         console.error("Registration error:", error);
 
         if (error.code === 409) {
           setUserExistsError(error);
-        } else {
-          // Handle other types of errors
         }
       }
     },
