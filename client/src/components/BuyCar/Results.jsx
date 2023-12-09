@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CarListItem from "./carListItem/CarListItem.jsx";
-import { getAllSorted } from "../../services/CarService.js";
+import { getAllSorted, getNewest, getOldest } from "../../services/CarService.js";
 
 const Results = ({ filteredProducts }) => {
   const [sortedProducts, setSortedProducts] = useState([]);
@@ -19,33 +19,45 @@ const Results = ({ filteredProducts }) => {
     setTotalProducts(productsToDisplay.length);
   }, [filteredProducts]);
 
-  useEffect(() => {
-    if (sortOption !== "") {
+  const handleSortChange = async (event) => {
+    const option = event.target.value;
+  
+    if (option === "") {
+      setSortOption("");
+    } else {
       setLoading(true);
+  
+      try {
+        let data;
+        if (option === "newest") {
+          data = await getNewest();
+        } else if (option === "oldest") {
+          data = await getOldest();
+          data.reverse();
+        } else {
+          const propList = option.split(" ");
+          const sortByParam = propList
+            .map((prop) => encodeURIComponent(prop))
+            .join("%20");
+  
+          data = await getAllSorted(sortByParam);
+        }
 
-      const propList = sortOption.split(",");
-      const sortByParam = propList
-        .map((prop) => encodeURIComponent(prop))
-        .join(",");
-
-      getAllSorted(sortByParam)
-        .then((data) => {
-          setSortedProducts(data);
-          setNumDisplayedProducts(data.length);
-          setTotalProducts(data.length);
-          setLoading(false);
-          setError(null);
-        })
-        .catch((error) => {
-          console.error("Error fetching sorted data:", error);
-          setLoading(false);
-          setError("Error fetching sorted data. Please try again.");
-        });
+        setSortedProducts(data);
+        setNumDisplayedProducts(data.length);
+        setTotalProducts(data.length);
+        setLoading(false);
+        setError(null);
+        setSortOption(option);
+      } catch (error) {
+        console.error(`Error fetching ${option} data:`, error);
+        setLoading(false);
+        setError(`Error fetching ${option} data. Please try again.`);
+      }
     }
-  }, [sortOption]);
-
-  const productElements =
-  Array.isArray(sortedProducts) && sortedProducts.length > 0 ? (
+  };
+    
+  const productElements = Array.isArray(sortedProducts) && sortedProducts.length > 0 ? (
     sortedProducts.map((car) => (
       <CarListItem
         key={car._id}
@@ -58,25 +70,18 @@ const Results = ({ filteredProducts }) => {
       />
     ))
   ) : (
-    <p style={{ fontSize: '1.5em', fontWeight: 'bold', margin: '10px 0', textAlign: 'center', color: 'red' }}>
+    <p
+      style={{
+        fontSize: "1.5em",
+        fontWeight: "bold",
+        margin: "10px 0",
+        textAlign: "center",
+        color: "red",
+      }}
+    >
       No cars found.
     </p>
   );
-
-  const handleSortChange = (event) => {
-    const option = event.target.value;
-
-    if (option === "") {
-      setSortOption("");
-    } else {
-      const propList = option.split(" ");
-      const sortByParam = propList
-        .map((prop) => encodeURIComponent(prop))
-        .join("%20");
-
-      setSortOption(sortByParam);
-    }
-  };
 
   return (
     <div className="results">
@@ -96,6 +101,8 @@ const Results = ({ filteredProducts }) => {
             <option value="priceDescending">Price Descending</option>
             <option value="brandModelAscending">Brand and model: A-Z</option>
             <option value="brandModelDescending">Brand and model: Z-A</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
           </select>
         </fieldset>
       </div>

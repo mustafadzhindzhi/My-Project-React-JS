@@ -58,14 +58,6 @@ export const edit = async (carId, carData) => {
 //remove
 export const remove = async (carId) => request.remove(`${baseUrl}/${carId}`);
 
-//getNewest
-export const getNewest = async () => {
-  const query = encodeURIComponent(`offset=0&pageSize=10`);
-  const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc&${query}`);
-
-  return result;
-};
-
 //like
 export const likeCar = async (carId, userId, authToken) => {
   try {
@@ -111,6 +103,10 @@ export const getAllSorted = async (sortOption) => {
       sortByParam = 'brand,model';
     } else if (sortOption === 'brandModelDescending') {
       sortByParam = 'brand desc,model desc';
+    } else if (sortOption === 'newest') {
+      sortByParam = '_createdOn desc';
+    } else if (sortOption === 'oldest') {
+      sortByParam = '_createdOn asc';
     }
 
     const response = await fetch(`${baseUrl}?sortBy=${encodeURIComponent(sortByParam)}`);
@@ -121,9 +117,44 @@ export const getAllSorted = async (sortOption) => {
     }
 
     const data = await response.json();
+    console.log('Fetched data:', data);
     return data;
   } catch (error) {
     console.error('Error fetching sorted cars data:', error);
     throw error;
   }
 };
+
+export const getNewest = async () => {
+  try {
+    const response = await fetch(`${baseUrl}?sortBy=_createdOn desc`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch newest cars. Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching newest cars data:', error);
+    throw error;
+  }
+};
+
+export const getOldest = async () => {
+  try {
+    const response = await fetch(`${baseUrl}?sortBy=_createdOn asc`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch oldest cars. Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching oldest cars data:', error);
+    throw error;
+  }
+};
+
+
+
+
