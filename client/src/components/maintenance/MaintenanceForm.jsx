@@ -170,7 +170,7 @@ const MaintenanceForm = forwardRef((props, ref) => {
                   MyCar brand support ensures the continuation of your journey -
                   now and in the future.
                 </h2>
-                <img src="/images/1520211675081.jpeg" alt="" />
+                <img src="/public/images/icons.png" alt="" />
                 <h2>Need help?</h2>
                 <p>
                   Our office in Sofia is currently busy. You should also check
