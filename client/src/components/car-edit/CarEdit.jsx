@@ -19,6 +19,7 @@ export default function CarEdit() {
   const [carBrands, setCarBrands] = useState([[], {}]);
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
+  const [showComforts, setShowComforts] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +56,7 @@ export default function CarEdit() {
         ...prevCar,
         ...values,
         brand: prevCar.brand,
-        model: prevCar.model, 
+        model: prevCar.model,
         comforts: prevCar.comforts || [],
       }));
 
@@ -96,6 +97,10 @@ export default function CarEdit() {
         return { ...prevCar, comforts: updatedComforts };
       }
     });
+  };
+
+  const toggleComforts = () => {
+    setShowComforts((prevShowComforts) => !prevShowComforts);
   };
 
   return (
@@ -185,11 +190,14 @@ export default function CarEdit() {
           >
             <fieldset className="comfort-fieldset">
               <div className="comfort-toggle">
-                <button id="toggle-comforts">
-                  Comforts <span className="arrow">▼</span>
-                </button>
+                <div id="toggle-comforts" onClick={toggleComforts}>
+                  Comforts{" "}
+                  <span className={`arrow ${showComforts ? "up" : "down"}`}>
+                    ▼
+                  </span>
+                </div>
               </div>
-              <div className="comfort-list">
+              <div className={`comfort-list ${showComforts ? 'visible' : 'hidden'}`}>
                 <label>
                   <input
                     type="checkbox"
@@ -282,7 +290,7 @@ export default function CarEdit() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="product-image">Product Images (up to 3):</label>
+            <label htmlFor="product-image">Product Image:</label>
             <input
               type="text"
               id="image"
@@ -291,18 +299,6 @@ export default function CarEdit() {
               onChange={onChange}
               value={car.image}
             />
-            {/* <input
-                  type="text"
-                  id="image"
-                  name="image2"
-                  placeholder="link to image"
-                />
-                <input
-                  type="text"
-                  id="image"
-                  name="image3"
-                  placeholder="link to image"
-                /> */}
             <div id="image-preview-container" />
           </div>
           <button className="publish-button" type="submit" value="Edit">

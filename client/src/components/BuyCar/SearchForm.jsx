@@ -42,7 +42,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
     const { name, value } = event.target;
     setFormData(CarSearchService.handleFormChange(formData, name, value));
   };
-  
+
   const handleSliderChange = (event) => {
     setFormData(CarSearchService.handleSliderChange(formData, event));
   };
@@ -85,7 +85,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
       setSelectedBrandModel
     );
   };
-  
+
   return (
     <>
       <div className="searchForm">
@@ -218,7 +218,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
             </fieldset>
             <fieldset className="comfort-fieldset">
               <div className="comfort-toggle" onClick={toggleComforts}>
-                <button id="toggle-comforts">
+                <button type="button" id="toggle-comforts">
                   Comforts{" "}
                   <span
                     className={`arrow ${

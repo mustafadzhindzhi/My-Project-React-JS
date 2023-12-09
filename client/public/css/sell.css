@@ -128,8 +128,7 @@ height: auto
     border: none;
 }
 
-.comfort-toggle button {
-    background-color: black;
+.comfort-toggle div {
     font-size: 23px; 
     color: white;
     width: 100%;
@@ -137,6 +136,14 @@ height: auto
     padding: 5px;
     border: none;
     cursor: pointer;
+}
+
+.comfort-toggle #toggle-comforts{
+    color: white;
+}
+
+.comfort-toggle #toggle-comforts span{
+    padding-bottom: 30px;
 }
 
 .comfort-list {

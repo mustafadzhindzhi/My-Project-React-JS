@@ -141,8 +141,8 @@ export default function SellYourCar() {
             <label htmlFor="fuel">Fuel:</label>
             <select id="fuel" name="fuel">
               <option value>---</option>
-              <option value="diesel">Diesel</option>
-              <option value="gasoline">Gasoline</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Gasoline">Gasoline</option>
               <option value="Hybrid">Hybrid</option>
               <option value="Electric">Electric</option>
               <option value="Gas">Gas</option>
