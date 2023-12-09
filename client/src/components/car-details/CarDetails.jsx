@@ -201,8 +201,8 @@ const CarDetails = () => {
       </div>
       <div className="car-description">
         <h2>Information</h2>
-        <p>Phone Number: +359 00000000</p>
-        <p></p>
+        <h4>Phone Number: {car.phoneNumber && <a href={`tel:${car.phoneNumber.replace(/\D/g, "")}`}>{car.phoneNumber}</a>}</h4>
+       <p></p>
       </div>
     </div>
   );

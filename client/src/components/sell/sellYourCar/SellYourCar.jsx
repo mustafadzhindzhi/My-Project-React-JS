@@ -9,6 +9,7 @@ export default function SellYourCar() {
   const [selectedModel, setSelectedModel] = useState("");
   const [selectedComforts, setSelectedComforts] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +34,7 @@ export default function SellYourCar() {
       "transmission",
       "price",
       "description",
+      'phoneNumber'
     ];
 
     const isAnyFieldEmpty = requiredFields.some(
@@ -246,6 +248,16 @@ export default function SellYourCar() {
               name="description"
               placeholder="description for the car"
             />
+          </div>
+          <div className="form-group">
+            <label htmlFor="product-image">Your phone number:</label>
+            <input
+              type="number"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="Write your phone number here"
+            />
+            <div id="image-preview-container" />
           </div>
           <div className="form-group">
             <label htmlFor="product-image">Product Images:</label>

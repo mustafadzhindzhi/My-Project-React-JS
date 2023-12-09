@@ -102,12 +102,13 @@ height: auto
     margin-bottom: 10px; 
 }
 
-#price, #image{
+#price, #image, #phoneNumber{
     width: 97%;
     padding: 5px;
     min-height: 20px;
     height: 100%;
     border-radius: 0;
+    font-size: 20px;
 }
 
 #description{

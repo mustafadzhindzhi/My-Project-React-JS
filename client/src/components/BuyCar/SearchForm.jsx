@@ -39,9 +39,10 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
   }, [searchCriteria, formData]);
 
   const handleChange = (event) => {
-    setFormData(CarSearchService.handleFormChange(formData, event));
+    const { name, value } = event.target;
+    setFormData(CarSearchService.handleFormChange(formData, name, value));
   };
-
+  
   const handleSliderChange = (event) => {
     setFormData(CarSearchService.handleSliderChange(formData, event));
   };
@@ -194,9 +195,9 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
                 onChange={handleChange}
               >
                 <option value="">---</option>
-                <option value="automatic">Automatic</option>
-                <option value="manual">Manual</option>
-                <option value="semi-Automatic">Semi-Automatic</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+                <option value="Semi-Automatic">Semi-Automatic</option>
               </select>
             </fieldset>
             <fieldset className="brand-fieldset">
@@ -208,11 +209,11 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
                 onChange={handleChange}
               >
                 <option value="">---</option>
-                <option value="diesel">Diesel</option>
-                <option value="gasoline">Gasoline</option>
-                <option value="hybrid">Hybrid</option>
-                <option value="electric">Electric</option>
-                <option value="gas">Gas</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Gasoline">Gasoline</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Electric">Electric</option>
+                <option value="Gas">Gas</option>
               </select>
             </fieldset>
             <fieldset className="comfort-fieldset">

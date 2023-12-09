@@ -1,25 +1,27 @@
 const CarSearchService = {
     
-    filterCars: (cars, formData) => {
-      const newFilteredCars = cars.filter((car) => {
-        const carBrand = car.brand.toLowerCase();
-        const carModel = car.model.toLowerCase();
-        const selectedBrand = formData.brand.toLowerCase();
-        const selectedModel = formData.model.toLowerCase();
+  filterCars: (cars, formData) => {
+    const newFilteredCars = cars.filter((car) => {
+      const carBrand = car.brand.toLowerCase();
+      const carModel = car.model.toLowerCase();
+      const selectedBrand = formData.brand.toLowerCase();
+      const selectedModel = formData.model.toLowerCase();
   
-        const brandMatches = selectedBrand ? carBrand.includes(selectedBrand) : true;
-        const modelMatches = selectedModel ? carModel.includes(selectedModel) : true;
-        const transmissionMatches = formData.transmission
-          ? car.transmission.trim().toLowerCase() === formData.transmission.trim().toLowerCase()
-          : true;
-        const fuelMatches = formData.fuel ? car.fuel.toLowerCase() === formData.fuel.toLowerCase() : true;
+      const brandMatches = selectedBrand ? carBrand.includes(selectedBrand) : true;
+      const modelMatches = selectedModel ? carModel.includes(selectedModel) : true;
+      const transmissionMatches = formData.transmission
+        ? car.transmission.trim().toLowerCase() === formData.transmission.trim().toLowerCase()
+        : true;
+      const fuelMatches = formData.fuel
+        ? car.fuel.trim().toLowerCase() === formData.fuel.trim().toLowerCase()
+        : true;
   
-        return brandMatches && modelMatches && transmissionMatches && fuelMatches;
-      });
+      return brandMatches && modelMatches && transmissionMatches && fuelMatches;
+    });
   
-      return newFilteredCars;
-    },
-  
+    return newFilteredCars;
+  },
+
     handleFormChange: (formData, name, value, type) => {
       let newCategory = formData.category;
   
