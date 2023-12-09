@@ -295,7 +295,7 @@ html {
     font-size: 1.3vw;
     margin-top: 15px;
     margin-bottom: 20px;
-    color: black;
+    color: black !important;
   }
 
   #toggle-comforts{
