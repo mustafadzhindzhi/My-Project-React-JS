@@ -6,7 +6,7 @@ const Headerb = () => {
         <nav className="header-navigation">
             <ul className="nav-list">
             <li><Link to="/BuyCar">Buy Car</Link></li>
-                <li><Link to="/sell">Sell your car</Link></li>
+                <li><Link to="/sellWithUs">Sell with us</Link></li>
                  <li><Link to="/maintenance">Maintenance</Link></li>
             </ul>
         </nav>

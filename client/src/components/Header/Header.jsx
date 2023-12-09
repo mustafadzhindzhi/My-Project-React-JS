@@ -16,8 +16,8 @@ const Header  = () => {
         <nav className="header-navigation">
           <ul className="nav-list">
             <li><Link to="/">Home</Link></li>
-            {isAuthenticated && ( <>
             <li><Link to="/BuyCar">Buy Car</Link></li>
+            {isAuthenticated && ( <>
             <li className="dropdown">
               <Link>Sell Car</Link>
               <ul className="dropdown-menu">
