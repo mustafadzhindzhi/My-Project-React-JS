@@ -12,9 +12,17 @@ const loginFormKeys = {
 export default function Login() {
   const { loginSubmitHandler } = useContext(AuthContext);
   const [rememberMe, setRememberMe] = useState(false);
+  const [loginError, setLoginError] = useState(null);
 
   const { values, onChange, onSubmit } = useForm(
-    () => loginSubmitHandler(values, rememberMe),
+    async () => {
+      try {
+        setLoginError(null); 
+        await loginSubmitHandler(values, rememberMe);
+      } catch (error) {
+        setLoginError("Invalid email or password. Please try again.");
+      }
+    },
     {
       [loginFormKeys.Email]: "",
       [loginFormKeys.Password]: "",
@@ -53,7 +61,9 @@ export default function Login() {
             value={values[loginFormKeys.Password]}
             autoComplete="current-password"
           />
-          <label htmlFor="rememberMe" className="remember">Remember Me</label>
+          <label htmlFor="rememberMe" className="remember">
+            Remember Me
+          </label>
           <input
             type="checkbox"
             name={loginFormKeys.RememberMe}
@@ -63,6 +73,11 @@ export default function Login() {
           />
           <Link to="/login">Forget your password?</Link>
           <input type="submit" value="Login" />
+          {loginError && (
+            <p className="error-message" style={{ color: "red", fontSize: "1.2em" }}>
+              {loginError}
+            </p>
+          )}
         </form>
         <p>
           Need an account? <Link to="/register">Register</Link>
