@@ -12,75 +12,70 @@ export default function CarEdit() {
     fuel: "",
     transmission: "",
     price: "",
-    type: "",
     description: "",
     comforts: [],
   });
-  
+
   const [carBrands, setCarBrands] = useState([[], {}]);
   const [selectedBrand, setSelectedBrand] = useState("");
-const [selectedModel, setSelectedModel] = useState("");
+  const [selectedModel, setSelectedModel] = useState("");
 
-
-useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const carData = await carService.getOne(carId);
-        
-        setSelectedBrand(carData.brand || "");  
-        setSelectedModel(carData.model || "");  
-  
+
+        setSelectedBrand(carData.brand || "");
+        setSelectedModel(carData.model || "");
+
         setCar((prevCar) => ({
           ...prevCar,
           ...carData,
           comforts: carData.comforts || [],
         }));
-    
+
         const brandsData = await carService.getCarBrands();
         setCarBrands(brandsData);
       } catch (err) {
         console.error("Error fetching car data:", err);
       }
     };
-  
+
     fetchData();
   }, [carId]);
 
   const editCarSubmitHandler = async (e) => {
     e.preventDefault();
-  
+
     try {
       const formData = new FormData(e.currentTarget);
       const values = Object.fromEntries(formData);
-  
-      // Preserve existing state for brand, model, and comforts
+
       setCar((prevCar) => ({
         ...prevCar,
         ...values,
-        brand: prevCar.brand, // Preserve existing brand
-        model: prevCar.model, // Preserve existing model
+        brand: prevCar.brand,
+        model: prevCar.model, 
         comforts: prevCar.comforts || [],
       }));
-  
+
       await carService.edit(carId, { ...values, comforts: car.comforts });
-      console.log("Car edited successfully!");
       navigate("/BuyCar");
     } catch (err) {
       console.error("Error editing car:", err);
     }
   };
-  
 
   const onChange = (e) => {
     const { name, value } = e.target;
-  
+
     if (name === "brand") {
       setSelectedBrand(value);
-      setSelectedModel(""); 
+      setSelectedModel("");
     } else if (name === "model") {
       setSelectedModel(value);
     }
-  
+
     setCar((currentCar) => ({
       ...currentCar,
       [name]: value,
@@ -114,7 +109,12 @@ useEffect(() => {
           </div>
           <div className="form-group form-group-left">
             <label htmlFor="brand">Brand:</label>
-            <select name="brand" id="brand" onChange={onChange} value={car.brand || "defaultBrand"}>
+            <select
+              name="brand"
+              id="brand"
+              onChange={onChange}
+              value={selectedBrand}
+            >
               <option value="">---</option>
               {carBrands[0].length > 0 &&
                 carBrands[0].map((brand) => (
@@ -123,17 +123,16 @@ useEffect(() => {
                   </option>
                 ))}
             </select>
-            {console.log("Selected Brand:", car.brand)}
           </div>
 
           <div className="form-group form-group-left">
             <label htmlFor="model">Model:</label>
             <select
+              name="model"
               id="model"
               onChange={onChange}
               value={car.model || ""}
               disabled={!car.brand}
-              name="model"
             >
               <option value="">---</option>
               {car.brand &&
@@ -143,7 +142,6 @@ useEffect(() => {
                   </option>
                 ))}
             </select>
-            {console.log("Selected Model:", car.model)}
           </div>
           <div className="form-group form-group-left">
             <label htmlFor="fuel">Fuel:</label>
@@ -167,7 +165,7 @@ useEffect(() => {
               <option value>---</option>
               <option value="automatic">Automatic</option>
               <option value="manual">Manual</option>
-              <option value="semi-Automatic">Semi-Automatic</option>
+              <option value="Semi-Automatic">Semi-Automatic</option>
             </select>
           </div>
           <div className="form-group form-group-left">
@@ -262,15 +260,6 @@ useEffect(() => {
             </fieldset>
           </div>
           <div className="form-group">
-            <label htmlFor="transmission">Type:</label>
-            <select id="type" name="type" onChange={onChange} value={car.type}>
-              <option value>---</option>
-              <option value="new">New</option>
-              <option value="manual">Used</option>
-              <option value="for-parts">For parts</option>
-            </select>
-          </div>
-          <div className="form-group">
             <label htmlFor="product-image">Description:</label>
             <input
               type="text"
@@ -279,6 +268,17 @@ useEffect(() => {
               placeholder="description for the car"
               onChange={onChange}
               value={car.description}
+            />
+          </div>
+          <div className="form-group form-group-left">
+            <label htmlFor="phoneNumber">Phone Number:</label>
+            <input
+              type="number"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="write your price here"
+              onChange={onChange}
+              value={car.phoneNumber}
             />
           </div>
           <div className="form-group">

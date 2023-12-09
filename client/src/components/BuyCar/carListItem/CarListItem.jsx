@@ -11,20 +11,20 @@ export default function CarListItem({
   image,
   description,
 }) {
-  const [averageRating, setAverageRating] = useState(0);
+  // const [averageRating, setAverageRating] = useState(0);
 
-  useEffect(() => {
-    const fetchAverageRating = async () => {
-      try {
-        const data = await getAverageRating(_id);
-        setAverageRating(data.averageRating);
-      } catch (error) {
-        console.error('Error fetching average rating:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchAverageRating = async () => {
+  //     try {
+  //       const data = await getAverageRating(_id);
+  //       setAverageRating(data.averageRating);
+  //     } catch (error) {
+  //       console.error('Error fetching average rating:', error);
+  //     }
+  //   };
 
-    fetchAverageRating();
-  }, [_id]);
+  //   fetchAverageRating();
+  // }, [_id]);
 
   return (
     <div className="product">
@@ -36,7 +36,7 @@ export default function CarListItem({
           {brand} {model}
         </span>
         <h5>{description}</h5>
-        <div className="star">
+        {/* <div className="star">
           {[1, 2, 3, 4, 5].map((star) => (
             <i
               key={star}
@@ -44,7 +44,7 @@ export default function CarListItem({
               onClick={() => {}}
             />
           ))}
-        </div>
+        </div> */}
         <h4>${price}</h4>
         <Link to={`${Path.Buy}/${_id}`}>
           <button className="button-style">Show Details</button>
