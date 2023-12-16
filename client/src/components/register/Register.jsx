@@ -40,7 +40,6 @@ export default function Register() {
   );
 
   const isFormValid = () => {
-    // Check if any of the fields are empty
     return Object.values(values).every((value) => value.trim() !== '');
   };
 
@@ -87,7 +86,6 @@ export default function Register() {
           <input
             type="submit"
             value="Register"
-            // Disable the submit button if the form is not valid
             disabled={!isFormValid()}
           />
         </form>
