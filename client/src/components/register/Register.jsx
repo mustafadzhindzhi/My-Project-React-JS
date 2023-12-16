@@ -22,7 +22,7 @@ export default function Register() {
       try {
         setUserExistsError(null);
         await registerSubmitHandler(values);
-        
+
       } catch (error) {
         console.error("Registration error:", error);
 
@@ -39,6 +39,11 @@ export default function Register() {
     }
   );
 
+  const isFormValid = () => {
+    // Check if any of the fields are empty
+    return Object.values(values).every((value) => value.trim() !== '');
+  };
+
   const passwordMismatchError =
     isTypingRepeatPass && values[registerFormKeys.Password] !== values[registerFormKeys.ConfirmPassword];
 
@@ -52,11 +57,11 @@ export default function Register() {
         </div>
         <form onSubmit={onSubmit}>
           <label htmlFor="emailOrPassword">Email<span>*</span></label>
-          <input type="text" name="email" id="email" value={values[registerFormKeys.Email]} onChange={onChange}/>
+          <input type="text" name="email" id="email" value={values[registerFormKeys.Email]} onChange={onChange} />
           <label htmlFor="password">Username <span>*</span></label>
-          <input type="text" name="username" id="username" value={values[registerFormKeys.Username]} onChange={onChange}/>
+          <input type="text" name="username" id="username" value={values[registerFormKeys.Username]} onChange={onChange} />
           <label htmlFor="password">Password <span>*</span></label>
-          <input type="password" name="password" id="password" value={values[registerFormKeys.Password]} onChange={onChange} autoComplete="new-password"/>
+          <input type="password" name="password" id="password" value={values[registerFormKeys.Password]} onChange={onChange} autoComplete="new-password" />
           <label htmlFor="password">Repeat Password <span>*</span></label>
           <input
             type="password"
@@ -79,7 +84,12 @@ export default function Register() {
               {userExistsError.message}
             </p>
           )}
-          <input type="submit" defaultValue="Register" />
+          <input
+            type="submit"
+            value="Register"
+            // Disable the submit button if the form is not valid
+            disabled={!isFormValid()}
+          />
         </form>
         <p>You already have an account? <Link to="/login">Login</Link></p>
       </div>
