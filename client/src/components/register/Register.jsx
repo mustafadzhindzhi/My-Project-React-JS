@@ -79,7 +79,7 @@ export default function Register() {
             </p>
           )}
           {userExistsError && (
-            <p className="error-message" style={{ color: 'red' }}>
+            <p className="error-message" style={{ color: 'blue' }}>
               {userExistsError.message}
             </p>
           )}
