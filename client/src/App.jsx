@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header/Header.jsx';
@@ -20,6 +20,15 @@ import CarDetails from './components/car-details/CarDetails.jsx';
 import CarEdit from './components/car-edit/CarEdit.jsx';
 
 function App() {
+  const [news, setNews] = useState([]);
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/data/news`)
+    .then((res) => res.json())
+    .then(result => {
+      console.log(result);
+      setNews(result)
+    }, [])
+  })
   return (
     <ErrorBoundary>
     <AuthProvider>
