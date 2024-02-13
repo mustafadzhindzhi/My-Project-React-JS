@@ -49,7 +49,7 @@ const MyCarWebsite = () => {
               alt="Car Image"
             />
             <div className="slide-text">
-              <h3>THE BEST CHOICE OF YOUR LIFE</h3>
+              <h3>YOU ARE ON THE RIGHT PLACE</h3>
               <h4>
                 With us you make the best choice in your life. And you can be
                 sure of your choice.
@@ -59,7 +59,7 @@ const MyCarWebsite = () => {
           <div className="swiper-slide">
             <img src="/images/Home-Carousel-1.png" alt="Car Image" />
             <div className="slide-text">
-              <h3>THE BEST CHOICE OF YOUR LIFE</h3>
+              <h3>THINK SMART</h3>
               <h4>
                 With us you make the best choice in your life. And you can be
                 sure of your choice.
