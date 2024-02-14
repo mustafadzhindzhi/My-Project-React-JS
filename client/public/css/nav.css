@@ -1,3 +1,4 @@
+/* General Styles */
 header {
     background: #e2e2e2;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
@@ -9,9 +10,9 @@ header {
     top: 0;
     z-index: 999;
     max-height: 50px;
-}
-
-header img {
+  }
+  
+  .header-logo {
     width: 100%;
     max-width: 120px;
     height: 100%;
@@ -19,45 +20,45 @@ header img {
     padding-left: 20px;
     border-radius: 20px;
     margin-top: 10px;
-}
-
-nav {
+  }
+  
+  nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-grow: 1; 
-}
-
-
-
-nav ul {
+    flex-grow: 1;
+  }
+  
+  .nav-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-nav li {
+  }
+  
+  .nav-list li {
     list-style: none;
     padding: 0 20px;
     position: relative;
-}
-
-nav a {
+  }
+  
+  .nav-list a {
     text-decoration: none;
-    font-size: 23px;
+    font-size: 21px;
     font-weight: 400;
     color: #1a1a1a;
     transition: 0.3s ease;
-}
-
-nav a:hover, nav a.active {
+  }
+  
+  .nav-list a:hover,
+  .nav-list a.active {
     color: #088178;
-}
-
-nav a.active::after, nav a:hover::after {
+  }
+  
+  .nav-list a.active::after,
+  .nav-list a:hover::after {
     content: "";
     width: 30%;
     height: 2px;
@@ -65,18 +66,19 @@ nav a.active::after, nav a:hover::after {
     position: absolute;
     bottom: -4px;
     left: 20px;
-}
-
-nav .dropdown {
+  }
+  
+  /* Dropdown Styles */
+  .dropdown {
     position: relative;
-}
-
-nav .dropdown > a {
+  }
+  
+  .dropdown > a {
     text-decoration: none;
     cursor: pointer;
-}
-
-nav .dropdown-menu {
+  }
+  
+  .dropdown-menu {
     display: none;
     width: 200px;
     position: absolute;
@@ -86,38 +88,96 @@ nav .dropdown-menu {
     list-style: none;
     background: #fff;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-}
-
-nav .dropdown-menu li {
+  }
+  
+  .dropdown-menu li {
     padding: 5px 5px;
-}
-
-nav .dropdown:hover .dropdown-menu {
+  }
+  
+  .dropdown:hover .dropdown-menu {
     display: block;
-}
-
-.login-register {
+  }
+  
+  /* Login/Register Styles */
+  .login-register {
     text-align: end;
     display: flex;
     gap: 25px;
     padding: 25px;
     margin-right: 20px;
-}
-
-.login-register a {
+  }
+  
+  .login-register a {
     text-decoration: none;
     font-size: 23px;
     font-weight: 400;
     color: #333;
     transition: 0.3s ease;
-}
-
-.login-register a:hover {
+  }
+  
+  .login-register a:hover {
     color: #088178;
-}
-
-
-#span-welcome{
+  }
+  
+  /* Welcome Message */
+  #span-welcome {
     margin-left: 120px;
     font-size: 23px;
-}
+  }
+  
+  /* Small Screen Navigation */
+  .app__navbar-smallscreen {
+    display: none;
+    margin-left: auto;
+    padding-right: 1rem;
+  }
+  
+  .app__navbar-smallscreen_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #545454;
+    transition: .5s ease;
+    flex-direction: column;
+    z-index: 5;
+  }
+  
+  .app__navbar-smallscreen_overlay .overlay__close {
+    font-size: 27px;
+    color: #DCCA87;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .flex__center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slide-bottom {
+    -webkit-animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+  
+  .app__navbar-smallscreen_links {
+    list-style: none;
+  }
+  
+  .app__navbar-smallscreen_links li {
+    margin: 2rem;
+    cursor: pointer;
+    color: #DCCA87;
+    font-size: 2rem;
+    text-align: center;
+    font-family: 'Cormorant Upright', serif;
+  }
+  
+  .app__navbar-smallscreen_links li:hover {
+    color: #fff;
+  }
+  

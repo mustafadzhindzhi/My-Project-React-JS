@@ -213,15 +213,14 @@
         justify-content: space-between
     }
 
-    .nav {
-        display: none;
+    .app__navbar-smallscreen_links {
+        display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        width: 100%;
-        background-color: #e3e6f3;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, .1)
+    }
+
+    .app__navbar-smallscreen_links li a{
+        font-size: 19px;
+        color: white;
     }
 
     .nav ul li {
@@ -229,7 +228,15 @@
     }
 
     .nav.active {
-        display: flex
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-list {
+        display: none;
+    }
+    .app__navbar-smallscreen {
+        display: flex;
     }
 
     .welcome h3{
@@ -247,9 +254,13 @@
         justify-content: space-between;
         flex-direction: column;
     }
+    .mycar{
+        padding: 0;
+        margin: 0;
+    }
+    
     .mycar h1{
         font-size: 2rem;
-        padding-right: 2rem;
     }
     .mycar img{
         height: 20rem;
