@@ -378,9 +378,19 @@ button#go:hover {
     padding-bottom: 15px
 }
 
-#sm-banner .banner-box:hover button {
+.white{
+    width: 26%;
+    height: 13%;
     background-color: #088178;
-    border: 1px solid #088178
+    border-radius: 5px;
+    font-size: 22px;
+    cursor: pointer;
+    border: none;
+}
+
+.white:hover{
+    transition: 0.3s ease-out;
+    background-color:#055b4f;
 }
 
 #banner3 {
