@@ -2,7 +2,7 @@
     .results .product {
         width: calc(40% - 10px)
     }
-    
+
 }
 
 @media screen and (max-width:900px) {
@@ -42,8 +42,8 @@
     }
 
     .headerb nav ul {
-    margin-top: 20px;
-    margin-bottom: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .headerb nav ul li {
@@ -57,19 +57,19 @@
         bottom: 0.4rem;
     }
 
-    .welcome h3{
+    .welcome h3 {
         font-size: 13px;
     }
 
     .login-container .left-column {
-        width: 100%; 
-        text-align: center; 
+        width: 100%;
+        text-align: center;
         margin-bottom: 10px;
     }
 
     .login-container .right-column {
-        width: 100%; 
-        padding: 10px; 
+        width: 100%;
+        padding: 10px;
     }
 
     .login-container .left-column a,
@@ -138,7 +138,8 @@
     }
 
     .register-container .left-column {
-        width: 100%; /* Make left column full-width to center its content */
+        width: 100%;
+        /* Make left column full-width to center its content */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -185,24 +186,28 @@
         color: #f2f3f5;
     }
 
-    .car-details{
+    .car-details {
         height: 300px;
     }
-    .car-info{
+
+    .car-info {
         height: 250px;
         margin-bottom: 10px;
     }
-    .car-image img{
+
+    .car-image img {
         height: 280px;
     }
-    .buttons{
+
+    .buttons {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         gap: 5px;
-       margin-left: 20px;
+        margin-left: 20px;
     }
-    .like-button{
+
+    .like-button {
         padding: 10px 8px;
         margin-top: 10px;
     }
@@ -218,7 +223,7 @@
         flex-direction: column;
     }
 
-    .app__navbar-smallscreen_links li a{
+    .app__navbar-smallscreen_links li a {
         font-size: 19px;
         color: white;
     }
@@ -235,45 +240,50 @@
     .nav-list {
         display: none;
     }
+
     .app__navbar-smallscreen {
         display: flex;
     }
 
-    .welcome h3{
+    .welcome h3 {
         font-size: 12px;
     }
 
-    .info h1{
+    .info h1 {
         font-size: 3rem;
     }
-    .info h4{
+
+    .info h4 {
         font-size: 1.7rem;
     }
-    .news{
+
+    .news {
         display: flex;
         justify-content: space-between;
         flex-direction: column;
     }
-    .mycar{
+
+    .mycar {
         padding: 0;
         margin: 0;
     }
-    
-    .mycar h1{
+
+    .mycar h1 {
         font-size: 2rem;
     }
-    .mycar img{
+
+    .mycar img {
         height: 20rem;
     }
-    .mycar h3{
+
+    .mycar h3 {
         font-size: 1.5rem;
     }
+
     .mycar p {
         font-size: 1.3rem;
         width: 100%;
     }
-
-    
 
     .vehichleSection {
         flex-direction: column
@@ -297,9 +307,24 @@
     }
 
     .searchForm {
-        display: none;
-        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        display: block;
+    }
+
+    .show-search-form {
+        display: block;
+        padding: .75rem;
         margin-bottom: 1rem
+    }
+
+    .search-toggle-mobile {
+        display: block;
+        position: fixed;
+        top: 5rem;
+        right: 0.5rem;
+        z-index: 1000;
     }
 
     .vehicleSearch .searchForm h2 {
@@ -328,12 +353,6 @@
         font-size: 14px !important
     }
 
-    .show-search-form {
-        display: block;
-        padding: .75rem;
-        margin-bottom: 1rem
-    }
-
     .wrapper .price-input .field {
         height: 1.8rem
     }
@@ -346,20 +365,32 @@
         margin: 0
     }
 
+    .products-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .results .additional-results .product,
+    .results .products-container .product {
+        width: 88%;
+    }
+
+
+
+
     .results .products-container {
         align-items: normal
     }
 
-    .results .product {
-        width: calc(40% - 10px)
-    }
 
     .price-input input {
         font-size: 13px
     }
 
     #form-details .people,
-     .col {
+    .col {
         width: 100%;
         display: flex;
         justify-content: center;
@@ -367,16 +398,16 @@
         flex-direction: column
     }
 
-     h4 {
+    h4 {
         font-size: 14px
     }
 
-     a,
-     p {
+    a,
+    p {
         font-size: 12px
     }
 
-     a {
+    a {
         margin-bottom: 8px
     }
 
@@ -459,14 +490,18 @@
 }
 
 @media screen and (max-width:450px) {
-    html, body{
+
+    html,
+    body {
         margin: 0;
         padding: 0;
         width: 100%;
     }
-    .slide-h3{
+
+    .slide-h3 {
         font-size: 1px;
     }
+
     .headerb-navigation {
         margin: 0;
         max-width: 90%
@@ -477,11 +512,11 @@
         padding-left: 35px;
     }
 
-    .headerb nav ul li{
+    .headerb nav ul li {
         margin-left: -10px;
     }
 
-    .headerb nav ul li a{
+    .headerb nav ul li a {
         font-size: 15px;
         width: 6rem;
     }

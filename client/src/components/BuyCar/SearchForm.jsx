@@ -3,6 +3,11 @@ import * as carService from "../../services/CarService.js";
 import CarSearchService from "../../services/CarSearchService.js";
 
 const SearchForm = ({ searchCriteria, onSearch }) => {
+  const [isSearchFormVisible, setSearchFormVisible] = useState(false);
+  
+  const handleToggleSearchForm = () => {
+    setSearchFormVisible((prevVisible) => !prevVisible);
+  };
   const [carBrands, setCarBrand] = useState([[], {}]);
   const [filteredCars, setFilteredCars] = useState([]);
   const [comfortsVisible, setComfortsVisible] = useState(false);
@@ -10,6 +15,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
     brand: "",
     model: "",
   });
+
 
   const [formData, setFormData] = useState(
     CarSearchService.getInitialFormData()
@@ -83,9 +89,47 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
     );
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setSearchFormVisible(window.innerWidth >= 768);
+    };
+  
+    window.addEventListener("resize", handleResize);
+  
+    handleResize();
+  
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
-      <div className="searchForm">
+     <div className="search-toggle-mobile">
+        <button
+          className="show-search-form"
+          id="show-search-form"
+          onClick={handleToggleSearchForm}
+        >
+          {isSearchFormVisible ? "Hide Search" : "Show Search"}
+        </button>
+      </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .searchForm {
+            display: ${isSearchFormVisible ? "block" : "none"};
+          }
+        }
+
+        @media (min-width: 768px) {
+          .searchForm {
+            display: block;
+          }
+        }
+      `}</style>
+
+<div className={`searchForm ${isSearchFormVisible ? "visible" : "hidden"}`}>
         <h2>Search car</h2>
         <div className="vehicleFormSearch">
           <form name="car-form" className="form" onSubmit={handleFormSubmit}>
