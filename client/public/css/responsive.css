@@ -258,6 +258,9 @@
         display: none;
     }
 
+    #first-hero {
+        height: 60rem;
+    }
     .app__navbar-smallscreen {
         display: flex;
     }
@@ -428,6 +431,80 @@
     .price-input input {
         font-size: 13px
     }
+
+    #hero4{
+        height: 55rem;
+    }
+
+    .hero4-background {
+        width: 100%;
+        margin-top:40px;
+        text-align: center;
+    }
+
+    #hero4 h4{
+        font-size: 7vw;
+        text-align: center;
+        padding-top: 10px;
+    }
+    #hero4 h2 {
+        font-size: 4vw;
+        text-align: center;
+    }
+    #hero4 h1 {
+        font-size: 4vw;
+        text-align: center;
+    }
+    #hero4 p{
+        font-size: 3vw;
+        text-align: center;
+    }
+    #hero4 button {
+        font-size: 4vw;
+        width: 70%;
+        height: 3.5rem
+    }
+
+    .sellUs {
+        display: flex;
+        flex-direction: column;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+    }
+    .info .formInfo {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .formInfoCard form {
+        padding: 0;
+    }
+
+    .sellUs h1,
+    .info .contentInfo h2,
+    .anotherInfo h2 {
+        font-size: 6vw;
+        margin: 0;
+    }
+    .sellUs p {
+        font-size: 3.5vw;
+        margin-top: 20px;
+    }
+
+    .info .contentInfo {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+
+
+
 
     #form-details .people,
     .col {

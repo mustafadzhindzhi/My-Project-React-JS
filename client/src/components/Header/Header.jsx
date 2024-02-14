@@ -56,7 +56,7 @@ const Header = () => {
                 <li><Link to="/" onClick={() => setToggleMenu(false)}>Home</Link></li>
                 <li><Link to="/BuyCar" onClick={() => setToggleMenu(false)}>Buy Car</Link></li>
                 <li onClick={() => setToggleMenu(false)}>
-                  <Link to="#">Sell Car</Link>
+                  <Link to="/sellWithUs">Sell Car</Link>
                   <ul className="dropdown-menu">
                     <li><Link to="/sellWithUs">Sell with Us</Link></li>
                     <li><Link to="/sell">Sell your car</Link></li>
