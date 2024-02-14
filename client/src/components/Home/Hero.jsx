@@ -49,7 +49,7 @@ const MyCarWebsite = () => {
               alt="Car Image"
             />
             <div className="slide-text">
-              <h3>YOU ARE ON THE RIGHT PLACE</h3>
+              <h3 className="slide-h3">YOU ARE ON THE RIGHT PLACE</h3>
               <h4>
                 With us you make the best choice in your life. And you can be
                 sure of your choice.

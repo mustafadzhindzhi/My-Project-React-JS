@@ -448,19 +448,30 @@
 }
 
 @media screen and (max-width:450px) {
-    .header-navigation {
+    html, body{
         margin: 0;
         padding: 0;
-        max-width: 85%
+        width: 100%;
+    }
+    .slide-h3{
+        font-size: 1px;
+    }
+    .headerb-navigation {
+        margin: 0;
+        max-width: 90%
     }
 
     .headerb nav ul {
-        width: 100%
+        width: 100%;
+        padding-left: 35px;
+    }
+
+    .headerb nav ul li{
+        margin-left: -10px;
     }
 
     .headerb nav ul li a{
         font-size: 15px;
-        width: 5.5rem;
-        
+        width: 6rem;
     }
 }
