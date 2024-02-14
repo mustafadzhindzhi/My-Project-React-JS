@@ -50,7 +50,6 @@ html {
 
 .search-container {
   display: flex;
-  width: 100%;
 }
 
 .search-container .searchForm {

@@ -88,11 +88,11 @@ const VehicleSearch = () => {
           searchCriteria={{ ...searchCriteria, cars: filteredProducts }}
           onSearch={handleSearch}
         />
-        <Results
-          filteredProducts={filteredProducts}
-          searchCriteria={searchCriteria}
-        />
       </div>
+      <Results
+        filteredProducts={filteredProducts}
+        searchCriteria={searchCriteria}
+      />
     </div>
   );
 };

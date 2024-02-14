@@ -314,11 +314,20 @@
     .search-container{
         display: flex;
         flex-direction: column;
+        width: 100%;
+        margin: 0;
     }
 
     .search-container .searchForm {
         width: 100%;
         margin-bottom: 20px; 
+      }
+
+      .search-container .search-toggle-mobile {
+        display: flex;
+        align-items: center;
+        width: 90.6%;
+        position: absolute;
       }
 
       .searchForm {
@@ -329,15 +338,8 @@
     .show-search-form {
         display: block;
         padding: .75rem;
-        margin-bottom: 1rem
-    }
-
-    .search-toggle-mobile {
-        display: block;
-        position: fixed;
-        top: 5rem;
-        right: 0.5rem;
-        z-index: 1000;
+        margin-bottom: 1rem;
+        width: 100%;
     }
 
     .vehicleSearch {
@@ -386,6 +388,7 @@
 
     .results {
         margin: 0;
+        margin-top: 38px;
     }
 
     .products-container {
