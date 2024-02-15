@@ -601,6 +601,25 @@
     font-size: 5vw;
 }
 
+/** CONTACT US*/
+#contact-details .details h2 {
+    font-size: 5vw;
+    line-height: 25px;
+}
+#form-details form h2 {
+    text-align: center;
+    font-size: 6vw;
+}
+#form-details form button{
+    font-size: 5vw;
+}
+#form-details .people {
+    margin-top: 20px;
+}
+#form-details .people h1 {
+    font-size: 5vw;
+}
+
 
 
 
