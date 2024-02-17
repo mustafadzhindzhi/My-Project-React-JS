@@ -12,33 +12,21 @@
     }
 
     nav ul {
-        margin-left: 30px;
-        gap: 5px
+        gap: 0px
     }
 
-    nav li {
-        padding: 0 8px
+    header {
+        max-height: 33px;
+        margin: 0;
     }
 
-    nav a {
-        font-size: 12px
-    }
-
-    .login-register {
-        display: flex;
-        justify-content: center;
-        align-items: center
-    }
-
-    .login-register a {
-        font-size: 12px;
-        margin-right: 10px
+    nav ul a, .login-register a{
+        font-size: 1.5vw;
     }
 
     header img {
-        width: 100%;
-        max-width: 100%;
-        height: auto
+       max-width: 70%;
+       height: 60px;
     }
 
     .headerb nav ul li {
@@ -50,6 +38,8 @@
     .headerb nav ul li a {
         font-size: 17px;
         bottom: 0.6rem;
+        margin: 0;
+        padding: 0;
     }
 
     .welcome h3 {
@@ -68,20 +58,7 @@
     }
 
     .login-container .left-column a,
-    nav a {
-        font-size: 12px
-    }
-
-    .login-register {
-        display: flex;
-        justify-content: center;
-        align-items: center
-    }
-
-    .login-register a {
-        font-size: 12px;
-        margin-right: 10px
-    }
+   
 
     .login-container {
         width: 80%
@@ -258,6 +235,10 @@
         display: none;
     }
 
+    .login-register {
+        display: none;
+    }
+
    
     /** HOME PAGE */
     
@@ -266,11 +247,15 @@
     }
 
     #first-hero {
-        height: 60rem;
+        height: 47rem;
+    }
+    #first-hero h3 {
+        font-size: 12vw;
+        padding-top: 20vh;
     }
 
     .info h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .info h4 {
@@ -303,6 +288,11 @@
     .mycar p {
         font-size: 1.3rem;
         width: 100%;
+    }
+
+    .headerb nav  {
+        margin-right: 0;
+        padding-left: 0;
     }
 
     /** BUY CAR */
@@ -538,10 +528,11 @@
 
 .headerb nav ul{
     width: 100%;
-    padding-left: 0;
+    gap: 10px;
+    margin-left: 0;
 }
 .headerb nav {
-    width: 40%;
+    width: 30%;
 }
 
 .container{
@@ -560,6 +551,7 @@
 
 .headerb nav ul li {
     padding: 20px;
+    width: 4.5rem;
 }
 .info .someInfo {
     width: 100%;
@@ -655,71 +647,6 @@
 
     #form-details .people div {
         margin-left: 0
-    }
-}
-
-@media screen and (max-width:767px) {
-
-    body,
-    html {
-        font-size: 12px
-    }
-
-    header {
-        justify-content: space-between
-    }
-
-    .nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        width: 100%;
-        background-color: #e3e6f3;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, .1)
-    }
-
-    .nav ul li {
-        font-size: 14px
-    }
-
-    .nav.active {
-        display: flex
-    }
-
-    #hero {
-        height: 70vh;
-        padding: 0 80px;
-        background-position: top 30% right 30%
-    }
-
-    #banner {
-        height: 20vh
-    }
-
-    #sm-banner .banner-box {
-        min-width: 90%;
-        height: 30vh;
-        margin-bottom: 30px
-    }
-
-    #banner3 {
-        padding: 0 40px
-    }
-
-    #banner3 .banner-box {
-        width: 28%
-    }
-
-    .header,
-    .header-sellUs {
-        padding: .5rem
-    }
-
-    .nav,
-    .results {
-        width: 100%
     }
 }
 
