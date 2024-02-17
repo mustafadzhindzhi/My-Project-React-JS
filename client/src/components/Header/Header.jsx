@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaCar, FaWrench } from 'react-icons/fa';
-import { MdOutlineRestaurantMenu } from 'react-icons/md'
 import AuthContext from "../../contexts/authContext.jsx";
 
 const Header = () => {
@@ -14,6 +13,7 @@ const Header = () => {
         <img src="/images/MYCAR.png" alt="" className="header-logo" />
       </Link>
       <nav className="header-navigation">
+        <div>
         <ul className="nav-list">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/BuyCar">Buy Car</Link></li>
@@ -40,13 +40,15 @@ const Header = () => {
                 <Link to="/maintenance">Maintenance</Link>
               </li>
               <li><Link to="/contacts">Contact Us</Link></li>
-              <div className="login-register">
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
-              </div>
             </>
           )}
         </ul>
+        </div>
+        
+        <div className="login-register">
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </div>
         <div className="app__navbar-smallscreen">
           <FaCar fontSize={30} onClick={() => setToggleMenu(true)} />
           {toggleMenu && (

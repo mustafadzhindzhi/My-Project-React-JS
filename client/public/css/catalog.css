@@ -1,10 +1,20 @@
-body{
-  font-style: "Work Sans";
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
 #showresults{
   align-items: center;
   display: flex;
+  justify-content: center;
+}
+
+#showresults button,
+.show-results button {
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 label{
@@ -19,24 +29,7 @@ label{
 
 .button-style,
 .login-register a{
-  text-decoration: none;
-}
-
-body,
-html {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-#showresults {
-  justify-content: center;
-}
-
-#showresults button,
-.show-results button {
-  transition: background-color 0.3s;
-  cursor: pointer;
+  text-decoration: none; /** ? */
 }
 
 .vehicleSearch {
@@ -70,7 +63,7 @@ html {
   padding-top: 50px;
 }
 
-.check input[type=radio],
+.check input[type=radio], /** ? */
 .show-search-form {
   display: none;
 }
