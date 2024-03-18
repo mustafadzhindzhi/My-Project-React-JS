@@ -11,7 +11,7 @@ export default function CarListItem({
 }) {
 
   return (
-    <div className="product">
+    <div key={_id} className="product">
       <div className="image-container">
         <img src={image} alt={`${brand} ${model}`} />
       </div>

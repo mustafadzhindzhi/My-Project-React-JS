@@ -8,7 +8,7 @@ const Actual = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchNewsData();
+        const data = await fetchNewsData(); // Ensure this function is defined
         setNews(data);
       } catch (error) {
         console.log(error);

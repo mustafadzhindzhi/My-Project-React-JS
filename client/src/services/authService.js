@@ -1,24 +1,35 @@
 import * as request from '../lib/request.js';
 
-const baseUrl = 'http://localhost:3030/users';
-
-export const login = async (email, password) => {
-    const result = await request.post(`${baseUrl}/login`, {
-        email,
-        password
-    });
-
-    return result;
-};
+const baseUrl = 'http://localhost:3001';
 
 export const register = async (email, username, password) => {
-    const result = await request.post(`${baseUrl}/register`, {
-        email,
-        username,
-        password
-    });
+  const result = await request.post(`${baseUrl}/register`, {
+    email,
+    username,
+    password,
+  });
 
-    return result;
+  return result;
 };
 
-export const logout = () => request.get(`${baseUrl}/logout`);
+export const validateToken = async () => {
+    const token = localStorage.getItem('token');
+  
+    console.log('Token from localStorage:', token);
+  
+    if (!token) {
+      return { valid: false, message: 'Token not found' };
+    }
+  
+    try {
+      const result = await request.post(`${baseUrl}/validateToken`, null, {
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+  
+      return result;
+    } catch (error) {
+      return { valid: false, message: 'Error validating token' };
+    }
+  };
+  
+  

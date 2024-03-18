@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
 import Results from "./Results";
-import * as carService from "../../services/CarService.js";
+import { getAllCars } from "../../services/CarService.js";
+import { filterCars } from "../../utils/carFilters.js";
 
 const VehicleSearch = () => {
   const [cars, setCars] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchCriteria, setSearchCriteria] = useState({
     brand: "",
     model: "",
@@ -15,84 +15,35 @@ const VehicleSearch = () => {
     fuel: "",
     comforts: [],
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    carService
-      .getAll()
-      .then((result) => setCars(result))
-      .catch((err) => {
-        console.error(err);
-      });
+    const fetchCars = async () => {
+      try {
+        const data = await getAllCars();
+        setCars(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching cars:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchCars();
   }, []);
 
-  const handleSearch = (criteria) => {  
-    const newSearchCriteria = {
-      brand: criteria.brand || "",
-      model: criteria.model || "",
-      minPrice: criteria.minPrice || 0,
-      maxPrice: criteria.maxPrice || 100000,
-      transmission: criteria.transmission || "",
-      fuel: criteria.fuel || "",
-      comforts: criteria.comforts || [],
-    };
-  
-    setSearchCriteria(newSearchCriteria);
+  const handleSearch = (criteria) => {
+    setSearchCriteria(criteria);
   };
-  
-  useEffect(() => {
-    const filtered = cars.filter((car) => {
-      const brandMatch =
-        !searchCriteria.brand ||
-        searchCriteria.brand === "" ||
-        car.brand === searchCriteria.brand;
 
-      const modelMatch =
-        !searchCriteria.model || car.model === searchCriteria.model;
-
-      const priceMatch =
-        (searchCriteria.minPrice === 0 || car.price >= searchCriteria.minPrice) &&
-        (searchCriteria.maxPrice === 0 || car.price <= searchCriteria.maxPrice);
-
-      const transmissionMatch =
-        !searchCriteria.transmission ||
-        car.transmission.trim().toLowerCase() ===
-          searchCriteria.transmission.trim().toLowerCase();
-
-      const fuelMatch =
-        !searchCriteria.fuel ||
-        car.fuel.trim().toLowerCase() === searchCriteria.fuel.trim().toLowerCase();
-
-      const comfortsMatch =
-        searchCriteria.comforts.length === 0 ||
-        searchCriteria.comforts.every((comfort) =>
-          car.comforts.includes(comfort)
-        );
-
-      return (
-        brandMatch &&
-        modelMatch &&
-        priceMatch &&
-        transmissionMatch &&
-        fuelMatch &&
-        comfortsMatch
-      );
-    });
-
-    setFilteredProducts(filtered);
-  }, [searchCriteria, cars]); 
+  const filteredCars = filterCars(cars, searchCriteria); 
 
   return (
     <div className="vehicleSearch">
       <div className="search-container">
-        <SearchForm
-          searchCriteria={{ ...searchCriteria, cars: filteredProducts }}
-          onSearch={handleSearch}
-        />
+        <SearchForm searchCriteria={searchCriteria} onSearch={handleSearch} />
       </div>
-      <Results
-        filteredProducts={filteredProducts}
-        searchCriteria={searchCriteria}
-      />
+      <Results cars={filteredCars} loading={loading} />
     </div>
   );
 };

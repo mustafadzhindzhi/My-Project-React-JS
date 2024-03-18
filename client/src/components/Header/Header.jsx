@@ -1,83 +1,152 @@
-import { useContext, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaCar, FaWrench } from 'react-icons/fa';
-import AuthContext from "../../contexts/authContext.jsx";
+import { FaCar, FaWrench } from "react-icons/fa";
 
 const Header = () => {
-  const { isAuthenticated, username } = useContext(AuthContext);
   const [toggleMenu, setToggleMenu] = useState(false);
 
+  const token = localStorage.getItem("token");
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem("token") ? true : false
+  );
+  
+  useEffect(() => {
+    setIsAuthenticated(localStorage.getItem("token") ? true : false);
+  }, [localStorage.getItem("token")]);
+  
   return (
-    <header>
+    <header className="navbar">
       <Link to="/">
         <img src="/images/MYCAR.png" alt="" className="header-logo" />
       </Link>
       <nav className="header-navigation">
         <div>
-        <ul className="nav-list">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/BuyCar">Buy Car</Link></li>
+          <ul className="nav-list">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/BuyCar">Buy Car</Link>
+            </li>
+            {isAuthenticated ? (
+              <>
+                <li className="dropdown">
+                  <Link to="#">Sell Car</Link>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link to="/sellWithUs">Sell with Us</Link>
+                    </li>
+                    <li>
+                      <Link to="/sell">Sell your car</Link>
+                    </li>
+                  </ul>
+                </li>
+                <li className="dropdown">
+                  <Link to="/maintenance">Maintenance</Link>
+                </li>
+                <li>
+                  <Link to="/contacts">Contact Us</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/sellWithUs">Sell with Us</Link>
+                </li>
+                <li className="dropdown">
+                  <Link to="/maintenance">Maintenance</Link>
+                </li>
+                <li>
+                  <Link to="/contacts">Contact Us</Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+
+        <div className="login-register">
           {isAuthenticated ? (
             <>
-              <li className="dropdown">
-                <Link to="#">Sell Car</Link>
-                <ul className="dropdown-menu">
-                  <li><Link to="/sellWithUs">Sell with Us</Link></li>
-                  <li><Link to="/sell">Sell your car</Link></li>
-                </ul>
+              <li
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  window.location.href = "/";
+                }}
+              >
+                Logout
               </li>
-              <li className="dropdown">
-                <Link to="/maintenance">Maintenance</Link>
-              </li>
-              <li><Link to="/contacts">Contact Us</Link></li>
-              <li id="logout"><Link to="/logout">Logout</Link></li>
-              <span id="span-welcome">Welcome {username}!</span>
             </>
           ) : (
             <>
-              <li><Link to="/sellWithUs">Sell with Us</Link></li>
-              <li className="dropdown">
-                <Link to="/maintenance">Maintenance</Link>
-              </li>
-              <li><Link to="/contacts">Contact Us</Link></li>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
             </>
           )}
-        </ul>
         </div>
-        
-        <div className="login-register">
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
-              </div>
+
         <div className="app__navbar-smallscreen">
           <FaCar fontSize={30} onClick={() => setToggleMenu(true)} />
           {toggleMenu && (
             <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
-              <FaWrench fontSize={27} className="overlay__close" onClick={() => setToggleMenu(false)} />
+              <FaWrench
+                fontSize={27}
+                className="overlay__close"
+                onClick={() => setToggleMenu(false)}
+              />
               <ul className="app__navbar-smallscreen_links">
-                <li><Link to="/" onClick={() => setToggleMenu(false)}>Home</Link></li>
-                <li><Link to="/BuyCar" onClick={() => setToggleMenu(false)}>Buy Car</Link></li>
-                <li onClick={() => setToggleMenu(false)}>
-                  <Link to="/sellWithUs">Sell Car</Link>
+                <li>
+                  <Link to="/" onClick={() => setToggleMenu(false)}>
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/BuyCar" onClick={() => setToggleMenu(false)}>
+                    Buy Car
+                  </Link>
+                </li>
+                <li className="dropdown">
+                  <Link to="#">Sell Car</Link>
                   <ul className="dropdown-menu">
-                    <li><Link to="/sellWithUs">Sell with Us</Link></li>
-                    <li><Link to="/sell">Sell your car</Link></li>
+                    <li>
+                      <Link
+                        to="/sellWithUs"
+                        onClick={() => setToggleMenu(false)}
+                      >
+                        Sell with Us
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/sell" onClick={() => setToggleMenu(false)}>
+                        Sell your car
+                      </Link>
+                    </li>
                   </ul>
                 </li>
-                <li onClick={() => setToggleMenu(false)}><Link to="/maintenance">Maintenance</Link></li>
-                <li onClick={() => setToggleMenu(false)}><Link to="/contacts">Contact Us</Link></li>
-                {isAuthenticated && (
+                <li>
+                  <Link to="/maintenance" onClick={() => setToggleMenu(false)}>
+                    Maintenance
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contacts" onClick={() => setToggleMenu(false)}>
+                    Contact Us
+                  </Link>
+                </li>
+                {isAuthenticated ? (
                   <>
-                    <li id="logout" onClick={() => setToggleMenu(false)}><Link to="/logout">Logout</Link></li>
-                    <span id="span-welcome">Welcome {username}!</span>
+                    <li
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        window.location.href = "/";
+                      }}
+                    >
+                      Logout
+                    </li>
                   </>
-                )}
-                {!isAuthenticated && (
-                  <>
-                    <li onClick={() => setToggleMenu(false)}><Link to="/login">Login</Link></li>
-                    <li onClick={() => setToggleMenu(false)}><Link to="/register">Register</Link></li>
-                  </>
-                )}
+                ) : <>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>}
               </ul>
             </div>
           )}
@@ -85,6 +154,6 @@ const Header = () => {
       </nav>
     </header>
   );
-}
+};
 
 export default Header;

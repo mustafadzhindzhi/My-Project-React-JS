@@ -1,93 +1,51 @@
 import React, { useState, useEffect } from "react";
 import * as carService from "../../services/CarService.js";
-import CarSearchService from "../../services/CarSearchService.js";
+import useSearchForm from "../../utils/searchFormValidations.js";
 
-const SearchForm = ({ searchCriteria, onSearch }) => {
+const SearchForm = ({ onSearch }) => {
+  const [selectedBrandModel, setSelectedBrandModel] = useState({
+    brand: '',
+    model: '',
+  });
+
+  const [carBrands, setCarBrands] = useState([]);
+  const [carModels, setCarModels] = useState([]);
+  const [comfortsVisible, setComfortsVisible] = useState(false);
   const [isSearchFormVisible, setSearchFormVisible] = useState(false);
-  
+
+  const {
+    formData,
+    handleChange,
+    handleSliderChange,
+    handleComfortChange,
+    handleFormSubmit,
+    handleSearchClick,
+    handleBrandChange,
+    handleModelChange,
+  } = useSearchForm(onSearch, setSelectedBrandModel, carBrands);
+
+  const toggleComforts = () => {
+    setComfortsVisible(prevVisible => !prevVisible);
+  };
+
   const handleToggleSearchForm = () => {
     setSearchFormVisible((prevVisible) => !prevVisible);
   };
-  const [carBrands, setCarBrand] = useState([[], {}]);
-  const [filteredCars, setFilteredCars] = useState([]);
-  const [comfortsVisible, setComfortsVisible] = useState(false);
-  const [selectedBrandModel, setSelectedBrandModel] = useState({
-    brand: "",
-    model: "",
-  });
-
-
-  const [formData, setFormData] = useState(
-    CarSearchService.getInitialFormData()
-  );
 
   useEffect(() => {
     const fetchBrands = async () => {
       try {
         const data = await carService.getCarBrands();
-        setCarBrand(data);
+        const uniqueBrands = [...new Set(data.brands)];
+        setCarBrands(uniqueBrands);
+        setCarModels(data.modelsByBrand);
       } catch (err) {
-        console.log("Error fetching car brands date:", err);
+        console.log("Error fetching car brands:", err);
       }
     };
     fetchBrands();
   }, []);
 
-  useEffect(() => {
-    if (searchCriteria && searchCriteria.cars) {
-      const newFilteredCars = CarSearchService.filterCars(
-        searchCriteria.cars,
-        formData
-      );
-
-      setFilteredCars(newFilteredCars);
-    }
-  }, [searchCriteria, formData]);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData(CarSearchService.handleFormChange(formData, name, value));
-  };
-
-  const handleSliderChange = (event) => {
-    setFormData(CarSearchService.handleSliderChange(formData, event));
-  };
-
-  const handleComfortChange = (event) => {
-    setFormData(CarSearchService.handleComfortChange(formData, event));
-  };
-
-  const toggleComforts = () => {
-    setComfortsVisible((prev) => !prev);
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    onSearch(formData);
-  };
-
-  const handleSearchClick = () => {
-    const transformedFormData =
-      CarSearchService.transformSearchCriteria(formData);
-    onSearch(transformedFormData);
-  };
-
-  const handleBrandChange = (event) => {
-    CarSearchService.handleBrandChange(
-      event,
-      setFormData,
-      setSelectedBrandModel,
-      carBrands
-    );
-  };
-
-  const handleModelChange = (event) => {
-    CarSearchService.handleModelChange(
-      event,
-      setFormData,
-      setSelectedBrandModel
-    );
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -105,7 +63,7 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
 
   return (
     <>
-     <div className="search-toggle-mobile">
+      <div className="search-toggle-mobile">
         <button
           className="show-search-form"
           id="show-search-form"
@@ -128,11 +86,16 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
           }
         }
       `}</style>
-
-<div className={`searchForm ${isSearchFormVisible ? "visible" : "hidden"}`}>
+      <div
+        className={`searchForm ${isSearchFormVisible ? "visible" : "hidden"}`}
+      >
         <h2>Search car</h2>
         <div className="vehicleFormSearch">
-          <form name="car-form" className="form" onSubmit={handleFormSubmit}>
+          <form
+            name="car-form"
+            className="form"
+            onSubmit={handleFormSubmit}
+          >
             <fieldset className="brand-fieldset">
               <label htmlFor="brand">Brand:</label>
               <select
@@ -142,8 +105,8 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
                 value={selectedBrandModel.brand}
               >
                 <option value="">---</option>
-                {carBrands[0].length > 0 &&
-                  carBrands[0].map((brand) => (
+                {carBrands.length > 0 &&
+                  carBrands.map((brand) => (
                     <option key={brand} value={brand}>
                       {brand}
                     </option>
@@ -159,11 +122,12 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
                 value={selectedBrandModel.model}
               >
                 <option value="">---</option>
-                {carBrands[1][selectedBrandModel.brand]?.map((model) => (
-                  <option key={model} value={model}>
-                    {model}
-                  </option>
-                ))}
+                {selectedBrandModel.brand &&
+                  carModels[selectedBrandModel.brand]?.map((model) => (
+                    <option key={model} value={model}>
+                      {model}
+                    </option>
+                  ))}
               </select>
             </fieldset>
             <div className="wrapper">
@@ -268,11 +232,8 @@ const SearchForm = ({ searchCriteria, onSearch }) => {
                   ></span>
                 </button>
               </div>
-              <div
-                className={`comfort-list ${
-                  comfortsVisible ? "visible" : "hidden"
-                }`}
-              >
+              <div className={`comfort-list ${comfortsVisible ? "visible" : "hidden"}`}>
+
                 {[
                   "Leather seats",
                   "Climate control",

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Header from './components/Header/Header.jsx';
+import Header from './components/header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Home from './components/home/Home.jsx';
 import Buy from './components/BuyCar/BuyCar.jsx';
@@ -20,38 +21,40 @@ import CarDetails from './components/car-details/CarDetails.jsx';
 import CarEdit from './components/car-edit/CarEdit.jsx';
 
 function App() {
-  const [news, setNews] = useState([]);
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/data/news`)
-    .then((res) => res.json())
-    .then(result => {
-      console.log(result);
-      setNews(result)
-    }, [])
-  })
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
+
+  const handleRegister = () => {
+    setIsAuthenticated(true);
+  };
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
   return (
     <ErrorBoundary>
-    <AuthProvider>
-      <div>
-        <Header />
-        <Routes>
-          <Route path={Path.Buy} element={<Buy />} />
-          <Route path={Path.Home} element={<Home />} />
-          <Route path={Path.SellWithUs} element={<SellWithUs />} />
-          <Route path={Path.SellCar} element={<SellYourCar />} />
-          <Route path={Path.Maintenance} element={<Maintenance />} />
-          <Route path={Path.Contacts} element={<ContactUs />} />
-          <Route path={Path.Login} element={<Login />} />
-          <Route path={Path.Register} element={<Register />} />
-          <Route path="/BuyCar/:carId" element={<CarDetails />} />
-          <Route path={Path.CarEdit} element={<CarEdit/>} />
-          <Route path={Path.Logout} element={<Logout/>} />
-          <Route path='/*' element={<NotFound/>} />
-        </Routes>
-        <Footer/>
-      </div>
+      <AuthProvider>
+        <div>
+          <Header />
+          <Routes>
+            <Route path={Path.Buy} element={<Buy />} />
+            <Route path={Path.Home} element={<Home />} />
+            <Route path={Path.SellWithUs} element={<SellWithUs />} />
+            <Route path={Path.SellCar} element={<SellYourCar />} />
+            <Route path={Path.Maintenance} element={<Maintenance />} />
+            <Route path={Path.Contacts} element={<ContactUs />} />
+            <Route path={Path.Login} element={<Login onLogin={handleLogin} />} />
+            <Route path={Path.Register} element={<Register onRegister={handleRegister}/>} />
+            <Route path="/BuyCar/:carId" element={<CarDetails />} />
+            <Route path={Path.CarEdit} element={<CarEdit/>} />
+            <Route path={Path.Logout} element={<Logout/>} />
+            <Route path='/*' element={<NotFound/>} />
+          </Routes>
+          <Footer/>
+        </div>
       </AuthProvider>
-      </ErrorBoundary>
+    </ErrorBoundary>
   );
 }
 

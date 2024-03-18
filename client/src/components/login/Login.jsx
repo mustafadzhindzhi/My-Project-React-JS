@@ -1,7 +1,6 @@
-import { useContext, useState } from "react";
-import useForm from "../../hooks/useForm.js";
-import AuthContext from "../../contexts/authContext.jsx";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const loginFormKeys = {
   Email: "email",
@@ -9,25 +8,38 @@ const loginFormKeys = {
   RememberMe: "rememberMe",
 };
 
-export default function Login() {
-  const { loginSubmitHandler } = useContext(AuthContext);
+export default function Login({ onLogin }) {
+  const [values, setValues] = useState({
+    [loginFormKeys.Email]: "",
+    [loginFormKeys.Password]: "",
+  });
   const [rememberMe, setRememberMe] = useState(false);
   const [loginError, setLoginError] = useState(null);
+  const navigate = useNavigate();
 
-  const { values, onChange, onSubmit } = useForm(
-    async () => {
-      try {
-        setLoginError(null); 
-        await loginSubmitHandler(values, rememberMe);
-      } catch (error) {
-        setLoginError("Invalid email or password. Please try again.");
-      }
-    },
-    {
-      [loginFormKeys.Email]: "",
-      [loginFormKeys.Password]: "",
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      setLoginError(null);
+      const response = await axios.post("http://localhost:3001/login", {
+        email: values[loginFormKeys.Email],
+        password: values[loginFormKeys.Password],
+      });
+
+      localStorage.setItem("token", response.data.token);
+
+      onLogin();
+
+      navigate("/");
+    } catch (error) {
+      setLoginError("Invalid email or password. Please try again.");
     }
-  );
+  };
 
   return (
     <div className="login-container">
@@ -37,7 +49,7 @@ export default function Login() {
           <h1>Welcome back!</h1>
           <p>We're so excited to see you again!</p>
         </div>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="emailOrPassword">
             Email or phone number <span>*</span>
           </label>
@@ -46,7 +58,7 @@ export default function Login() {
             name={loginFormKeys.Email}
             id="email"
             placeholder="example@gmail.com"
-            onChange={onChange}
+            onChange={handleChange}
             value={values[loginFormKeys.Email]}
             autoComplete="username"
           />
@@ -57,7 +69,7 @@ export default function Login() {
             type="password"
             name={loginFormKeys.Password}
             id="password"
-            onChange={onChange}
+            onChange={handleChange}
             value={values[loginFormKeys.Password]}
             autoComplete="current-password"
           />

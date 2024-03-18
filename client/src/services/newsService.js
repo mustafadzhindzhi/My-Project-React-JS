@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3030/data/news';
+const API_URL = 'http://localhost:3001/news'; 
 
 export const fetchNewsData = async () => {
   try {

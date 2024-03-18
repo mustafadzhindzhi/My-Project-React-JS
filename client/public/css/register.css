@@ -89,14 +89,6 @@ form{
     border-radius: 5px;
 }
 
-.register-container .left-column form :nth-child(4) {
-    margin-bottom: 10px;
-}
-
-.register-container .left-column form :last-child {
-    margin-top: 25px;
-}
-
 .register-container .left-column form input[type="submit"] {
     background: #088178;
     text-transform: capitalize;
@@ -126,3 +118,30 @@ form{
     line-height: 20px;
 }
 
+.password-strength {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+
+.strength-indicator {
+    width: 70px;
+    height: 20px;
+    background-color: transparent;
+    border-radius: 5%;
+    margin: 0 2px;
+    transition: background-color 0.3s ease;
+}
+
+.red.visible {
+    background-color: red; 
+}
+
+.orange.visible {
+    background-color: orange; 
+}
+
+.green.visible {
+    background-color: green; 
+}
