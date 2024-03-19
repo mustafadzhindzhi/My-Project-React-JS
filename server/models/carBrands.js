@@ -16,6 +16,14 @@ const carBrandsSchema = new mongoose.Schema({
 });
 
 const CarBrandsModel = mongoose.model('CarBrand', carBrandsSchema);
-CarBrandsModel.insertMany(data)
+
+async function initializeData() {
+  const count = await CarBrandsModel.countDocuments();
+  if (count === 0) {
+    await CarBrandsModel.insertMany(data);
+  }
+}
+
+initializeData();
 
 module.exports = CarBrandsModel;
