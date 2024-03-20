@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { v4: uuidv4 } = require('uuid');
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -168,10 +169,51 @@ app.post('/like', async(req, res) => {
         await newLike.save();
         res.status(201).json({ message: 'Like added successfully' });
     } catch(err) {
-        console.error('Error adding like:', error);
+        console.error('Error adding like:', err);
         res.status(500).json({ message: 'Internal server error' });
     }
 })
+
+app.post("/cars", async (req, res) => {
+    try {
+        const {
+            brand,
+            model,
+            price,
+            transmission,
+            fuel,
+            comforts,
+            category,
+            image,
+            phoneNumber,
+            description,
+            rating
+        } = req.body;
+
+        const newCar = new CarModel({
+            _id: uuidv4(), 
+            brand,
+            model,
+            price,
+            transmission,
+            fuel,
+            comforts,
+            category,
+            image,
+            phoneNumber,
+            description,
+            rating
+        });
+
+         await newCar.save();
+
+        res.status(201).json({ success: true, message: 'Car created successfully', car: newCar });
+    } catch (error) {
+        console.error('Error creating car:', error);
+        res.status(500).json({ success: false, message: 'Failed to create car', error: error.message });
+    }
+});
+
 
 app.listen(3001, () => {
     console.log('Server is running');

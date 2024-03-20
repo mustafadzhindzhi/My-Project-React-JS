@@ -65,6 +65,26 @@ const getOneCar = async (_id) => {
 
 export { getOneCar };
 
+//add car
+export const addCar = async (carData) => {
+  try {
+    const response = await fetch(`${baseUrl}/cars`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(carData)
+    });
+    if (!response.ok) {
+      throw new Error('Failed to add new car');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error adding new car:', error);
+    throw error;
+  }
+};
+
 //likes
 const addLike = async ({ carId, userId }) => {
   try {
