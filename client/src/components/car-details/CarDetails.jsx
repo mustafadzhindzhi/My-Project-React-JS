@@ -34,7 +34,6 @@ const CarDetails = () => {
           setLiked(true);
         }
 
-        // Calculate average rating
         const storedRatings = JSON.parse(localStorage.getItem(`carRatings_${_id}`)) || [];
         setRatings(storedRatings);
         const newAverageRating = storedRatings.reduce((sum, rating) => sum + rating, 0) / storedRatings.length || 0;
@@ -51,13 +50,11 @@ const CarDetails = () => {
   const handleLike = async () => {
     try {
       if (!likeId) {
-        // Add like
         const result = await carService.addLike({ carId: _id, userId });
         setLikeCount((prevLike) => prevLike + 1);
         setLikeId(result._id);
         setLiked(true);
       } else {
-        // Remove like
         await carService.unLike(likeId);
         setLikeCount((prevLike) => prevLike - 1);
         setLikeId("");
@@ -70,7 +67,6 @@ const CarDetails = () => {
 
   const handleRatingChange = (newRating) => {
     if (newRating >= 1 && newRating <= 5) {
-      // Handle rating change
       const newRatings = [...ratings, newRating];
       setRatings(newRatings);
       localStorage.setItem(`carRatings_${_id}`, JSON.stringify(newRatings));

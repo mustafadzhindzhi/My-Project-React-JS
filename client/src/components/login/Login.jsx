@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -17,8 +17,26 @@ export default function Login({ onLogin }) {
   const [loginError, setLoginError] = useState(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const rememberMeValue = localStorage.getItem("rememberMe") === "true";
+    const storedEmail = localStorage.getItem("email");
+    const storedPassword = localStorage.getItem("password");
+
+    if (rememberMeValue && storedEmail && storedPassword) {
+      setValues({
+        [loginFormKeys.Email]: storedEmail,
+        [loginFormKeys.Password]: storedPassword,
+      });
+      setRememberMe(true);
+    }
+  }, []);
+
   const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    if (e.target.name === loginFormKeys.RememberMe) {
+      setRememberMe(e.target.checked);
+    } else {
+      setValues({ ...values, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -30,6 +48,16 @@ export default function Login({ onLogin }) {
         email: values[loginFormKeys.Email],
         password: values[loginFormKeys.Password],
       });
+
+      if (rememberMe) {
+        localStorage.setItem("email", values[loginFormKeys.Email]);
+        localStorage.setItem("password", values[loginFormKeys.Password]);
+        localStorage.setItem("rememberMe", rememberMe);
+      } else {
+        localStorage.removeItem("email");
+        localStorage.removeItem("password");
+        localStorage.removeItem("rememberMe");
+      }
 
       localStorage.setItem("token", response.data.token);
 
