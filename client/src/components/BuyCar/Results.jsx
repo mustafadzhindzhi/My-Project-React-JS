@@ -17,9 +17,9 @@ const Results = ({ cars, loading }) => {
   if (loading) {
     productElements = <p>Loading...</p>;
   } else if (cars.length > 0) {
-    productElements = cars.map((car, index) => (
+    productElements = cars.map((car) => (
       <CarListItem
-        key={index}
+        key={car._id}
         brand={car.brand}
         model={car.model}
         price={car.price}

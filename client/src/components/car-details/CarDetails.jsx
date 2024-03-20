@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
 import * as carService from "../../services/CarService.js";
 import * as likeService from "../../services/likeService.js";
 import AuthContext from "../../contexts/authContext.jsx";
@@ -13,44 +12,42 @@ const CarDetails = () => {
   const [car, setCar] = useState({});
   const [likeCount, setLikeCount] = useState(0);
   const [liked, setLiked] = useState(false);
-  const { carId } = useParams();
+  const { _id } = useParams();
   const [ratings, setRatings] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
   const [likeId, setLikeId] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
-      const initialLikes = await likeService.getAllLikes(carId);
-      setLikeCount(initialLikes.length);
+      try {
+      //   const initialLikes = await likeService.getAllLikes(_id);
+      //   setLikeCount(initialLikes.length);
   
-      let foundLike = initialLikes.find((el) => el.userId === userId);
+      //   let foundLike = initialLikes.find((el) => el.userId === userId);
   
-      if (foundLike) {
-        setLikeId(foundLike._id);
-        setLiked(true);
+      //   if (foundLike) {
+      //     setLikeId(foundLike._id);
+      //     setLiked(true);
+      //   }
+
+        const carData = await carService.getOneCar(_id);
+        setCar(carData);
+
+        const likes = Number(carData.likes);
+        setLikeCount(isNaN(likes) ? 0 : likes);
+      } catch (error) {
+        console.error("Error fetching car data:", error);
+        navigate("/error");
       }
     };
-      if (carId) {
-      carService
-        .getOne(carId)
-        .then((carData) => {
-          setCar(carData);
-  
-          const likes = Number(carData.likes);
-          setLikeCount(isNaN(likes) ? 0 : likes);
-        })
-        .catch((error) => {
-          console.error("Error fetching car data:", error);
-          navigate("/error");
-        });
-    }
-  }, [carId, navigate, userId]);
+
+    fetchData();
+  }, [_id, navigate, userId]);
 
   const handleLike = async () => {
     try {
       if (!likeId) {
-        const result = await likeService.addLike({ carId, userId });
-
+        const result = await likeService.addLike({ carId: _id, userId });
         setLikeCount((prevLike) => prevLike + 1);
         setLikeId(result._id);
         setLiked(true);
@@ -79,39 +76,26 @@ const CarDetails = () => {
   };
 
   useEffect(() => {
-    const storedRatings =
-      JSON.parse(localStorage.getItem(`carRatings_${carId}`)) || [];
+    const storedRatings = JSON.parse(localStorage.getItem(`carRatings_${_id}`)) || [];
     setRatings(storedRatings);
-
-    const newAverageRating =
-      storedRatings.reduce((sum, rating) => sum + rating, 0) /
-        storedRatings.length || 0;
-
+    const newAverageRating = storedRatings.reduce((sum, rating) => sum + rating, 0) / storedRatings.length || 0;
     setAverageRating(Math.round(newAverageRating * 10) / 10);
-  }, [carId]);
+  }, [_id]);
 
   const handleRatingChange = (newRating) => {
     if (newRating >= 1 && newRating <= 5) {
       const newRatings = [...ratings, newRating];
       setRatings(newRatings);
-
-      localStorage.setItem(`carRatings_${carId}`, JSON.stringify(newRatings));
-
-      const newAverageRating =
-        newRatings.reduce((sum, rating) => sum + rating, 0) /
-          newRatings.length || 0;
-
+      localStorage.setItem(`carRatings_${_id}`, JSON.stringify(newRatings));
+      const newAverageRating = newRatings.reduce((sum, rating) => sum + rating, 0) / newRatings.length || 0;
       setAverageRating(Math.round(newAverageRating * 10) / 10);
     }
   };
 
   const deleteButtonClickHandler = async () => {
-    const hasConfirmed = window.confirm(
-      `Are you sure you want to delete ${car.brand} ${car.model}`
-    );
-
+    const hasConfirmed = window.confirm(`Are you sure you want to delete ${car.brand} ${car.model}`);
     if (hasConfirmed) {
-      await carService.remove(carId);
+      await carService.remove(_id);
       navigate("/BuyCar");
     }
   };
@@ -165,32 +149,32 @@ const CarDetails = () => {
           </div>
           </>}
           <div className="buttons">
-        {userId === car._ownerId ? (
-          <>
-            <Link to={pathToUrl(Path.CarEdit, { carId })}>
-              <button className="like-button">Edit</button>
-            </Link>
-            <button
-              className="like-button"
-              onClick={deleteButtonClickHandler}
-            >
-              Delete
-            </button>
-          </>
-        ) : (
-          userId && userId !== car._ownerId && (
-            <>
-              <button
-                className={`like-button ${liked ? "liked" : ""}`}
-                onClick={liked ? handleUnlike : handleLike}
-              >
-                {liked ? "Unlike" : "Like"}
-              </button>
-              <span>Likes: {likeCount}</span>
-            </>
-          )
-        )}
-      </div>
+            {userId === car._ownerId ? (
+              <>
+                <Link to={pathToUrl(Path.CarEdit, { carId: _id })}>
+                  <button className="like-button">Edit</button>
+                </Link>
+                <button
+                  className="like-button"
+                  onClick={deleteButtonClickHandler}
+                >
+                  Delete
+                </button>
+              </>
+            ) : (
+              userId && userId !== car._ownerId && (
+                <>
+                  <button
+                    className={`like-button ${liked ? "liked" : ""}`}
+                    onClick={liked ? handleUnlike : handleLike}
+                  >
+                    {liked ? "Unlike" : "Like"}
+                  </button>
+                  <span>Likes: {likeCount}</span>
+                </>
+              )
+            )}
+          </div>
         </div>
       </div>
       <div className="car-description">
@@ -200,7 +184,7 @@ const CarDetails = () => {
       <div className="car-description">
         <h2>Information</h2>
         <h4>Phone Number: {car.phoneNumber && <a href={`tel:${car.phoneNumber.replace(/\D/g, "")}`}>{car.phoneNumber}</a>}</h4>
-       <p></p>
+        <p></p>
       </div>
     </div>
   );

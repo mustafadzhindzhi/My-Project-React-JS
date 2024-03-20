@@ -46,7 +46,7 @@ function App() {
             <Route path={Path.Contacts} element={<ContactUs />} />
             <Route path={Path.Login} element={<Login onLogin={handleLogin} />} />
             <Route path={Path.Register} element={<Register onRegister={handleRegister}/>} />
-            <Route path="/BuyCar/:carId" element={<CarDetails />} />
+            <Route path="/BuyCar/:_id" element={<CarDetails />} />
             <Route path={Path.CarEdit} element={<CarEdit/>} />
             <Route path={Path.Logout} element={<Logout/>} />
             <Route path='/*' element={<NotFound/>} />

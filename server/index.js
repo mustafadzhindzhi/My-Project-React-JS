@@ -125,6 +125,21 @@ app.get("/cars", async (req, res) => {
     } 
 });
 
+//one car
+app.get('/cars/:_id', async (req, res) => {
+    try {
+        const carId = req.params._id;
+        const car = await CarModel.findById(carId);
+        if (!car) {
+            return res.status(404).json({ message: "Car not found" });
+        }
+        res.json(car);
+    } catch (error) {
+        console.error("Error fetching car:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
 app.listen(3001, () => {
     console.log('Server is running');
 });

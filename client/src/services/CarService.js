@@ -36,33 +36,59 @@ const getAllCars = async () => {
     const data = await response.json();
     return data;
   } catch(err) {
-    console.error('Error fetching car brands data:', error);
-    throw error;
+    console.error('Error fetching car brands data:', err);
+    throw err;
   }
 }
 
 export {getAllCars};
 
-export const getModelsForBrand = async (brand) => {
+//one car
+const getOneCar = async (_id) => {
   try {
-    // Fetch models for the specified brand from your API or database
-    const response = await fetch(`/api/models?brand=${brand}`);
+    const response = await fetch(`${baseUrl}/cars/${_id}`);
     if (!response.ok) {
-      throw new Error("Failed to fetch models for brand");
+      console.error('Error fetching car:', response.status, response.statusText);
+      throw new Error(`Failed to fetch car. Status: ${response.status}`);
     }
-    const data = await response.json();
-    return data.models; // Assuming the response contains an array of models
+
+    const carData = await response.json();
+    
+    carData._id = _id; 
+
+    return carData;
   } catch (error) {
-    throw new Error(`Error fetching models for brand: ${error.message}`);
+    console.error('Error fetching car data:', error);
+    throw error;
   }
 };
 
-//all cars
-export const getAll = async () => {
-  const result = await request.get(baseUrl);
+export { getOneCar };
 
-  return Object.values(result);
-}
+
+
+
+
+// export const getModelsForBrand = async (brand) => {
+//   try {
+//     // Fetch models for the specified brand from your API or database
+//     const response = await fetch(`/api/models?brand=${brand}`);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch models for brand");
+//     }
+//     const data = await response.json();
+//     return data.models; // Assuming the response contains an array of models
+//   } catch (error) {
+//     throw new Error(`Error fetching models for brand: ${error.message}`);
+//   }
+// };
+
+// //all cars
+// export const getAll = async () => {
+//   const result = await request.get(baseUrl);
+
+//   return Object.values(result);
+// }
 
 //one car
 export const getOne = async (carId) => {
