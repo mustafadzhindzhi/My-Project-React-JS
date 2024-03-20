@@ -3,6 +3,7 @@ import SearchForm from "./SearchForm";
 import Results from "./Results";
 import { getAllCars } from "../../services/CarService.js";
 import { filterCars } from "../../utils/carFilters.js";
+import sortCars from "../../utils/sortCars.js";
 
 const VehicleSearch = () => {
   const [cars, setCars] = useState([]);
@@ -16,6 +17,7 @@ const VehicleSearch = () => {
     comforts: [],
   });
   const [loading, setLoading] = useState(true);
+  const [sortOption, setSortOption] = useState("");
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -36,14 +38,26 @@ const VehicleSearch = () => {
     setSearchCriteria(criteria);
   };
 
-  const filteredCars = filterCars(cars, searchCriteria); 
+  const handleSortChange = (option) => {
+    setSortOption(option);
+  };
+
+  // Filter the cars based on search criteria
+  const filteredCars = filterCars(cars, searchCriteria);
+
+  // Sort the filtered cars based on sort option
+  const sortedCars = sortCars(filteredCars, sortOption);
 
   return (
     <div className="vehicleSearch">
       <div className="search-container">
         <SearchForm searchCriteria={searchCriteria} onSearch={handleSearch} />
       </div>
-      <Results cars={filteredCars} loading={loading} />
+      <Results
+        cars={sortedCars} 
+        loading={loading}
+        onSortChange={handleSortChange} 
+      />
     </div>
   );
 };

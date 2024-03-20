@@ -1,16 +1,10 @@
 import React from "react";
 import CarListItem from "./carListItem/CarListItem.jsx";
-import sortCars from "../../utils/sortCars.js";
-import { useState } from "react";
 
-const Results = ({ cars, loading }) => {
-  const [sortOption, setSortOption] = useState("");
-
+const Results = ({ cars, loading, onSortChange }) => {
   const handleSortChange = (event) => {
     const option = event.target.value;
-    setSortOption(option);
-    const sortedCars = sortCars(cars, option);
-    setCars(sortedCars);
+    onSortChange(option); 
   };
 
   let productElements;
@@ -51,7 +45,7 @@ const Results = ({ cars, loading }) => {
           <label htmlFor="sorting" className="sortLabel">
             Sort:
           </label>
-          <select id="sortCar" value={sortOption} onChange={handleSortChange}>
+          <select id="sortCar" onChange={handleSortChange}>
             <option value="">---</option>
             <option value="priceAscending">Price Ascending</option>
             <option value="priceDescending">Price Descending</option>

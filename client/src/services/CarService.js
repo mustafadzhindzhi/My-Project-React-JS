@@ -66,42 +66,6 @@ const getOneCar = async (_id) => {
 export { getOneCar };
 
 
-
-
-
-// export const getModelsForBrand = async (brand) => {
-//   try {
-//     // Fetch models for the specified brand from your API or database
-//     const response = await fetch(`/api/models?brand=${brand}`);
-//     if (!response.ok) {
-//       throw new Error("Failed to fetch models for brand");
-//     }
-//     const data = await response.json();
-//     return data.models; // Assuming the response contains an array of models
-//   } catch (error) {
-//     throw new Error(`Error fetching models for brand: ${error.message}`);
-//   }
-// };
-
-// //all cars
-// export const getAll = async () => {
-//   const result = await request.get(baseUrl);
-
-//   return Object.values(result);
-// }
-
-//one car
-export const getOne = async (carId) => {
-  try {
-    const result = await request.get(`${baseUrl}/${carId}`);
-
-    return result;
-  } catch (error) {
-    console.error("Error fetching car data:", error);
-    throw error;
-  }
-};
-
 export const create = async (carData) => {
   const result = await request.post(baseUrl, carData);
 
