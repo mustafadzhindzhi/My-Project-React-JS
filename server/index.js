@@ -9,6 +9,7 @@ const UserModel = require('./models/Users.js');
 const NewsModel = require('./models/News.js');
 const CarBrandsModel = require('./models/carBrands.js');
 const CarModel = require('./models/Cars.js');
+const LikeModel = require('./models/Likes.js')
 
 const app = express();
 app.use(cors());
@@ -139,6 +140,38 @@ app.get('/cars/:_id', async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
+//likes
+app.get('/likes/:id', async (req, res) => {
+    try {
+      const carId = req.params._id;
+  
+      const likes = await LikeModel.find({ carId });
+  
+      res.status(200).json(likes);
+    } catch (error) {
+      console.error('Error fetching likes:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+app.post('/like', async(req, res) => {
+    try {
+        const {carId, userId} = req.body;
+
+        const existingLike = await LikeModel.findOne({carId, userId});
+        if(existingLike) {
+            return res.status(400).json({ message: 'You have already liked this car' });
+        }
+        
+        const newLike = new LikeModel({carId, userId});
+        await newLike.save();
+        res.status(201).json({ message: 'Like added successfully' });
+    } catch(err) {
+        console.error('Error adding like:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
 
 app.listen(3001, () => {
     console.log('Server is running');

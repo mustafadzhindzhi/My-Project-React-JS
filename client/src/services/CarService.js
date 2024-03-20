@@ -26,7 +26,7 @@ export { getCarBrands };
 
 //all cars
 const getAllCars = async () => {
-  try{
+  try {
     const response = await fetch(`${baseUrl}/cars`);
     if (!response.ok) {
       console.error('Error fetching car brands:', response.status, response.statusText);
@@ -35,13 +35,13 @@ const getAllCars = async () => {
 
     const data = await response.json();
     return data;
-  } catch(err) {
+  } catch (err) {
     console.error('Error fetching car brands data:', err);
     throw err;
   }
 }
 
-export {getAllCars};
+export { getAllCars };
 
 //one car
 const getOneCar = async (_id) => {
@@ -53,8 +53,8 @@ const getOneCar = async (_id) => {
     }
 
     const carData = await response.json();
-    
-    carData._id = _id; 
+
+    carData._id = _id;
 
     return carData;
   } catch (error) {
@@ -65,7 +65,62 @@ const getOneCar = async (_id) => {
 
 export { getOneCar };
 
+//likes
+const addLike = async ({ carId, userId }) => {
+  try {
+    const response = await fetch(`${baseUrl}/like`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ carId, userId })
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to add like for car ${carId}. Status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error adding like:', error);
+    throw error;
+  }
+};
 
+const unLike = async (likeId) => {
+  try {
+    const response = await fetch(`${baseUrl}/like/${likeId}`, {
+      method: 'DELETE'
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to remove like. Status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('Error removing like:', error);
+    throw error;
+  }
+};
+
+const getAllLikes = async (carId) => {
+  try {
+    const response = await fetch(`${baseUrl}/likes/${carId}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch likes for car ${carId}. Status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching likes:', error);
+    throw error;
+  }
+};
+
+export { getAllLikes, addLike, unLike };
+
+
+
+
+
+
+
+//create
 export const create = async (carData) => {
   const result = await request.post(baseUrl, carData);
 
@@ -87,7 +142,7 @@ export const likeCar = async (carId, userId, authToken) => {
   try {
     const allCars = await getAll();
     const carToUpdate = allCars.find((car) => car._id === carId);
-    
+
     if (!carToUpdate) {
       throw new Error(`Car with ID ${carId} not found`);
     }
@@ -134,7 +189,7 @@ export const getAllSorted = async (sortOption) => {
     }
 
     const response = await fetch(`${baseUrl}?sortBy=${encodeURIComponent(sortByParam)}`);
-    
+
     if (!response.ok) {
       console.error('Error fetching sorted cars:', response.status, response.statusText);
       throw new Error(`Failed to fetch sorted cars. Status: ${response.status}`);

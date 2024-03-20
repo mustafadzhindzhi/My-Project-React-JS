@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import * as carService from "../../services/CarService.js";
-import * as likeService from "../../services/likeService.js";
+import * as carService from "../../services/CarService.js"; // Import carService
 import AuthContext from "../../contexts/authContext.jsx";
 import Path from "../../../paths.js";
 import { pathToUrl } from "../../utils/pathUtils.js";
@@ -20,21 +19,26 @@ const CarDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-      //   const initialLikes = await likeService.getAllLikes(_id);
-      //   setLikeCount(initialLikes.length);
-  
-      //   let foundLike = initialLikes.find((el) => el.userId === userId);
-  
-      //   if (foundLike) {
-      //     setLikeId(foundLike._id);
-      //     setLiked(true);
-      //   }
-
+        // Fetch car details
         const carData = await carService.getOneCar(_id);
         setCar(carData);
 
-        const likes = Number(carData.likes);
-        setLikeCount(isNaN(likes) ? 0 : likes);
+        // Fetch likes for the car
+        const likes = await carService.getAllLikes(_id);
+        setLikeCount(likes.length);
+
+        // Check if the current user has already liked the car
+        const foundLike = likes.find((like) => like.userId === userId);
+        if (foundLike) {
+          setLikeId(foundLike._id);
+          setLiked(true);
+        }
+
+        // Calculate average rating
+        const storedRatings = JSON.parse(localStorage.getItem(`carRatings_${_id}`)) || [];
+        setRatings(storedRatings);
+        const newAverageRating = storedRatings.reduce((sum, rating) => sum + rating, 0) / storedRatings.length || 0;
+        setAverageRating(Math.round(newAverageRating * 10) / 10);
       } catch (error) {
         console.error("Error fetching car data:", error);
         navigate("/error");
@@ -47,12 +51,14 @@ const CarDetails = () => {
   const handleLike = async () => {
     try {
       if (!likeId) {
-        const result = await likeService.addLike({ carId: _id, userId });
+        // Add like
+        const result = await carService.addLike({ carId: _id, userId });
         setLikeCount((prevLike) => prevLike + 1);
         setLikeId(result._id);
         setLiked(true);
       } else {
-        await likeService.unLike(likeId);
+        // Remove like
+        await carService.unLike(likeId);
         setLikeCount((prevLike) => prevLike - 1);
         setLikeId("");
         setLiked(false);
@@ -62,28 +68,9 @@ const CarDetails = () => {
     }
   };
 
-  const handleUnlike = async () => {
-    try {
-      if (likeId) {
-        await likeService.unLike(likeId);
-        setLikeCount((prevLike) => prevLike - 1);
-        setLikeId("");
-        setLiked(false);
-      }
-    } catch (error) {
-      console.error('Error unliking car:', error);
-    }
-  };
-
-  useEffect(() => {
-    const storedRatings = JSON.parse(localStorage.getItem(`carRatings_${_id}`)) || [];
-    setRatings(storedRatings);
-    const newAverageRating = storedRatings.reduce((sum, rating) => sum + rating, 0) / storedRatings.length || 0;
-    setAverageRating(Math.round(newAverageRating * 10) / 10);
-  }, [_id]);
-
   const handleRatingChange = (newRating) => {
     if (newRating >= 1 && newRating <= 5) {
+      // Handle rating change
       const newRatings = [...ratings, newRating];
       setRatings(newRatings);
       localStorage.setItem(`carRatings_${_id}`, JSON.stringify(newRatings));
